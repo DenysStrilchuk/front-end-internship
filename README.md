@@ -24,7 +24,7 @@ Make sure you have the following installed on your machine:
    ```bash
    npm install
 
-3. **Install Dependencies**
+3. **Start the Development Server**
     ```bash
    npm start
 
