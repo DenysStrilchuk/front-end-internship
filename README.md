@@ -32,7 +32,7 @@ This command will start the development server,
 and you can access the application in your web browser 
 at http://localhost:3000.
 
-## Файлова структура
+## File Structure
 
 - `public/`: Contains static files .
 - `src/`: The main folder with the application code.
