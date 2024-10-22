@@ -47,3 +47,17 @@ at http://localhost:3000.
 - `README.md`: Instructions for running the app and project description.
 - `package.json`: Project dependencies and scripts. Конфігурація TypeScript.
 - `.gitignore`: Files to be ignored by Git.
+
+## Running the application in Docker
+
+1. Ensure that Docker and Docker Compose are installed.
+2. Build the Docker image:
+    ```bash
+    docker-compose build
+    ```
+3. Start the container:
+    ```bash
+    docker-compose up
+    ```
+4. Open your browser and navigate to `http://localhost:80`.
+
