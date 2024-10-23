@@ -1,24 +1,18 @@
-import { Button, Container, Typography, useTheme } from "@mui/material";
-import styles from './Home.module.css';
+import {Typography, Container} from "@mui/material";
 
 const Home = () => {
-    const theme = useTheme();
-
     return (
-        <div
-            className={styles.root}
-            style={{ backgroundColor: theme.palette.background.default }}
-        >
-            <Container>
-                <Typography variant="h2" className={styles.title}>
-                    Welcome to My Front End Internship Project
-                </Typography>
-                <Button variant="contained" color="primary" className={styles.button}>
-                    Get Started
-                </Button>
-            </Container>
-        </div>
+        <Container>
+            <Typography variant="h4" gutterBottom>
+                Welcome to My Application
+            </Typography>
+            <Typography variant="body1">
+                This application showcases various features
+                and functionalities. You can navigate through the menu
+                to explore different sections including About, Users, and Companies.
+            </Typography>
+        </Container>
     );
 };
 
-export { Home };
+export {Home};
