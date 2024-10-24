@@ -1,0 +1,16 @@
+{
+  "language": "Language",
+  "welcome": "Welcome",
+  "home": "Home",
+  "about": "About",
+  "users": "Users",
+  "companies": "Companies",
+  "about_title": "About Our Application",
+  "about_description": "This is a mock page that provides information about our project.",
+  "user_profile": "User Profile",
+  "name": "Name",
+  "users_list": "Users List",
+  "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
+  "companies_list": "Companies List",
+  "company_details": "Details about {{name}}..."
+}
