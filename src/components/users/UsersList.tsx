@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {mockUsers} from "../../data/mockUsers";
 import {IUser} from "../../models/IUser";
 import {ListView} from "../common/ListView";
+import {Routes} from "../../utils/routes";
 
 
 const UsersList = () => {
@@ -12,7 +13,7 @@ const UsersList = () => {
         <ListView
             title={t('users_list')}
             items={mockUsers}
-            getItemLink={(user: IUser) => `/users/${user.id}`}
+            getItemLink={(user: IUser) => `${Routes.USERS}/${user.id}`}
             renderItemName={(user: IUser) => user.name}
         />
     );
