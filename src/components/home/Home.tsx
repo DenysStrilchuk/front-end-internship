@@ -1,15 +1,16 @@
 import {Typography, Container} from "@mui/material";
+import {useTranslation} from "react-i18next";
 
 const Home = () => {
+    const {t} = useTranslation();
+
     return (
         <Container>
             <Typography variant="h4" gutterBottom>
-                Welcome to My Application
+                {t('welcome')}
             </Typography>
             <Typography variant="body1">
-                This application showcases various features
-                and functionalities. You can navigate through the menu
-                to explore different sections including About, Users, and Companies.
+                {t('home_description')}
             </Typography>
         </Container>
     );

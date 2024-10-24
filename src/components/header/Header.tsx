@@ -1,8 +1,13 @@
 import {AppBar, Toolbar, Typography, Button} from "@mui/material";
 import {Link as RouterLink} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+
 import {Routes} from "../../utils/routes";
+import {LanguageSelector} from "../common/LanguageSelector/LanguageSelector";
 
 const Header = () => {
+    const {t} = useTranslation();
+
     return (
         <AppBar position="static">
             <Toolbar>
@@ -10,17 +15,18 @@ const Header = () => {
                     My App
                 </Typography>
                 <Button color="inherit" component={RouterLink} to={Routes.HOME}>
-                    Home
+                    {t('home')}
                 </Button>
                 <Button color="inherit" component={RouterLink} to={Routes.ABOUT}>
-                    About
+                    {t('about')}
                 </Button>
                 <Button color="inherit" component={RouterLink} to={Routes.USERS}>
-                    Users
+                    {t('users')}
                 </Button>
                 <Button color="inherit" component={RouterLink} to={Routes.COMPANIES}>
-                    Companies
+                    {t('companies')}
                 </Button>
+                <LanguageSelector/>
             </Toolbar>
         </AppBar>
     );

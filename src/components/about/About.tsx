@@ -1,13 +1,16 @@
 import {Container, Typography} from "@mui/material";
+import {useTranslation} from "react-i18next";
 
 const About = () => {
+    const {t} = useTranslation();
+
     return (
         <Container>
             <Typography variant="h4" component="h1" gutterBottom>
-                About Our Application
+                {t('about_title')}
             </Typography>
             <Typography variant="body1">
-                This is a mock page that provides information about our project.
+                {t('about_description')}
             </Typography>
         </Container>
     );
