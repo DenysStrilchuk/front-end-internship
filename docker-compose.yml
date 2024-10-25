@@ -3,10 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=http://51.20.210.187
     ports:
       - "80:80"
     volumes:
       - .:/app
-      - /app/node_modules
     environment:
       - REACT_APP_API_URL=http://51.20.210.187
