@@ -1,6 +1,8 @@
 import {Container, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 
+import {TestComponent} from "../test";
+
 const About = () => {
     const {t} = useTranslation();
 
@@ -12,6 +14,7 @@ const About = () => {
             <Typography variant="body1">
                 {t('about_description')}
             </Typography>
+            <TestComponent/>
         </Container>
     );
 };
