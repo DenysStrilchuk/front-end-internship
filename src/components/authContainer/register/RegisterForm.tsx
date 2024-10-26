@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 import {authApi} from "../../../api/auth-api";
 import {AuthForm} from "../../common/AuthForm";
+import {IApiError} from "../../../types/api-types/errorTypes";
 
 const RegisterForm = () => {
     const {t} = useTranslation();
@@ -29,8 +30,9 @@ const RegisterForm = () => {
                 user_lastname: lastName,
             });
             navigate('/login');
-        } catch (_err) {
-            setError(t('register.errorMessage'));
+        } catch (err) {
+            const errorMessage = (err as IApiError).response?.data?.message || t('register.errorMessage');
+            setError(errorMessage);
         }
     };
 

@@ -8,6 +8,7 @@ import {authActions} from "../../../store/slices";
 import {ITokenResponse} from "../../../types/api-types/authTypes";
 import {Routes} from "../../../utils";
 import {AuthForm} from "../../common/AuthForm";
+import {IApiError} from "../../../types/api-types/errorTypes";
 
 const LoginForm = () => {
     const {t} = useTranslation();
@@ -35,8 +36,9 @@ const LoginForm = () => {
             );
 
             navigate(Routes.HOME);
-        } catch (_err) {
-            setError(t('login.errorMessage'));
+        } catch (err) {
+            const errorMessage = (err as IApiError).response?.data?.message || t('login.errorMessage');
+            setError(errorMessage);
         }
     };
 
