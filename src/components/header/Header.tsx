@@ -4,15 +4,13 @@ import {useTranslation} from "react-i18next";
 
 import {useAppSelector} from "../../hooks";
 import {Routes} from "../../utils";
-import {selectIsAuthenticated} from "../../store/slices/authSlice";
+import {selectIsAuthenticated} from "../../store/slices";
 import {LogoutButton} from "../authContainer/logout-button";
 import {LanguageSelector} from "../common/LanguageSelector";
 
 const Header = () => {
     const {t} = useTranslation();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
-
-    console.log("isAuthenticated в Header:", isAuthenticated);
 
     return (
         <AppBar position="static">
@@ -28,8 +26,7 @@ const Header = () => {
                 </Button>
                 {isAuthenticated ? (
                     <>
-                        <Button color="inherit" component={RouterLink} to={Routes.USERS}
-                                onClick={() => console.log('Navigating to Users')}>
+                        <Button color="inherit" component={RouterLink} to={Routes.USERS}>
                             {t('users')}
                         </Button>
 

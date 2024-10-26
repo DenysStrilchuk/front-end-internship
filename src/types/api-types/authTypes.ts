@@ -15,6 +15,14 @@ export interface IUserIdResponse {
     userId: string;
 }
 
+export interface ITokenResult {
+    access_token: string;
+    token_type: string;
+    expires_in: number;
+}
+
 export interface ITokenResponse {
-    token: string;
+    status_code: number;
+    detail: string;
+    result: ITokenResult;
 }

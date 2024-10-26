@@ -1,6 +1,6 @@
 import {axiosInstance} from "../axios-instance";
 
-import {urls} from "../../constants";
+import {urls} from "../../constants/urls";
 import {ILoginData, IRegistrationData, ITokenResponse, IUserIdResponse} from "../../types/api-types/authTypes";
 
 const authApi = {

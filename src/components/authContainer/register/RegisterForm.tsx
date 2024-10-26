@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {TextField, Button, Typography, Box} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
-import {authApi} from "../../../api/auth-api/authApi";
+import {authApi} from "../../../api/auth-api";
+import {AuthForm} from "../../common/AuthForm";
 
 const RegisterForm = () => {
     const {t} = useTranslation();
@@ -34,63 +34,45 @@ const RegisterForm = () => {
         }
     };
 
-    return (
-        <Box sx={{maxWidth: 400, mx: 'auto', mt: 4}}>
-            <Typography variant="h5" gutterBottom>
-                {t('register.title')}
-            </Typography>
-            {error && <Typography color="error">{error}</Typography>}
-            <TextField
-                label={t('register.emailLabel')}
-                type="email"
-                fullWidth
-                margin="normal"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-                label={t('register.firstNameLabel')}
-                type="text"
-                fullWidth
-                margin="normal"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-            />
-            <TextField
-                label={t('register.lastNameLabel')}
-                type="text"
-                fullWidth
-                margin="normal"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-            />
-            <TextField
-                label={t('register.passwordLabel')}
-                type="password"
-                fullWidth
-                margin="normal"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-                label={t('register.confirmPasswordLabel')}
-                type="password"
-                fullWidth
-                margin="normal"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                onClick={handleRegister}
-                sx={{mt: 2}}
-            >
-                {t('register.submitButton')}
-            </Button>
-        </Box>
-    );
+    const fields = [
+        {
+            label: 'register.emailLabel',
+            type: 'email',
+            name: 'user_email',
+            value: email,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+        },
+        {
+            label: 'register.firstNameLabel',
+            type: 'text',
+            name: 'user_firstname',
+            value: firstName,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)
+        },
+        {
+            label: 'register.lastNameLabel',
+            type: 'text',
+            name: 'user_lastname',
+            value: lastName,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)
+        },
+        {
+            label: 'register.passwordLabel',
+            type: 'password',
+            name: 'user_password',
+            value: password,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+        },
+        {
+            label: 'register.confirmPasswordLabel',
+            type: 'password',
+            name: 'user_password_repeat',
+            value: confirmPassword,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)
+        },
+    ];
+
+    return <AuthForm title="register.title" onSubmit={handleRegister} fields={fields} error={error}/>;
 };
 
 export {RegisterForm};

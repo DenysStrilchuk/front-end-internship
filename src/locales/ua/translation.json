@@ -17,9 +17,10 @@
   "company_details": "Деталі про {{name}}...",
   "login.title": "Вхід",
   "login.errorMessage": "Помилка входу. Перевірте правильність даних.",
-  "login.emailLabel": "Пошта",
+  "login.emailLabel": "Електронна пошта",
   "login.passwordLabel": "Пароль",
   "login.submitButton": "Увійти",
+  "login.orLoginWith": "або увійдіть за допомогою",
   "register": "Реєстрація",
   "login": "Логінація",
   "register.title": "Реєстрація",
@@ -30,6 +31,10 @@
   "register.passwordLabel": "Пароль",
   "register.confirmPasswordLabel": "Підтвердіть пароль",
   "register.submitButton": "Зареєструватися",
-  "register.passwordMismatch": "Паролі не співпадають."
+  "register.passwordMismatch": "Паролі не співпадають.",
+  "register.orRegisterWith": "або зареєструйтесь за допомогою",
+  "common.submitButton": "Відправити",
+  "common.or": "або",
+  "logout": "Вихід"
 }
 

@@ -20,6 +20,7 @@
   "login.emailLabel": "Email",
   "login.passwordLabel": "Password",
   "login.submitButton": "Log In",
+  "login.orLoginWith": "or login with",
   "register": "Register",
   "login": "Login",
   "register.title": "Registration",
@@ -30,5 +31,9 @@
   "register.passwordLabel": "Password",
   "register.confirmPasswordLabel": "Confirm Password",
   "register.submitButton": "Register",
-  "register.passwordMismatch": "Passwords do not match."
+  "register.passwordMismatch": "Passwords do not match.",
+  "register.orRegisterWith": "or register with",
+  "common.submitButton": "Submit",
+  "common.or": "or",
+  "logout": "Logout"
 }

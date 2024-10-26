@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, {AxiosInstance} from 'axios';
 
-import {baseUrl} from "../../constants";
+import {baseUrl} from "../../constants/urls";
 import {store} from "../../store";
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -29,4 +29,4 @@ axiosInstance.interceptors.response.use(
     }
 );
 
-export { axiosInstance };
+export {axiosInstance};
