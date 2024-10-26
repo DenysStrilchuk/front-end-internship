@@ -2,11 +2,17 @@ import {AppBar, Toolbar, Typography, Button} from "@mui/material";
 import {Link as RouterLink} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-import {Routes} from "../../utils/routes";
-import {LanguageSelector} from "../common/LanguageSelector/LanguageSelector";
+import {useAppSelector} from "../../hooks";
+import {Routes} from "../../utils";
+import {selectIsAuthenticated} from "../../store/slices/authSlice";
+import {LogoutButton} from "../authContainer/logout-button";
+import {LanguageSelector} from "../common/LanguageSelector";
 
 const Header = () => {
     const {t} = useTranslation();
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
+
+    console.log("isAuthenticated в Header:", isAuthenticated);
 
     return (
         <AppBar position="static">
@@ -20,12 +26,28 @@ const Header = () => {
                 <Button color="inherit" component={RouterLink} to={Routes.ABOUT}>
                     {t('about')}
                 </Button>
-                <Button color="inherit" component={RouterLink} to={Routes.USERS}>
-                    {t('users')}
-                </Button>
-                <Button color="inherit" component={RouterLink} to={Routes.COMPANIES}>
-                    {t('companies')}
-                </Button>
+                {isAuthenticated ? (
+                    <>
+                        <Button color="inherit" component={RouterLink} to={Routes.USERS}
+                                onClick={() => console.log('Navigating to Users')}>
+                            {t('users')}
+                        </Button>
+
+                        <Button color="inherit" component={RouterLink} to={Routes.COMPANIES}>
+                            {t('companies')}
+                        </Button>
+                        <LogoutButton/>
+                    </>
+                ) : (
+                    <>
+                        <Button color="inherit" component={RouterLink} to={Routes.LOGIN}>
+                            {t('login')}
+                        </Button>
+                        <Button color="inherit" component={RouterLink} to={Routes.REGISTER}>
+                            {t('register')}
+                        </Button>
+                    </>
+                )}
                 <LanguageSelector/>
             </Toolbar>
         </AppBar>

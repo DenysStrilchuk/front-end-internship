@@ -1,5 +1,7 @@
 {
   "language": "Language",
+  "english": "English",
+  "ukrainian": "Ukrainian",
   "welcome": "Welcome",
   "home": "Home",
   "about": "About",
@@ -12,5 +14,21 @@
   "users_list": "Users List",
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "companies_list": "Companies List",
-  "company_details": "Details about {{name}}..."
+  "company_details": "Details about {{name}}...",
+  "login.title": "Login",
+  "login.errorMessage": "Login error. Please check your credentials.",
+  "login.emailLabel": "Email",
+  "login.passwordLabel": "Password",
+  "login.submitButton": "Log In",
+  "register": "Register",
+  "login": "Login",
+  "register.title": "Registration",
+  "register.errorMessage": "Registration error. Please try again.",
+  "register.emailLabel": "Email",
+  "register.firstNameLabel": "First Name",
+  "register.lastNameLabel": "Last Name",
+  "register.passwordLabel": "Password",
+  "register.confirmPasswordLabel": "Confirm Password",
+  "register.submitButton": "Register",
+  "register.passwordMismatch": "Passwords do not match."
 }

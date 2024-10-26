@@ -1,5 +1,7 @@
 {
   "language": "Мова",
+  "english": "Англійська",
+  "ukrainian": "Українська",
   "welcome": "Ласкаво просимо",
   "home": "Головна",
   "about": "Про нас",
@@ -12,6 +14,22 @@
   "users_list": "Список користувачів",
   "home_description": "Цей застосунок демонструє різні функції та можливості. Ви можете перейти через меню, щоб дослідити різні розділи, включаючи Про нас, Користувачі та Компанії.",
   "companies_list": "Список компаній",
-  "company_details": "Деталі про {{name}}..."
+  "company_details": "Деталі про {{name}}...",
+  "login.title": "Вхід",
+  "login.errorMessage": "Помилка входу. Перевірте правильність даних.",
+  "login.emailLabel": "Пошта",
+  "login.passwordLabel": "Пароль",
+  "login.submitButton": "Увійти",
+  "register": "Реєстрація",
+  "login": "Логінація",
+  "register.title": "Реєстрація",
+  "register.errorMessage": "Помилка реєстрації. Спробуйте ще раз.",
+  "register.emailLabel": "Електронна пошта",
+  "register.firstNameLabel": "Ім'я",
+  "register.lastNameLabel": "Прізвище",
+  "register.passwordLabel": "Пароль",
+  "register.confirmPasswordLabel": "Підтвердіть пароль",
+  "register.submitButton": "Зареєструватися",
+  "register.passwordMismatch": "Паролі не співпадають."
 }
 

@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {mockUsers} from "../../data/mockUsers";
 import {IUser} from "../../models/IUser";
 import {ListView} from "../common/ListView";
-import {Routes} from "../../utils/routes";
+import {Routes} from "../../utils";
 
 
 const UsersList = () => {

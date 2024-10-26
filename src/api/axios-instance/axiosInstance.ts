@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 import {baseUrl} from "../../constants";
+import {store} from "../../store";
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: baseUrl,
@@ -10,15 +11,13 @@ const axiosInstance: AxiosInstance = axios.create({
     },
 });
 
-axiosInstance.interceptors.request.use(
-    config => {
-        return config;
-    },
-    error => {
-        console.error('Request Error:', error);
-        return Promise.reject(error);
+axiosInstance.interceptors.request.use((config) => {
+    const token = store.getState().auth.token;
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-);
+    return config;
+});
 
 axiosInstance.interceptors.response.use(
     response => {
