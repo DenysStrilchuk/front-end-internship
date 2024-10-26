@@ -35,7 +35,7 @@ const LoginForm = () => {
             );
 
             navigate(Routes.HOME);
-        } catch (err) {
+        } catch (_err) {
             setError(t('login.errorMessage'));
         }
     };

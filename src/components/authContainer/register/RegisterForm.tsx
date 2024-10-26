@@ -29,7 +29,7 @@ const RegisterForm = () => {
                 user_lastname: lastName,
             });
             navigate('/login');
-        } catch (err) {
+        } catch (_err) {
             setError(t('register.errorMessage'));
         }
     };
