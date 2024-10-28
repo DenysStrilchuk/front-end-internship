@@ -1,6 +1,6 @@
 import { axiosInstance } from "../axios-instance";
 import { IHealthCheckResponse } from "../../types/api-types";
-import {urls} from "../../constants";
+import {urls} from "../../constants/urls";
 
 export const checkStatus = async (): Promise<IHealthCheckResponse> => {
     try {
