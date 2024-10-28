@@ -57,7 +57,7 @@
         "empty": "The \"Password\" field cannot be empty",
         "min": "Password must be at least 8 characters long",
         "max": "Password must not exceed 30 characters",
-        "pattern": "Password can only contain letters, numbers, and special characters",
+        "pattern": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
         "required": "The \"Password\" field is required"
       },
       "confirmPassword": {

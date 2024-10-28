@@ -12,13 +12,13 @@ export const registrationValidationSchema = Joi.object({
     password: Joi.string()
         .min(8)
         .max(30)
-        .pattern(new RegExp('^[a-zA-Z0-9!@#$%^&*()_+\\-=]{8,30}$'))
+        .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=]).{8,30}$')) // Оновлений шаблон
         .required()
         .messages({
             'string.empty': 'auth.errors.password.empty',
             'string.min': 'auth.errors.password.min',
             'string.max': 'auth.errors.password.max',
-            'string.pattern.base': 'auth.errors.password.pattern',
+            'string.pattern.base': 'auth.errors.password.pattern', // Повідомлення про помилку
             'any.required': 'auth.errors.password.required',
         }),
     confirmPassword: Joi.string()
@@ -66,10 +66,6 @@ export const loginValidationSchema = Joi.object({
     password: Joi.string()
         .required()
         .messages({
-            'string.empty': 'auth.errors.password.empty',
-            'string.min': 'auth.errors.password.min',
-            'string.max': 'auth.errors.password.max',
-            'string.pattern.base': 'auth.errors.password.pattern',
             'any.required': 'auth.errors.password.required',
         }),
 });
