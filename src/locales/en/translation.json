@@ -77,6 +77,14 @@
         "max": "Last name must not exceed 50 characters",
         "pattern": "Last name must start with an uppercase letter and contain only letters",
         "required": "The \"Last Name\" field is required"
+      },
+      "register": {
+        "emailExists": "A user with this email address already exists.",
+        "default": "An unknown error occurred. Please try again later."
+      },
+      "login": {
+        "invalidAuth": "Invalid login or password.",
+        "default": "An unknown error occurred. Please try again later."
       }
     }
   }

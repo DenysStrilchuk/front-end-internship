@@ -4,7 +4,6 @@ import {useTranslation} from 'react-i18next';
 
 import {authApi} from "../../../api/auth-api";
 import {AuthForm} from "../../common/AuthForm";
-import {IApiError} from "../../../types/api-types/errorTypes";
 import {Routes} from "../../../utils";
 import {IFormValues} from "../../../types/form-types";
 
@@ -28,8 +27,17 @@ const RegisterForm = () => {
             });
             navigate(Routes.LOGIN);
         } catch (err) {
-            const errorMessage = (err as IApiError).response?.data?.message || t('register.errorMessage');
-            setError(errorMessage);
+            const errorMessage = (err as Error).message;
+            let translatedErrorMessage;
+            switch (errorMessage) {
+                case 'User with this email address already exists.':
+                    translatedErrorMessage = t('auth.errors.register.emailExists');
+                    break;
+                default:
+                    translatedErrorMessage = t('auth.errors.register.default');
+            }
+
+            setError(translatedErrorMessage);
         }
     };
 

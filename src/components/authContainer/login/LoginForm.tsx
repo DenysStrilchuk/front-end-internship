@@ -8,7 +8,6 @@ import {authActions} from "../../../store/slices";
 import {ITokenResponse} from "../../../types/api-types/authTypes";
 import {Routes} from "../../../utils";
 import {AuthForm} from "../../common/AuthForm";
-import {IApiError} from "../../../types/api-types/errorTypes";
 
 const LoginForm = () => {
     const {t} = useTranslation();
@@ -35,8 +34,17 @@ const LoginForm = () => {
 
             navigate(Routes.HOME);
         } catch (err) {
-            const errorMessage = (err as IApiError).response?.data?.message || t('login.errorMessage');
-            setError(errorMessage);
+            const errorMessage = (err as Error).message;
+            let translatedErrorMessage;
+            switch (errorMessage) {
+                case 'Invalid login or password.':
+                    translatedErrorMessage = t('auth.errors.login.invalidAuth');
+                    break;
+                default:
+                    translatedErrorMessage = t('auth.errors.login.default');
+            }
+
+            setError(translatedErrorMessage);
         }
     };
 
