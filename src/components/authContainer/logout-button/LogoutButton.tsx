@@ -14,6 +14,7 @@ const LogoutButton = () => {
 
     const handleLogout = () => {
         dispatch(authActions.clearToken());
+        localStorage.removeItem('token');
         navigate(Routes.LOGIN);
     };
 
