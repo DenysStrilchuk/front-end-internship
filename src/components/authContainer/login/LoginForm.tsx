@@ -12,17 +12,15 @@ import {IApiError} from "../../../types/api-types/errorTypes";
 
 const LoginForm = () => {
     const {t} = useTranslation();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogin = async (): Promise<void> => {
+    const handleLogin = async (data: { email: string; password: string; }): Promise<void> => {
         try {
             const response: ITokenResponse = await authApi.loginUser({
-                user_email: email,
-                user_password: password,
+                user_email: data.email,
+                user_password: data.password,
             });
 
             const {access_token, token_type, expires_in} = response.result;
@@ -42,24 +40,16 @@ const LoginForm = () => {
         }
     };
 
-    const fields = [
-        {
-            label: 'login.emailLabel',
-            type: 'email',
-            name: 'user_email',
-            value: email,
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
-        },
-        {
-            label: 'login.passwordLabel',
-            type: 'password',
-            name: 'user_password',
-            value: password,
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
-        },
-    ];
-
-    return <AuthForm title="login.title" onSubmit={handleLogin} fields={fields} error={error}/>;
+    return (
+        <AuthForm
+            title="login.title"
+            onSubmit={handleLogin}
+            error={error}
+            showConfirmPassword={false}
+            showNameFields={false}
+            defaultValues={{email: '', password: ''}}
+        />
+    );
 };
 
 export {LoginForm};

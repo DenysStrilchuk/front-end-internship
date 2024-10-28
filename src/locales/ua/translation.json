@@ -35,6 +35,26 @@
   "register.orRegisterWith": "або зареєструйтесь за допомогою",
   "common.submitButton": "Відправити",
   "common.or": "або",
-  "logout": "Вихід"
+  "logout": "Вихід",
+  "auth.errors.email.empty": "Поле \"Електронна пошта\" не може бути порожнім",
+  "auth.errors.email.invalid": "Будь ласка, введіть дійсну електронну адресу",
+  "auth.errors.email.required": "Поле \"Електронна пошта\" є обов'язковим",
+  "auth.errors.password.empty": "Поле \"Пароль\" не може бути порожнім",
+  "auth.errors.password.min": "Пароль повинен містити щонайменше 8 символів",
+  "auth.errors.password.max": "Пароль не повинен перевищувати 30 символів",
+  "auth.errors.password.pattern": "Пароль може містити лише літери, цифри та спеціальні символи",
+  "auth.errors.password.required": "Поле \"Пароль\" є обов'язковим",
+  "auth.errors.confirmPassword.match": "Паролі не співпадають",
+  "auth.errors.confirmPassword.required": "Поле \"Підтвердження паролю\" є обов'язковим",
+  "auth.errors.firstName.empty": "Поле \"Ім'я\" не може бути порожнім",
+  "auth.errors.firstName.min": "Ім'я повинно містити щонайменше 2 символи",
+  "auth.errors.firstName.max": "Ім'я не повинно перевищувати 50 символів",
+  "auth.errors.firstName.pattern": "Ім'я повинно починатися з великої літери та містити тільки літери",
+  "auth.errors.firstName.required": "Поле \"Ім'я\" є обов'язковим",
+  "auth.errors.lastName.empty": "Поле \"Прізвище\" не може бути порожнім",
+  "auth.errors.lastName.min": "Прізвище повинно містити щонайменше 2 символи",
+  "auth.errors.lastName.max": "Прізвище не повинно перевищувати 50 символів",
+  "auth.errors.lastName.pattern": "Прізвище повинно починатися з великої літери та містити тільки літери",
+  "auth.errors.lastName.required": "Поле \"Прізвище\" є обов'язковим"
 }
 
