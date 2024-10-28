@@ -15,7 +15,7 @@ const UserProfile = () => {
             idKey="id"
             renderDetails={(user: IUser) => (
                 <>
-                    <Typography variant="h5">{t('user_profile')}</Typography>
+                    <Typography variant="h5">{t('user.profile')}</Typography>
                     <Typography variant="body1">{t('name')}: {user.name}</Typography>
                 </>
             )}

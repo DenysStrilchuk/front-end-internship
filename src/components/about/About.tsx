@@ -9,10 +9,10 @@ const About = () => {
     return (
         <Container>
             <Typography variant="h4" component="h1" gutterBottom>
-                {t('about_title')}
+                {t('about.title')}
             </Typography>
             <Typography variant="body1">
-                {t('about_description')}
+                {t('about.description')}
             </Typography>
             <TestComponent/>
         </Container>

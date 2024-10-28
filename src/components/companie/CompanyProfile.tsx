@@ -17,7 +17,7 @@ const CompanyProfile = () => {
                 <>
                     <Typography variant="h4">{company.name}</Typography>
                     <Typography variant="body1">
-                        {t('company_details', {name: company.name})}
+                        {t('companies.details', {name: company.name})}
                     </Typography>
                 </>
             )}
