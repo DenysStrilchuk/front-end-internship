@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 
 import {mockCompanies} from "../../data/mockCompanies";
 import {ICompany} from "../../models/ICompany";
-import {ProfileView} from "../common/ProfileView/ProfileView";
+import {ProfileView} from "../common/ProfileView";
 
 
 const CompanyProfile = () => {
