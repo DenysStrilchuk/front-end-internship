@@ -1,40 +1,63 @@
-import {useEffect} from "react";
-import {useTranslation} from "react-i18next";
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchAllUsers } from '../../store/slices';
+import { ListView } from '../common/ListView';
+import { Pagination } from '../common/Pagination';
+import { Container, Box, CircularProgress, Alert, Stack } from '@mui/material';
 
-import {IUser} from "../../models/IUser";
-import {ListView} from "../common/ListView";
-import {Routes} from "../../utils";
-import {useAppSelector, useAppDispatch} from "../../hooks";
-import {fetchAllUsers} from "../../store/slices";
+const UsersList: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const { users, pagination, loading, error } = useAppSelector((state) => state.users);
 
-const UsersList = () => {
-    const {t} = useTranslation();
-    const dispatch = useAppDispatch(); // Отримуємо dispatch
-    const users = useAppSelector((state) => state.users.users);
-    const loading = useAppSelector((state) => state.users.loading);
-    const error = useAppSelector((state) => state.users.error);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
 
     useEffect(() => {
-        // Виклик fetchAllUsers при завантаженні компонента
-        dispatch(fetchAllUsers({page: 1, pageSize: 10}));
-    }, [dispatch]);
+        dispatch(fetchAllUsers({ page: currentPage, pageSize }));
+    }, [dispatch, currentPage]);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
+                <CircularProgress color="primary" size={50} />
+            </Box>
+        );
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return (
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+                <Alert severity="error" variant="outlined">
+                    {error}
+                </Alert>
+            </Container>
+        );
     }
 
     return (
-        <ListView
-            title={t('user.list')}
-            items={users}
-            getItemLink={(user: IUser) => `${Routes.USERS}/${user.user_id}`}
-            renderItemName={(user: IUser) => user.user_firstname}
-        />
+        <Container maxWidth="md" sx={{ mt: 5 }}>
+            <ListView
+                title="User List"
+                items={users}
+                getItemLink={(user) => `/users/${user.user_id}`}
+                renderItemName={(user) => `${user.user_firstname} ${user.user_lastname}`}
+            />
+
+            {pagination && (
+                <Stack alignItems="center" mt={4}>
+                    <Pagination
+                        currentPage={pagination.current_page}
+                        totalPage={pagination.total_page}
+                        onPageChange={handlePageChange}
+                    />
+                </Stack>
+            )}
+        </Container>
     );
 };
 
-export {UsersList};
+export { UsersList };

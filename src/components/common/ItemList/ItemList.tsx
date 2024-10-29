@@ -1,5 +1,5 @@
 import React from "react";
-import {List, ListItem, Typography} from "@mui/material";
+import { List, ListItem, Typography } from "@mui/material";
 
 interface ItemListProps<T> {
     items: T[];
@@ -7,11 +7,11 @@ interface ItemListProps<T> {
     title?: string;
 }
 
-const ItemList = <T, >({items, renderItem, title}: ItemListProps<T>) => {
+const ItemList = <T, >({ items, renderItem, title }: ItemListProps<T>) => {
     return (
         <div>
             {title && (
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" align="center" gutterBottom>
                     {title}
                 </Typography>
             )}
@@ -26,4 +26,4 @@ const ItemList = <T, >({items, renderItem, title}: ItemListProps<T>) => {
     );
 };
 
-export {ItemList};
+export { ItemList };
