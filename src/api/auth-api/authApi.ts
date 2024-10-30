@@ -4,11 +4,12 @@ import {urls} from "../../constants/urls";
 import {ILoginData, IRegistrationData, ITokenResponse, IUserIdResponse} from "../../types/api-types/authTypes";
 import {IApiError} from "../../types/api-types/errorTypes";
 import {tokenService} from "../token-service";
+import {IGetMeResponse} from "../../models/IUser";
 
 const authApi = {
     registerUser: async (data: IRegistrationData): Promise<IUserIdResponse> => {
         try {
-            const response = await axiosInstance.post<IUserIdResponse>(urls.register.base, data);
+            const response = await axiosInstance.post<IUserIdResponse>(urls.auth.register, data);
             return response.data;
         } catch (error: unknown) {
             const apiError = error as IApiError;
@@ -22,7 +23,7 @@ const authApi = {
     },
     loginUser: async (data: ILoginData): Promise<ITokenResponse> => {
         try {
-            const response = await axiosInstance.post<ITokenResponse>(urls.login.base, data);
+            const response = await axiosInstance.post<ITokenResponse>(urls.auth.login, data);
             tokenService.saveToken(response.data.result);
             return response.data;
         } catch (error) {
@@ -33,7 +34,17 @@ const authApi = {
             console.error("Login error:", error);
             throw error;
         }
+    },
+    getMe: async (): Promise<IGetMeResponse> => {
+        try {
+            const response = await axiosInstance.get<IGetMeResponse>(urls.auth.getMe);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching user profile:", error);
+            throw error;
+        }
     }
+
 };
 
 export {authApi};

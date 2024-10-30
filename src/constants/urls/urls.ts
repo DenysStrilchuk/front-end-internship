@@ -3,6 +3,7 @@ const baseUrl = process.env.REACT_APP_API_URL;
 const status = '/';
 const register = '/user/';
 const login = '/auth/login/';
+const getMe = '/auth/me/';
 const users = '/users/';
 const user = '/user/';
 
@@ -10,11 +11,10 @@ const urls = {
     status: {
         base: `${baseUrl}${status}`
     },
-    register: {
-        base: `${baseUrl}${register}`
-    },
-    login: {
-        base: `${baseUrl}${login}`
+    auth: {
+        register: `${baseUrl}${register}`,
+        login: `${baseUrl}${login}`,
+        getMe: `${baseUrl}${getMe}`
     },
     users: {
         getAllUsers: `${baseUrl}${users}`,
@@ -22,7 +22,7 @@ const urls = {
         createUser: `${baseUrl}${user}`,
         updateUser: (id: number) => `${baseUrl}${user}${id}/update_info/`,
         deleteUser: (id: number) => `${baseUrl}${user}${id}/`
-    }
+    },
 };
 
 export {

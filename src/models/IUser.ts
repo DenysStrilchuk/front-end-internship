@@ -11,6 +11,13 @@ export interface IUser {
     is_superuser?: boolean;
 }
 
+export interface IGetMeResponse {
+    status_code: number;
+    detail: string;
+    result: IUser;
+}
+
+
 export interface IPagination {
     current_page: number;
     total_page: number;

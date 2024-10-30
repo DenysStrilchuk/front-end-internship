@@ -10,6 +10,7 @@ import {PrivateRoute} from "./PrivateRoute";
 import {RegistrationPage} from "../pages/RegistrationPage";
 import {LoginPage} from "../pages/LoginPage";
 import {UserDetailsPage} from "../pages/UserDetailsPage";
+import {UserProfilePage} from "../pages/UserProfilePage";
 
 export const routes = createBrowserRouter([
     {
@@ -26,6 +27,13 @@ export const routes = createBrowserRouter([
                 children: [
                     {index: true, element: <UsersListPage/>},
                     {path: ':id', element: <UserDetailsPage/>},
+                ],
+            },
+            {
+                path: 'auth',
+                element: <PrivateRoute/>,
+                children: [
+                    {path: 'me', element: <UserProfilePage/>},
                 ],
             },
             {

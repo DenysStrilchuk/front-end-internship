@@ -29,9 +29,11 @@ const Header = () => {
                         <Button color="inherit" component={RouterLink} to={Routes.USERS}>
                             {t('user.list')}
                         </Button>
-
                         <Button color="inherit" component={RouterLink} to={Routes.COMPANIES}>
                             {t('companies.title')}
+                        </Button>
+                        <Button color="inherit" component={RouterLink} to={Routes.PROFILE}>
+                            {t('profile.title')}
                         </Button>
                         <LogoutButton />
                     </>
