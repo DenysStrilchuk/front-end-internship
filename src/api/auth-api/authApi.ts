@@ -1,7 +1,9 @@
 import {axiosInstance} from "../axios-instance";
+
 import {urls} from "../../constants/urls";
 import {ILoginData, IRegistrationData, ITokenResponse, IUserIdResponse} from "../../types/api-types/authTypes";
 import {IApiError} from "../../types/api-types/errorTypes";
+import {tokenService} from "../token-service";
 
 const authApi = {
     registerUser: async (data: IRegistrationData): Promise<IUserIdResponse> => {
@@ -21,7 +23,7 @@ const authApi = {
     loginUser: async (data: ILoginData): Promise<ITokenResponse> => {
         try {
             const response = await axiosInstance.post<ITokenResponse>(urls.login.base, data);
-            localStorage.setItem('token', JSON.stringify(response.data.result));
+            tokenService.saveToken(response.data.result);
             return response.data;
         } catch (error) {
             const apiError = error as IApiError;

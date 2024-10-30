@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {ITokenResult} from "../../types/api-types/authTypes";
 import {TOKEN_LIFETIME} from "../../constants/auth";
+import {tokenService} from "../../api/token-service";
 
 interface AuthState {
     token: string | null;
@@ -10,8 +11,7 @@ interface AuthState {
     expirationDate: number | null;
 }
 
-const savedToken = localStorage.getItem('token');
-const parsedToken = savedToken ? JSON.parse(savedToken) : null;
+const parsedToken = tokenService.getToken();
 
 const initialState: AuthState = {
     token: parsedToken ? parsedToken.access_token : null,
@@ -30,8 +30,7 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             state.expirationDate = Date.now() + TOKEN_LIFETIME;
 
-            // Save token to localStorage
-            localStorage.setItem('token', JSON.stringify(action.payload));
+            tokenService.saveToken(action.payload);
         },
         clearToken: (state) => {
             state.token = null;
@@ -39,8 +38,7 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.expirationDate = null;
 
-            // Remove token from localStorage
-            localStorage.removeItem('token');
+            tokenService.removeToken();
         },
     },
 });
