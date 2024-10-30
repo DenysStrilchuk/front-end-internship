@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { getMe, selectIsAuthenticated } from "../../../store/slices";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {getMe, selectIsAuthenticated} from "../../../store/slices";
 
 const UserProfile: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -10,10 +10,10 @@ const UserProfile: React.FC = () => {
 
     useEffect(() => {
         if (isAuthenticated && !user) {
-            dispatch(getMe()).then((response) => {
-            });
+            dispatch(getMe());
         }
     }, [dispatch, isAuthenticated, user]);
+
 
     if (!user) {
         return <p>Loading user data...</p>;
@@ -24,9 +24,9 @@ const UserProfile: React.FC = () => {
             <h2>Welcome, {user.result.user_firstname} {user.result.user_lastname}!</h2>
             <p>Email: {user.result.user_email}</p>
             <p>Status: {user.result.user_status}</p>
-            <img src={user.result.user_avatar} alt="User Avatar" />
+            <img src={user.result.user_avatar} alt="User Avatar"/>
         </div>
     );
 };
 
-export { UserProfile };
+export {UserProfile};
