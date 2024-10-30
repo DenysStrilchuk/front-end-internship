@@ -5,7 +5,7 @@ import { UserListView } from '../common/UserListView';
 import { Pagination } from '../common/Pagination';
 import { Container, Box, CircularProgress, Alert, Stack } from '@mui/material';
 
-const UsersList: React.FC = () => {
+const UsersList = () => {
     const dispatch = useAppDispatch();
     const { users, pagination, loading, error } = useAppSelector((state) => state.users);
 
