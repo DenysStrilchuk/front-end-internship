@@ -5,11 +5,11 @@ import {AboutPage} from "../pages/AboutPage";
 import {UsersListPage} from "../pages/UsersListPage";
 import {CompaniesListPage} from "../pages/CompaniesListPage";
 import {HomePage} from "../pages/HomePage";
-import {UserProfilePage} from "../pages/UserProfilePage";
 import {CompanyProfilePage} from "../pages/CompanyProfilePage ";
 import {PrivateRoute} from "./PrivateRoute";
 import {RegistrationPage} from "../pages/RegistrationPage";
 import {LoginPage} from "../pages/LoginPage";
+import {UserDetailsPage} from "../pages/UserDetailsPage";
 
 export const routes = createBrowserRouter([
     {
@@ -25,7 +25,7 @@ export const routes = createBrowserRouter([
                 element: <PrivateRoute/>,
                 children: [
                     {index: true, element: <UsersListPage/>},
-                    {path: ':id', element: <UserProfilePage/>},
+                    {path: ':id', element: <UserDetailsPage/>},
                 ],
             },
             {

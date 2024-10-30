@@ -8,7 +8,7 @@ interface ProfileViewProps<T> {
     renderDetails: (item: T) => React.ReactNode;
 }
 
-const ProfileView = <T, >({data, idKey, renderDetails}: ProfileViewProps<T>) => {
+const UserDetailsView = <T, >({data, idKey, renderDetails}: ProfileViewProps<T>) => {
     const {id} = useParams<{ id: string }>();
     const item = data.find((item) => item[idKey] === Number(id));
 
@@ -23,4 +23,4 @@ const ProfileView = <T, >({data, idKey, renderDetails}: ProfileViewProps<T>) => 
     );
 };
 
-export {ProfileView};
+export {UserDetailsView};

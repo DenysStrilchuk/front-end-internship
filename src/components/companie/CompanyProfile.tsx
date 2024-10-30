@@ -3,14 +3,14 @@ import {useTranslation} from "react-i18next";
 
 import {mockCompanies} from "../../data/mockCompanies";
 import {ICompany} from "../../models/ICompany";
-import {ProfileView} from "../common/ProfileView";
+import {UserDetailsView} from "../common/UserDetailsView";
 
 
 const CompanyProfile = () => {
     const {t} = useTranslation();
 
     return (
-        <ProfileView
+        <UserDetailsView
             data={mockCompanies}
             idKey="id"
             renderDetails={(company: ICompany) => (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchAllUsers } from '../../store/slices';
-import { ListView } from '../common/ListView';
+import { UserListView } from '../common/UserListView';
 import { Pagination } from '../common/Pagination';
 import { Container, Box, CircularProgress, Alert, Stack } from '@mui/material';
 
@@ -40,7 +40,7 @@ const UsersList: React.FC = () => {
 
     return (
         <Container maxWidth="md" sx={{ mt: 5 }}>
-            <ListView
+            <UserListView
                 title="User List"
                 items={users}
                 getItemLink={(user) => `/users/${user.user_id}`}

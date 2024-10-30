@@ -1,7 +1,7 @@
 import {Container, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 
-import styles from "./ListView.module.css";
+import styles from "./UserListView.module.css";
 import {ItemList} from "../ItemList";
 
 interface ListViewProps<T> {
@@ -11,7 +11,7 @@ interface ListViewProps<T> {
     renderItemName: (item: T) => string;
 }
 
-const ListView = <T, >({title, items, getItemLink, renderItemName}: ListViewProps<T>) => {
+const UserListView = <T, >({title, items, getItemLink, renderItemName}: ListViewProps<T>) => {
     const navigate = useNavigate();
 
     const handleItemClick = (item: T) => {
@@ -34,4 +34,4 @@ const ListView = <T, >({title, items, getItemLink, renderItemName}: ListViewProp
     );
 };
 
-export {ListView};
+export {UserListView};

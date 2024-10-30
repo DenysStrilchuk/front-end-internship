@@ -3,11 +3,11 @@ import {Typography, CircularProgress} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router-dom";
 
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {fetchUserById} from "../../store/slices";
-import {ProfileView} from "../common/ProfileView/";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {fetchUserById} from "../../../store/slices";
+import {UserDetailsView} from "../../common/UserDetailsView";
 
-const UserProfile = () => {
+const UserDetails = () => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
     const {id} = useParams<{ id: string }>();
@@ -34,7 +34,7 @@ const UserProfile = () => {
     }
 
     return (
-        <ProfileView
+        <UserDetailsView
             data={[user]}
             idKey="user_id"
             renderDetails={(user) => (
@@ -48,4 +48,4 @@ const UserProfile = () => {
     );
 };
 
-export {UserProfile};
+export {UserDetails};
