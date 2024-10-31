@@ -27,8 +27,17 @@ const UpdateAvatar = ({userId, onClose}: { userId: number; onClose: () => void }
                     setError(t('avatar.error.avatarUrlMissing'));
                 }
                 onClose();
-            } catch (e) {
-                setError(t('avatar.error.updateFailed'));
+            } catch (err) {
+                const errorMessage = (err as Error).message;
+                let translatedErrorMessage;
+                switch (errorMessage) {
+                    case 'Avatar update failed.':
+                        translatedErrorMessage = t('avatar.error.updateFailed');
+                        break;
+                    default:
+                        translatedErrorMessage = t('avatar.error.default');
+                }
+                setError(translatedErrorMessage);
             }
         } else {
             setError(t('avatar.error.noFileSelected'));
