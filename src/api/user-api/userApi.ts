@@ -2,6 +2,7 @@ import {axiosInstance} from "../axios-instance";
 
 import {ICreateUser, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {urls} from "../../constants/urls";
+import {authApi} from "../auth-api";
 
 const userApi = {
     getAllUsers: async (page = 1, pageSize = 10): Promise<IUserListResponse> => {
@@ -20,11 +21,19 @@ const userApi = {
     },
 
     updateUser: async (userId: number, data: IUpdateUser): Promise<IUser> => {
-        const response = await axiosInstance.put(urls.users.updateUser(userId), data);
-        return response.data.result;
+        const currentUser = await authApi.getMe();
+        if (currentUser.result.user_id !== userId) {
+            throw new Error("You can only update your own information.");
+        }
+        await axiosInstance.put(urls.users.updateUser(userId), data);
+        return await userApi.getUserById(userId);
     },
 
     deleteUser: async (userId: number): Promise<void> => {
+        const currentUser = await authApi.getMe();
+        if (currentUser.result.user_id !== userId) {
+            throw new Error("You can only delete your own account.");
+        }
         await axiosInstance.delete(urls.users.deleteUser(userId));
     }
 };

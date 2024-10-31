@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 import {authApi} from "../../../api/auth-api";
 import {AuthForm} from "../../common/AuthForm";
-import {Routes} from "../../../utils";
+import {Routes} from "../../../utils/routes";
 import {IFormValues} from "../../../types/form-types";
 
 const RegisterForm = () => {

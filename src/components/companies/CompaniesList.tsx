@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {mockCompanies} from "../../data/mockCompanies";
 import {ICompany} from "../../models/ICompany";
 import {UserListView} from "../common/UserListView";
-import {Routes} from "../../utils";
+import {Routes} from "../../utils/routes";
 
 
 const CompaniesList = () => {

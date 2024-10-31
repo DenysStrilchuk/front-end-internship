@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 import {authApi} from "../../../api/auth-api";
 import {authActions} from "../../../store/slices";
 import {ITokenResponse} from "../../../types/api-types/authTypes";
-import {Routes} from "../../../utils";
+import {Routes} from "../../../utils/routes";
 import {AuthForm} from "../../common/AuthForm";
 
 const LoginForm = () => {

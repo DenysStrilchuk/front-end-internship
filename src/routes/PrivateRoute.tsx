@@ -3,7 +3,7 @@ import {Navigate, Outlet} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector, useTokenExpiration} from "../hooks";
 import {authActions, selectIsAuthenticated} from "../store/slices";
-import {Routes} from "../utils";
+import {Routes} from "../utils/routes";
 
 const PrivateRoute = () => {
     const isAuthenticated = useAppSelector(selectIsAuthenticated);

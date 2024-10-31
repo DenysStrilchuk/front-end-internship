@@ -4,24 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch } from "../../../hooks";
-import { authActions } from "../../../store/slices";
-import { Routes } from "../../../utils";
+import {handleLogout} from "../../../utils/logout-helper";
 
 const LogoutButton = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        dispatch(authActions.clearToken());
-        localStorage.removeItem('token');
-        navigate(Routes.LOGIN);
-    };
-
     return (
         <Button
             color="inherit"
-            onClick={handleLogout}
+            onClick={() => handleLogout(dispatch, navigate)}
             sx={{
                 marginLeft: 2,
                 borderRadius: 2,

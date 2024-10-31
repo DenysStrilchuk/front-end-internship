@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useAppSelector } from "../../hooks";
-import { Routes } from "../../utils";
+import { Routes } from "../../utils/routes";
 import { selectIsAuthenticated } from "../../store/slices";
 import { LogoutButton } from "../authContainer/logout-button";
 import { LanguageSelector } from "../common/LanguageSelector";

@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 
 import {useAppSelector} from '../hooks';
 import {selectTokenExpiration, authActions} from '../store/slices';
-import {Routes} from "../utils";
+import {Routes} from "../utils/routes";
 
 const useTokenExpiration = () => {
     const expirationDate = useAppSelector(selectTokenExpiration);
