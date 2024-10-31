@@ -1,5 +1,7 @@
 import React from "react";
 import {Modal, Box, Typography, Button} from "@mui/material";
+import {useTranslation} from "react-i18next";
+import styles from "./UniversalModal.module.css";
 
 interface UniversalModalProps {
     open: boolean;
@@ -9,19 +11,9 @@ interface UniversalModalProps {
     actions?: React.ReactNode;
 }
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: 4,
-    boxShadow: 24,
-    p: 4,
-};
-
 const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, content, actions}) => {
+    const {t} = useTranslation();
+
     return (
         <Modal
             open={open}
@@ -29,21 +21,21 @@ const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, co
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
-            <Box sx={style}>
+            <Box className={styles.modalBox} sx={{bgcolor: 'background.paper'}}>
                 {title && (
-                    <Typography id="modal-title" variant="h6" component="h2" gutterBottom>
-                        {title}
+                    <Typography id="modal-title" variant="h6" component="h2" className={styles.modalTitle}>
+                        {t(title)}
                     </Typography>
                 )}
                 {content && (
-                    <Typography id="modal-description" variant="body1" gutterBottom>
+                    <Typography id="modal-description" variant="body1" className={styles.modalContent}>
                         {content}
                     </Typography>
                 )}
-                <Box mt={2}>
+                <Box className={styles.modalActions}>
                     {actions || (
                         <Button variant="contained" color="primary" onClick={onClose}>
-                            Close
+                            {t('universalModal.close')}
                         </Button>
                     )}
                 </Box>
@@ -52,4 +44,4 @@ const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, co
     );
 };
 
-export {UniversalModal}
+export {UniversalModal};

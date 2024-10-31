@@ -4,6 +4,9 @@
   "ukrainian": "Ukrainian",
   "welcome": "Welcome",
   "home": "Home",
+  "universalModal": {
+    "close": "Close"
+  },
   "about": {
     "header": "About",
     "title": "About Our Application",
@@ -97,7 +100,7 @@
   "profile": {
     "title": "My profile",
     "userAvatar": "User Avatar",
-    "myInformation": "My Information",
+    "myInformation": "My Information:",
     "email": "Email",
     "city": "City",
     "phone": "Phone",

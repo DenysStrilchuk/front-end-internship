@@ -1,0 +1,22 @@
+.modalBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+.modalTitle {
+    margin-bottom: 1rem;
+}
+
+.modalContent {
+    margin-bottom: 1rem;
+}
+
+.modalActions {
+    margin-top: 1rem;
+}

@@ -4,6 +4,9 @@
   "ukrainian": "Українська",
   "welcome": "Ласкаво просимо",
   "home": "Головна",
+  "universalModal": {
+    "close": "Закрити"
+  },
   "about": {
     "header": "Про застосунок",
     "title": "Про наш застосунок",
@@ -97,7 +100,7 @@
   "profile": {
     "title": "Мій профіль",
     "userAvatar": "Аватар користувача",
-    "myInformation": "Моя інформація",
+    "myInformation": "Моя інформація:",
     "email": "Електронна пошта",
     "city": "Місто",
     "phone": "Телефон",
