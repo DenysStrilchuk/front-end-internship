@@ -1,6 +1,7 @@
 import React from "react";
 import {Modal, Box, Typography, Button} from "@mui/material";
 import {useTranslation} from "react-i18next";
+
 import styles from "./UniversalModal.module.css";
 
 interface UniversalModalProps {
