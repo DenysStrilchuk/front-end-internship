@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-
-import {userApi} from "../../../api/user-api";
-import {useAppDispatch} from "../../../hooks";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from 'react-i18next';
+import {useAppDispatch} from "../../../hooks";
+
 import {handleLogout} from "../../../utils/logout-helper";
+import {deleteUser} from "../../../store/slices";
 
 interface UserDeleteFormProps {
     userId: number;
@@ -14,30 +15,35 @@ interface UserDeleteFormProps {
 const UserDeleteForm: React.FC<UserDeleteFormProps> = ({userId, onError, onClose}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const {t} = useTranslation();
     const [confirm, setConfirm] = useState(false);
 
     const handleDelete = async () => {
         try {
-            await userApi.deleteUser(userId);
-            handleLogout(dispatch, navigate);
-        } catch (error) {
-            if (error instanceof Error) {
-                onError(error.message);
-            } else {
-                onError("An unknown error occurred.");
+            const resultAction = await dispatch(deleteUser(userId));
+
+            if (deleteUser.fulfilled.match(resultAction)) {
+                handleLogout(dispatch, navigate);
+            } else if (deleteUser.rejected.match(resultAction)) {
+                const errorMessage = (resultAction.payload as {
+                    message?: string
+                })?.message || t('deleteUser.error.deleteFailed');
+                onError(errorMessage);
             }
+        } catch (error) {
+            onError(t('deleteUser.error.unknownError'));
         }
     };
 
     return (
         <div>
-            <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+            <p>{t('deleteUser.confirmationMessage')}</p>
             {!confirm ? (
-                <button onClick={() => setConfirm(true)}>Confirm Delete</button>
+                <button onClick={() => setConfirm(true)}>{t('deleteUser.confirmDelete')}</button>
             ) : (
                 <>
-                    <button onClick={handleDelete}>Yes, Delete</button>
-                    <button onClick={onClose}>Cancel</button>
+                    <button onClick={handleDelete}>{t('deleteUser.yesDelete')}</button>
+                    <button onClick={onClose}>{t('deleteUser.cancel')}</button>
                 </>
             )}
         </div>

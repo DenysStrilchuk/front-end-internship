@@ -1,6 +1,6 @@
 import {axiosInstance} from "../axios-instance";
 
-import {ICreateUser, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
+import {IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {urls} from "../../constants/urls";
 import {authApi} from "../auth-api";
 
@@ -15,11 +15,6 @@ const userApi = {
         return response.data.result;
     },
 
-    createUser: async (data: ICreateUser): Promise<IUser> => {
-        const response = await axiosInstance.post(urls.users.createUser, data);
-        return response.data.result;
-    },
-
     updateUser: async (userId: number, data: IUpdateUser): Promise<IUser> => {
         const currentUser = await authApi.getMe();
         if (currentUser.result.user_id !== userId) {
@@ -27,6 +22,18 @@ const userApi = {
         }
         await axiosInstance.put(urls.users.updateUser(userId), data);
         return await userApi.getUserById(userId);
+    },
+
+    updateAvatar: async (userId: number, file: File): Promise<IUser> => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await axiosInstance.put(urls.users.updateAvatar(userId), formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data.result;
     },
 
     deleteUser: async (userId: number): Promise<void> => {

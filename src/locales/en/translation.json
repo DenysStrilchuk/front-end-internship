@@ -9,16 +9,22 @@
     "title": "About Our Application",
     "description": "This is a mock page that provides information about our project."
   },
-  "users": "Users",
+  "users": {
+    "userList": "Users List",
+    "list": "Users List"
+  },
   "companies": {
     "title": "Companies",
     "list": "Companies List",
     "details": "Details about {{name}}..."
   },
   "user": {
-    "profile": "User Profile",
+    "details": "User details",
     "name": "Name",
-    "list": "Users List"
+    "lastName": "Last name",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone"
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {
@@ -87,5 +93,41 @@
         "default": "An unknown error occurred. Please try again later."
       }
     }
+  },
+  "profile": {
+    "title": "My profile",
+    "userAvatar": "User Avatar",
+    "myInformation": "My Information",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone",
+    "noData": "N/A",
+    "updateProfile": "Update Profile",
+    "deleteProfile": "Delete Profile",
+    "uploadAvatar": "Upload Avatar",
+    "userFirstname": "First Name",
+    "userLastname": "Last Name",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel"
+  },
+  "deleteUser": {
+    "confirmationMessage": "Are you sure you want to delete your profile? This action cannot be undone.",
+    "confirmDelete": "Confirm Delete",
+    "yesDelete": "Yes, Delete",
+    "cancel": "Cancel",
+    "error": {
+      "deleteFailed": "Failed to delete user.",
+      "unknownError": "An unknown error occurred."
+    }
+  },
+  "avatar": {
+    "uploadAvatar": "Upload Avatar",
+    "cancel": "Cancel",
+    "error": {
+      "avatarUrlMissing": "Avatar URL is missing.",
+      "updateFailed": "Failed to update avatar.",
+      "noFileSelected": "No file selected."
+    }
   }
 }
+

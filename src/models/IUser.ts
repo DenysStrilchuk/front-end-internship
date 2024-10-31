@@ -29,14 +29,6 @@ export interface IUserListResponse {
     pagination: IPagination;
 }
 
-export interface ICreateUser {
-    user_email: string;
-    user_password: string;
-    user_password_repeat: string;
-    user_firstname: string;
-    user_lastname: string;
-}
-
 export interface IUpdateUser {
     user_firstname?: string;
     user_lastname?: string;

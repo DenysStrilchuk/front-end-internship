@@ -1,0 +1,30 @@
+.authFormContainer {
+    max-width: 400px;
+    margin: 32px auto 0;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.dividerLine {
+    flex-grow: 1;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.orText {
+    margin: 0 16px;
+}
+
+.iconButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.submitButton {
+    margin-top: 16px;
+}

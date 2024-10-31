@@ -1,21 +1,21 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import {AppBar, Toolbar, Typography, Button} from "@mui/material";
+import {Link as RouterLink} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
-import { useAppSelector } from "../../hooks";
-import { Routes } from "../../utils/routes";
-import { selectIsAuthenticated } from "../../store/slices";
-import { LogoutButton } from "../authContainer/logout-button";
-import { LanguageSelector } from "../common/LanguageSelector";
+import {useAppSelector} from "../../hooks";
+import {Routes} from "../../utils/routes";
+import {selectIsAuthenticated} from "../../store/slices";
+import {LogoutButton} from "../authContainer/logout-button";
+import {LanguageSelector} from "../common/LanguageSelector";
 
 const Header = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" sx={{flexGrow: 1}}>
                     {t('My App')}
                 </Typography>
                 <Button color="inherit" component={RouterLink} to={Routes.HOME}>
@@ -27,7 +27,7 @@ const Header = () => {
                 {isAuthenticated ? (
                     <>
                         <Button color="inherit" component={RouterLink} to={Routes.USERS}>
-                            {t('user.list')}
+                            {t('users.list')}
                         </Button>
                         <Button color="inherit" component={RouterLink} to={Routes.COMPANIES}>
                             {t('companies.title')}
@@ -35,7 +35,7 @@ const Header = () => {
                         <Button color="inherit" component={RouterLink} to={Routes.PROFILE}>
                             {t('profile.title')}
                         </Button>
-                        <LogoutButton />
+                        <LogoutButton/>
                     </>
                 ) : (
                     <>
@@ -47,10 +47,10 @@ const Header = () => {
                         </Button>
                     </>
                 )}
-                <LanguageSelector />
+                <LanguageSelector/>
             </Toolbar>
         </AppBar>
     );
 };
 
-export { Header };
+export {Header};

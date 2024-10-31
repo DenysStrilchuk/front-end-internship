@@ -6,6 +6,8 @@ const login = '/auth/login/';
 const getMe = '/auth/me/';
 const users = '/users/';
 const user = '/user/';
+const updateInfo = '/update_info/';
+const updateAvatar = '/update_avatar/';
 
 const urls = {
     status: {
@@ -20,8 +22,9 @@ const urls = {
         getAllUsers: `${baseUrl}${users}`,
         getById: (id: number) => `${baseUrl}${user}${id}/`,
         createUser: `${baseUrl}${user}`,
-        updateUser: (id: number) => `${baseUrl}${user}${id}/update_info/`,
-        deleteUser: (id: number) => `${baseUrl}${user}${id}/`
+        updateUser: (id: number) => `${baseUrl}${user}${id}${updateInfo}`,
+        updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
+        deleteUser: (id: number) => `${baseUrl}${user}${id}/`,
     },
 };
 
