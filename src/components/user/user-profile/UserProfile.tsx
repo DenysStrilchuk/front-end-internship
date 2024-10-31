@@ -36,7 +36,7 @@ const UserProfile = () => {
 
     return (
         <div>
-            <img src={user.result.user_avatar} alt={t('profile.userAvatar')}/>
+            <img src={`${user.result.user_avatar}?timestamp=${Date.now()}`} alt={t('profile.userAvatar')}/>
             <h2>{user.result.user_firstname} {user.result.user_lastname}</h2>
             <h2>{t('profile.myInformation')}</h2>
             <p>{t('profile.email')}: {user.result.user_email}</p>
