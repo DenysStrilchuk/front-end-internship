@@ -1,8 +1,8 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { joiResolver } from '@hookform/resolvers/joi';
-import { TextField, Button, Typography, Box, IconButton } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import {useForm, Controller} from 'react-hook-form';
+import {joiResolver} from '@hookform/resolvers/joi';
+import {TextField, Button, IconButton} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
@@ -10,8 +10,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
-import { IFormValues } from '../../../types/form-types';
-import { loginValidationSchema, registrationValidationSchema } from '../../../validators/auth-validator';
+import {IFormValues} from '../../../types/form-types';
+import {loginValidationSchema, registrationValidationSchema} from '../../../validators/auth-validator';
 import styles from './AuthForm.module.css';
 
 interface AuthFormProps {
@@ -24,20 +24,20 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({
-                                               title,
-                                               onSubmit,
-                                               error,
-                                               showConfirmPassword,
-                                               showNameFields,
-                                               defaultValues,
-                                           }) => {
-    const { t } = useTranslation();
+       title,
+       onSubmit,
+       error,
+       showConfirmPassword,
+       showNameFields,
+       defaultValues,
+    }) => {
+    const {t} = useTranslation();
     const validationSchema = showNameFields ? registrationValidationSchema : loginValidationSchema;
 
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: {errors, isValid},
     } = useForm<IFormValues>({
         resolver: joiResolver(validationSchema),
         mode: 'onChange',
@@ -47,17 +47,13 @@ const AuthForm: React.FC<AuthFormProps> = ({
     const translateError = (errorKey: string | undefined) => (errorKey ? t(errorKey) : '');
 
     return (
-        <Box className={styles.authFormContainer}>
-            <Typography variant="h5" gutterBottom>
-                {t(title)}
-            </Typography>
-            {error && <Typography color="error">{error}</Typography>}
-
+        <div className={styles.authFormContainer}>
+            <h2 className={styles.title}>{t(title)}</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                     name="email"
                     control={control}
-                    render={({ field }) => (
+                    render={({field}) => (
                         <TextField
                             {...field}
                             label={t('register.emailLabel')}
@@ -68,13 +64,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         />
                     )}
                 />
-
                 {showNameFields && (
-                    <>
+                    <div>
                         <Controller
                             name="firstName"
                             control={control}
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <TextField
                                     {...field}
                                     label={t('register.firstNameLabel')}
@@ -85,11 +80,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
                                 />
                             )}
                         />
-
                         <Controller
                             name="lastName"
                             control={control}
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <TextField
                                     {...field}
                                     label={t('register.lastNameLabel')}
@@ -100,13 +94,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
                                 />
                             )}
                         />
-                    </>
+                    </div>
                 )}
-
                 <Controller
                     name="password"
                     control={control}
-                    render={({ field }) => (
+                    render={({field}) => (
                         <TextField
                             {...field}
                             label={t('register.passwordLabel')}
@@ -118,12 +111,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         />
                     )}
                 />
-
                 {showConfirmPassword && (
                     <Controller
                         name="confirmPassword"
                         control={control}
-                        render={({ field }) => (
+                        render={({field}) => (
                             <TextField
                                 {...field}
                                 label={t('register.confirmPasswordLabel')}
@@ -136,7 +128,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         )}
                     />
                 )}
-
+                {error && <p className={styles.error}>{error}</p>}
                 <Button
                     type="submit"
                     variant="contained"
@@ -148,37 +140,33 @@ const AuthForm: React.FC<AuthFormProps> = ({
                     {t('common.submitButton')}
                 </Button>
             </form>
-
-            <Box className={styles.divider}>
-                <Box className={styles.dividerLine} />
-                <Typography variant="body2" className={styles.orText}>
-                    {t('common.or')}
-                </Typography>
-                <Box className={styles.dividerLine} />
-            </Box>
-
-            <Box className={styles.iconButtonContainer}>
+            <div className={styles.divider}>
+                <div className={styles.dividerLine}/>
+                <p className={styles.orText}>{t('common.or')}</p>
+                <div className={styles.dividerLine}/>
+            </div>
+            <div className={styles.iconButtonContainer}>
                 <IconButton color="primary">
-                    <GoogleIcon />
+                    <GoogleIcon/>
                 </IconButton>
                 <IconButton color="primary">
-                    <FacebookIcon />
+                    <FacebookIcon/>
                 </IconButton>
                 <IconButton color="primary">
-                    <AppleIcon />
+                    <AppleIcon/>
                 </IconButton>
                 <IconButton color="primary">
-                    <GitHubIcon />
+                    <GitHubIcon/>
                 </IconButton>
                 <IconButton color="primary">
-                    <LinkedInIcon />
+                    <LinkedInIcon/>
                 </IconButton>
                 <IconButton color="primary">
-                    <TwitterIcon />
+                    <TwitterIcon/>
                 </IconButton>
-            </Box>
-        </Box>
+            </div>
+        </div>
     );
 };
 
-export { AuthForm };
+export {AuthForm};

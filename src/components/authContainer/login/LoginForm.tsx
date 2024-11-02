@@ -35,14 +35,10 @@ const LoginForm = () => {
             navigate(Routes.HOME);
         } catch (err) {
             const errorMessage = (err as Error).message;
-            let translatedErrorMessage;
-            switch (errorMessage) {
-                case 'Invalid login or password.':
-                    translatedErrorMessage = t('auth.errors.login.invalidAuth');
-                    break;
-                default:
-                    translatedErrorMessage = t('auth.errors.login.default');
-            }
+            const translatedErrorMessage =
+                errorMessage === 'Invalid login or password.'
+                    ? t('auth.errors.login.invalidAuth')
+                    : t('auth.errors.login.default');
 
             setError(translatedErrorMessage);
         }

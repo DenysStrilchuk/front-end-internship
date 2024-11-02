@@ -28,14 +28,10 @@ const RegisterForm = () => {
             navigate(Routes.LOGIN);
         } catch (err) {
             const errorMessage = (err as Error).message;
-            let translatedErrorMessage;
-            switch (errorMessage) {
-                case 'User with this email address already exists.':
-                    translatedErrorMessage = t('auth.errors.register.emailExists');
-                    break;
-                default:
-                    translatedErrorMessage = t('auth.errors.register.default');
-            }
+            const translatedErrorMessage =
+                errorMessage === 'User with this email address already exists.'
+                    ? t('auth.errors.register.emailExists')
+                    : t('auth.errors.register.default');
 
             setError(translatedErrorMessage);
         }

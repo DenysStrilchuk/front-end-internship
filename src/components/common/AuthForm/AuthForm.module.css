@@ -3,7 +3,16 @@
     margin: 32px auto 0;
 }
 
-.divider {
+.title {
+    font-weight: normal;
+}
+
+.error {
+    color: red;
+}
+
+.divider,
+.iconButtonContainer {
     display: flex;
     align-items: center;
     margin-top: 16px;
@@ -20,7 +29,6 @@
 }
 
 .iconButtonContainer {
-    display: flex;
     justify-content: center;
     margin-top: 8px;
 }
