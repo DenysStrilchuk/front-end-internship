@@ -9,42 +9,34 @@ import {IGetMeResponse} from "../../models/IUser";
 const authApi = {
     registerUser: async (data: IRegistrationData): Promise<IUserIdResponse> => {
         try {
-            const response = await axiosInstance.post<IUserIdResponse>(urls.auth.register, data);
-            return response.data;
+            const {data: responseData} = await axiosInstance.post<IUserIdResponse>(urls.auth.register, data);
+            return responseData;
         } catch (error: unknown) {
-            const apiError = error as IApiError;
-            if (apiError.response && apiError.response.status === 400) {
-                const errorMessage = apiError.response.data?.message || "User with this email address already exists.";
+            const {response} = error as IApiError;
+            if (response && response.status === 400) {
+                const errorMessage = response.data?.message || "User with this email address already exists.";
                 throw new Error(errorMessage);
             }
-            console.error("Registration error:", error);
-            throw error;
+            throw new Error("An unexpected error occurred during registration.");
         }
     },
     loginUser: async (data: ILoginData): Promise<ITokenResponse> => {
         try {
-            const response = await axiosInstance.post<ITokenResponse>(urls.auth.login, data);
-            tokenService.saveToken(response.data.result);
-            return response.data;
+            const {data: responseData} = await axiosInstance.post<ITokenResponse>(urls.auth.login, data);
+            tokenService.saveToken(responseData.result);
+            return responseData;
         } catch (error) {
             const apiError = error as IApiError;
             if (apiError.response && apiError.response.status === 401) {
                 throw new Error("Invalid login or password.");
             }
-            console.error("Login error:", error);
-            throw error;
+            throw new Error("An unexpected error occurred during login");
         }
     },
     getMe: async (): Promise<IGetMeResponse> => {
-        try {
-            const response = await axiosInstance.get<IGetMeResponse>(urls.auth.getMe);
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-            throw error;
-        }
+        const { data: responseData } = await axiosInstance.get<IGetMeResponse>(urls.auth.getMe);
+        return responseData;
     }
-
 };
 
 export {authApi};

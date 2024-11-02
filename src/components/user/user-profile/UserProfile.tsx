@@ -103,12 +103,10 @@ const UserProfile = () => {
                         <Typography variant="body2" color="text.secondary">
                             {t('profile.activityDescription')}
                         </Typography>
-                        {/* Additional activity sections can go here */}
                     </Box>
                 </Paper>
             </Stack>
 
-            {/* Modals */}
             <UniversalModal
                 open={showUpdateForm}
                 onClose={handleCloseUpdateForm}

@@ -37,7 +37,7 @@ const UserDeleteForm: React.FC<UserDeleteFormProps> = ({userId, onError, onClose
             switch (errorMessage) {
                 case 'Failed to delete user.':
                     translatedErrorMessage = t('deleteUser.errors.deleteFailed');
-                    break; // Додано break для завершення свічу
+                    break;
                 default:
                     translatedErrorMessage = t('deleteUser.error.unknownError');
             }

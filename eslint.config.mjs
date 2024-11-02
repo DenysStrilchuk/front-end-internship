@@ -12,11 +12,11 @@ export default [
     ...pluginReact.configs.flat.recommended,
     settings: {
       react: {
-        version: "detect",  // Автоматично визначає версію React
+        version: "detect",
       },
     },
     rules: {
-      "react/react-in-jsx-scope": "off",  // Вимикає правило для імпорту React
+      "react/react-in-jsx-scope": "off",
     },
   },
 ];

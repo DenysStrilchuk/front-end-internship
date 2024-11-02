@@ -11,20 +11,19 @@ const updateAvatar = '/update_avatar/';
 
 const urls = {
     status: {
-        base: `${baseUrl}${status}`
+        base: `${status}`
     },
     auth: {
-        register: `${baseUrl}${register}`,
-        login: `${baseUrl}${login}`,
-        getMe: `${baseUrl}${getMe}`
+        register: `${register}`,
+        login: `${login}`,
+        getMe: `${getMe}`
     },
     users: {
-        getAllUsers: `${baseUrl}${users}`,
-        getById: (id: number) => `${baseUrl}${user}${id}/`,
-        createUser: `${baseUrl}${user}`,
-        updateUser: (id: number) => `${baseUrl}${user}${id}${updateInfo}`,
+        getAllUsers: `${users}`,
+        getById: (id: number) => `${user}${id}/`,
+        updateUser: (id: number) => `${user}${id}${updateInfo}`,
         updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
-        deleteUser: (id: number) => `${baseUrl}${user}${id}/`,
+        deleteUser: (id: number) => `${user}${id}/`,
     },
 };
 
