@@ -128,8 +128,8 @@
     "cancel": "Cancel",
     "error": {
       "avatarUrlMissing": "Avatar URL is missing.",
-      "updateFailed": "Failed to update avatar.",
-      "noFileSelected": "No file selected."
+      "noFileSelected": "No file selected.",
+      "default": "Failed to update avatar."
     }
   }
 }

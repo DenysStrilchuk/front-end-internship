@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal, Box, Typography, Button} from "@mui/material";
+import {Modal, Button} from "@mui/material";
 import {useTranslation} from "react-i18next";
 
 import styles from "./UniversalModal.module.css";
@@ -10,9 +10,10 @@ interface UniversalModalProps {
     title?: string;
     content?: React.ReactNode;
     actions?: React.ReactNode;
+    children?: React.ReactNode;
 }
 
-const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, content, actions}) => {
+const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, content, actions, children}) => {
     const {t} = useTranslation();
 
     return (
@@ -22,25 +23,28 @@ const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, co
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
-            <Box className={styles.modalBox} sx={{bgcolor: 'background.paper'}}>
+            <div className={styles.modalContainer}>
                 {title && (
-                    <Typography id="modal-title" variant="h6" component="h2" className={styles.modalTitle}>
+                    <h2 id="modal-title" className={styles.modalTitle}>
                         {t(title)}
-                    </Typography>
+                    </h2>
                 )}
+                <div>
+                    {children}
+                </div>
                 {content && (
-                    <Typography id="modal-description" variant="body1" className={styles.modalContent}>
+                    <div id="modal-description" className={styles.modalContent}>
                         {content}
-                    </Typography>
+                    </div>
                 )}
-                <Box className={styles.modalActions}>
+                <div className={styles.modalActions}>
                     {actions || (
                         <Button variant="contained" color="primary" onClick={onClose}>
                             {t('universalModal.close')}
                         </Button>
                     )}
-                </Box>
-            </Box>
+                </div>
+            </div>
         </Modal>
     );
 };

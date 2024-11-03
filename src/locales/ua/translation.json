@@ -128,8 +128,8 @@
     "cancel": "Скасувати",
     "error": {
       "avatarUrlMissing": "URL аватара відсутній.",
-      "updateFailed": "Не вдалося оновити аватар.",
-      "noFileSelected": "Не вибрано файл."
+      "noFileSelected": "Не вибрано файл.",
+      "default": "Не вдалося оновити аватар."
     }
   }
 }
