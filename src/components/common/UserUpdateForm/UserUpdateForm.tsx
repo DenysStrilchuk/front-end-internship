@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {userApi} from "../../../api/user-api";
 import {useAppDispatch} from "../../../hooks";
 import {getMe} from "../../../store/slices";
+import {Button, Input} from "@mui/material";
 
 interface UserUpdateFormProps {
     userId: number;
@@ -16,14 +17,14 @@ interface UserUpdateFormProps {
 }
 
 const UserUpdateForm: React.FC<UserUpdateFormProps> = ({
-                                                           userId,
-                                                           userFirstname,
-                                                           userLastname,
-                                                           userCity,
-                                                           userPhone,
-                                                           onClose,
-                                                           onError
-                                                       }) => {
+       userId,
+       userFirstname,
+       userLastname,
+       userCity,
+       userPhone,
+       onClose,
+       onError
+    }) => {
     const dispatch = useAppDispatch();
     const {t} = useTranslation();
     const [formData, setFormData] = useState({
@@ -57,17 +58,40 @@ const UserUpdateForm: React.FC<UserUpdateFormProps> = ({
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="user_firstname" value={formData.user_firstname} onChange={handleChange}
-                   placeholder={t("profile.userFirstname")}/>
-            <input type="text" name="user_lastname" value={formData.user_lastname} onChange={handleChange}
-                   placeholder={t("profile.userLastname")}/>
-            <input type="text" name="user_city" value={formData.user_city} onChange={handleChange} placeholder={t("profile.city")}/>
-            <input type="text" name="user_phone" value={formData.user_phone} onChange={handleChange}
-                   placeholder={t("profile.phone")}/>
-            <button type="submit">{t("profile.saveChanges")}</button>
-            <button type="button" onClick={onClose}>{t("profile.cancel")}</button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <Input
+                    name="user_firstname"
+                    value={formData.user_firstname}
+                    onChange={handleChange}
+                    placeholder={t("profile.userFirstname") || "Enter your first name"}
+                />
+                <Input
+                    name="user_lastname"
+                    value={formData.user_lastname}
+                    onChange={handleChange}
+                    placeholder={t("profile.userLastname") || "Enter your last name"}
+                />
+                <Input
+                    name="user_city"
+                    value={formData.user_city}
+                    onChange={handleChange}
+                    placeholder={t("profile.city") || "Enter your city"}
+                />
+                <Input
+                    name="user_phone"
+                    value={formData.user_phone}
+                    onChange={handleChange}
+                    placeholder={t("profile.phone") || "Enter your phone number"}
+                />
+                <Button type="submit" variant="contained" color="primary">
+                    {t("profile.saveChanges")}
+                </Button>
+                <Button type="button" variant="outlined" color="secondary" onClick={onClose}>
+                    {t("profile.cancel")}
+                </Button>
+            </form>
+        </div>
     );
 };
 
