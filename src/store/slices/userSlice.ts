@@ -9,6 +9,7 @@ interface UserState {
     userDetail: IUser | null;
     loading: boolean;
     error: string | null;
+    errorMessage: string | null,
     pagination: IPagination | null;
     avatar: string | null;
 }
@@ -18,6 +19,7 @@ const initialState: UserState = {
     userDetail: null,
     loading: false,
     error: null,
+    errorMessage: null,
     pagination: null,
     avatar: null,
 };
@@ -77,7 +79,7 @@ const userSlice = createSlice({
     reducers: {
         updateUserAvatar: (state, action: PayloadAction<string>) => {
             state.avatar = action.payload;
-        },
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -109,9 +111,11 @@ const userSlice = createSlice({
             })
             .addCase(deleteUser.fulfilled, (state, action: PayloadAction<number>) => {
                 state.users = state.users.filter((user) => user.user_id !== action.payload);
+                state.errorMessage = null;
             })
             .addCase(deleteUser.rejected, (state, action) => {
                 state.error = action.payload as string;
+                state.errorMessage = action.payload as string;
             });
     }
 });

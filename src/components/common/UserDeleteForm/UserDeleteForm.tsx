@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from 'react-i18next';
-import {useAppDispatch} from "../../../hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import Button from '@mui/material/Button';
 
 import {handleLogout} from "../../../utils/logout-helper";
 import {deleteUser} from "../../../store/slices";
@@ -17,31 +18,20 @@ const UserDeleteForm: React.FC<UserDeleteFormProps> = ({userId, onError, onClose
     const navigate = useNavigate();
     const {t} = useTranslation();
     const [confirm, setConfirm] = useState(false);
+    const errorMessage = useAppSelector((state) => state.users.errorMessage);
 
-    const handleDelete = async () => {
-        try {
-            const resultAction = await dispatch(deleteUser(userId));
+    const handleConfirmSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setConfirm(true);
+    };
 
-            if (deleteUser.fulfilled.match(resultAction)) {
-                handleLogout(dispatch, navigate);
-            } else if (deleteUser.rejected.match(resultAction)) {
-                const errorMessage = (resultAction.payload as {
-                    message?: string
-                })?.message || t('deleteUser.error.deleteFailed');
-                onError(errorMessage);
-            }
-        } catch (err) {
-            const errorMessage = (err as Error).message;
-            let translatedErrorMessage;
-
-            switch (errorMessage) {
-                case 'Failed to delete user.':
-                    translatedErrorMessage = t('deleteUser.errors.deleteFailed');
-                    break;
-                default:
-                    translatedErrorMessage = t('deleteUser.error.unknownError');
-            }
-            onError(translatedErrorMessage);
+    const handleDeleteSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await dispatch(deleteUser(userId));
+        if (!errorMessage) {
+            handleLogout(dispatch, navigate);
+        } else {
+            onError(errorMessage || t('deleteUser.error.deleteFailed'));
         }
     };
 
@@ -49,13 +39,22 @@ const UserDeleteForm: React.FC<UserDeleteFormProps> = ({userId, onError, onClose
         <div>
             <p>{t('deleteUser.confirmationMessage')}</p>
             {!confirm ? (
-                <button onClick={() => setConfirm(true)}>{t('deleteUser.confirmDelete')}</button>
+                <form onSubmit={handleConfirmSubmit}>
+                    <Button type="submit" variant="contained" color="primary">
+                        {t('deleteUser.confirmDelete')}
+                    </Button>
+                </form>
             ) : (
-                <>
-                    <button onClick={handleDelete}>{t('deleteUser.yesDelete')}</button>
-                    <button onClick={onClose}>{t('deleteUser.cancel')}</button>
-                </>
+                <form onSubmit={handleDeleteSubmit}>
+                    <Button type="submit" variant="contained" color="error">
+                        {t('deleteUser.yesDelete')}
+                    </Button>
+                    <Button type="button" variant="outlined" color="secondary" onClick={onClose}>
+                        {t('deleteUser.cancel')}
+                    </Button>
+                </form>
             )}
+            {errorMessage && <p>{errorMessage}</p>}
         </div>
     );
 };
