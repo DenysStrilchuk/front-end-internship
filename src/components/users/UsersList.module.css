@@ -1,0 +1,58 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingContainer {
+    composes: centered;
+    min-height: 60vh;
+}
+
+.alertContainer {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.alert {
+    background-color: #f44336;
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.paginationContainer {
+    composes: centered;
+    margin-top: 16px;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.userItem {
+    composes: centered;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+}
+
+.userName {
+    font-size: 1rem;
+    font-weight: 500;
+}

@@ -1,29 +1,27 @@
 import React from "react";
-import { List, ListItem, Typography } from "@mui/material";
+
+import styles from './ItemList.module.css';
 
 interface ItemListProps<T> {
     items: T[];
     renderItem: (item: T) => React.ReactNode;
     title?: string;
+    getItemId: (item: T) => number;
 }
 
-const ItemList = <T, >({ items, renderItem, title }: ItemListProps<T>) => {
+const ItemList = <T, >({items, renderItem, title, getItemId}: ItemListProps<T>) => {
     return (
         <div>
-            {title && (
-                <Typography variant="h6" align="center" gutterBottom>
-                    {title}
-                </Typography>
-            )}
-            <List>
-                {items.map((item, index) => (
-                    <ListItem key={index}>
-                        <Typography variant="body1">{renderItem(item)}</Typography>
-                    </ListItem>
+            <h2 className={styles.title}>{title}</h2>
+            <ul className={styles.list}>
+                {items.map((item) => (
+                    <li key={getItemId(item)} className={styles.listItem}>
+                        <span className={styles.itemText}>{renderItem(item)}</span>
+                    </li>
                 ))}
-            </List>
+            </ul>
         </div>
     );
 };
 
-export { ItemList };
+export {ItemList};

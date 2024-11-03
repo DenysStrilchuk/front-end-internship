@@ -14,7 +14,8 @@ const CompaniesList = () => {
             title={t('companies.list')}
             items={mockCompanies}
             getItemLink={(company: ICompany) => `${Routes.COMPANIES}/${company.id}`}
-            renderItemName={(company: ICompany) => company.name}
+            renderItem={(company: ICompany) => company.name}
+            getItemId={(company) => company.id}
         />
     );
 };

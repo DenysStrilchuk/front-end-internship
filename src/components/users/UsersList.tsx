@@ -1,19 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Box, CircularProgress, Alert, Stack} from '@mui/material';
 import {useTranslation} from 'react-i18next';
+import {CircularProgress, Avatar} from '@mui/material';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchAllUsers} from '../../store/slices';
 import {UserListView} from '../common/UserListView';
 import {Pagination} from '../common/Pagination';
-
+import styles from './UsersList.module.css';
+import {IUser} from "../../models/IUser";
 
 const UsersList = () => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
-    const {users, pagination, loading, error} = useAppSelector((state) => state.users);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const {users, pagination, loading, error} = useAppSelector((state) => state.users);
+    const searchParams = new URLSearchParams(location.search);
+    const initialPage = parseInt(searchParams.get("page") || "1", 10);
+    const [currentPage, setCurrentPage] = useState(initialPage);
     const pageSize = 10;
 
     useEffect(() => {
@@ -22,45 +28,59 @@ const UsersList = () => {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
+        navigate(`?page=${page}`, {replace: true});
     };
 
     if (loading) {
         return (
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
-                <CircularProgress color="primary" size={50}/>
-            </Box>
+            <div className={styles.loadingContainer}>
+                <CircularProgress color="primary"/>
+            </div>
         );
     }
 
     if (error) {
         return (
-            <Container maxWidth="sm" sx={{mt: 4}}>
-                <Alert severity="error" variant="outlined">
+            <div className={styles.alertContainer}>
+                <div className={styles.alert}>
                     {t('errorOccurred', {error})}
-                </Alert>
-            </Container>
+                </div>
+            </div>
         );
     }
 
+    const renderItem = (user: IUser) => (
+        <div className={styles.userItem}>
+            <Avatar
+                src={user.user_avatar}
+                alt={`${user.user_firstname} ${user.user_lastname}`}
+                className={styles.avatar}
+            />
+            <span className={styles.userName}>
+                {`${user.user_firstname} ${user.user_lastname}`}
+            </span>
+        </div>
+    );
+
     return (
-        <Container maxWidth="md" sx={{mt: 5}}>
+        <div className={styles.container}>
             <UserListView
                 title={t('users.userList')}
                 items={users}
                 getItemLink={(user) => `/users/${user.user_id}`}
-                renderItemName={(user) => `${user.user_firstname} ${user.user_lastname}`}
+                renderItem={renderItem}
+                getItemId={(user) => user.user_id}
             />
-
             {pagination && (
-                <Stack alignItems="center" mt={4}>
+                <div className={styles.paginationContainer}>
                     <Pagination
-                        currentPage={pagination.current_page}
+                        currentPage={currentPage}
                         totalPage={pagination.total_page}
                         onPageChange={handlePageChange}
                     />
-                </Stack>
+                </div>
             )}
-        </Container>
+        </div>
     );
 };
 
