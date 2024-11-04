@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
-import { Typography, CircularProgress } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import React, {useEffect} from "react";
+import {CircularProgress} from "@mui/material";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { fetchUserById } from "../../../store/slices";
-import { UserDetailsView } from "../../common/UserDetailsView";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {fetchUserById} from "../../../store/slices";
+import {UserDetailsView} from "../../common/UserDetailsView";
+import styles from "./UserDetails.module.css";
 
 const UserDetails = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const dispatch = useAppDispatch();
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();
     const user = useAppSelector((state) => state.users.userDetail);
     const loading = useAppSelector((state) => state.users.loading);
     const error = useAppSelector((state) => state.users.error);
@@ -21,41 +22,48 @@ const UserDetails = () => {
         }
     }, [dispatch, id]);
 
-    if (loading) {
-        return <CircularProgress />;
-    }
-
-    if (error) {
-        return <Typography variant="h6" color="error">Error: {error}</Typography>;
-    }
-
-    if (!user) {
-        return <Typography variant="h6" color="error">User not found</Typography>;
-    }
-
     return (
-        <UserDetailsView
-            data={[user]}
-            idKey="user_id"
-            renderDetails={(user) => (
-                <>
-                    <Typography variant="h5">{t('user.details')}</Typography>
-                    {user.user_avatar && (
-                        <img
-                            src={user.user_avatar}
-                            alt={`${user.user_firstname} ${user.user_lastname}`}
-                            style={{ width: 100, height: 100, borderRadius: '50%' }}
-                        />
-                    )}
-                    <Typography variant="body1">{t('user.name')}: {user.user_firstname}</Typography>
-                    <Typography variant="body1">{t('user.lastName')}: {user.user_lastname}</Typography>
-                    <Typography variant="body1">{t('user.email')}: {user.user_email}</Typography>
-                    <Typography variant="body1">{t('user.city')}: {user.user_city}</Typography>
-                    <Typography variant="body1">{t('user.phone')}: {user.user_phone}</Typography>
-                </>
+        <div>
+            {loading && (
+                <div className={styles.loadingContainer}>
+                    <CircularProgress/>
+                </div>
             )}
-        />
+            {!loading && error && (
+                <p className={styles.errorText}>
+                    {t("user.error")}
+                </p>
+            )}
+            {!loading && !user && !error && (
+                <p className={styles.errorText}>
+                    {t("user.notFound")}
+                </p>
+            )}
+            {!loading && user && (
+                <UserDetailsView
+                    data={[user]}
+                    idKey="user_id"
+                    renderDetails={(user) => (
+                        <div>
+                            <h5 className={styles.title}>{t("user.details")}</h5>
+                            {user.user_avatar && (
+                                <img
+                                    src={user.user_avatar}
+                                    alt={`${user.user_firstname} ${user.user_lastname}`}
+                                    className={styles.avatar}
+                                />
+                            )}
+                            <p className={styles.infoText}>{t("user.name")}: {user.user_firstname}</p>
+                            <p className={styles.infoText}>{t("user.lastName")}: {user.user_lastname}</p>
+                            <p className={styles.infoText}>{t("user.email")}: {user.user_email}</p>
+                            <p className={styles.infoText}>{t("user.city")}: {user.user_city}</p>
+                            <p className={styles.infoText}>{t("user.phone")}: {user.user_phone}</p>
+                        </div>
+                    )}
+                />
+            )}
+        </div>
     );
 };
 
-export { UserDetails };
+export {UserDetails};

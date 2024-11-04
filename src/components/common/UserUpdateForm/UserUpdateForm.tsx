@@ -5,6 +5,7 @@ import {userApi} from "../../../api/user-api";
 import {useAppDispatch} from "../../../hooks";
 import {getMe} from "../../../store/slices";
 import {Button, Input} from "@mui/material";
+import {IUpdateUser} from "../../../models/IUser";
 
 interface UserUpdateFormProps {
     userId: number;
@@ -27,7 +28,7 @@ const UserUpdateForm: React.FC<UserUpdateFormProps> = ({
     }) => {
     const dispatch = useAppDispatch();
     const {t} = useTranslation();
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<IUpdateUser>({
         user_firstname: userFirstname,
         user_lastname: userLastname,
         user_city: userCity,

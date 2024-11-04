@@ -14,7 +14,9 @@
   },
   "users": {
     "userList": "Users List",
-    "list": "Users List"
+    "list": "Users List",
+    "error": "An error occurred while fetching users data.",
+    "noUsersFound": "User not found."
   },
   "companies": {
     "title": "Companies",
@@ -27,7 +29,9 @@
     "lastName": "Last name",
     "email": "Email",
     "city": "City",
-    "phone": "Phone"
+    "phone": "Phone",
+    "error": "An error occurred while fetching user data.",
+    "notFound": "User not found."
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {

@@ -9,7 +9,7 @@ interface ItemListProps<T> {
     getItemId: (item: T) => number;
 }
 
-const ItemList = <T, >({items, renderItem, title, getItemId}: ItemListProps<T>) => {
+const ItemList = <T,>({items, renderItem, title, getItemId}: ItemListProps<T>) => {
     return (
         <div>
             <h2 className={styles.title}>{title}</h2>

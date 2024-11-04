@@ -19,7 +19,7 @@ const UsersList = () => {
     const {users, pagination, loading, error} = useAppSelector((state) => state.users);
     const searchParams = new URLSearchParams(location.search);
     const initialPage = parseInt(searchParams.get("page") || "1", 10);
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    const [currentPage, setCurrentPage] = useState<number>(initialPage);
     const pageSize = 10;
 
     useEffect(() => {
@@ -30,24 +30,6 @@ const UsersList = () => {
         setCurrentPage(page);
         navigate(`?page=${page}`, {replace: true});
     };
-
-    if (loading) {
-        return (
-            <div className={styles.loadingContainer}>
-                <CircularProgress color="primary"/>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className={styles.alertContainer}>
-                <div className={styles.alert}>
-                    {t('errorOccurred', {error})}
-                </div>
-            </div>
-        );
-    }
 
     const renderItem = (user: IUser) => (
         <div className={styles.userItem}>
@@ -64,21 +46,40 @@ const UsersList = () => {
 
     return (
         <div className={styles.container}>
-            <UserListView
-                title={t('users.userList')}
-                items={users}
-                getItemLink={(user) => `/users/${user.user_id}`}
-                renderItem={renderItem}
-                getItemId={(user) => user.user_id}
-            />
-            {pagination && (
-                <div className={styles.paginationContainer}>
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPage={pagination.total_page}
-                        onPageChange={handlePageChange}
-                    />
+            {loading && (
+                <div className={styles.loadingContainer}>
+                    <CircularProgress color="primary"/>
                 </div>
+            )}
+            {!loading && error && (
+                <p className={styles.errorText}>
+                    {t("users.error", {error})}
+                </p>
+            )}
+            {!loading && !error && users.length === 0 && (
+                <p className={styles.emptyText}>
+                    {t("users.noUsersFound")}
+                </p>
+            )}
+            {!loading && !error && users.length > 0 && (
+                <>
+                    <UserListView
+                        title={t('users.userList')}
+                        items={users}
+                        getItemLink={(user) => `/users/${user.user_id}`}
+                        renderItem={renderItem}
+                        getItemId={(user) => user.user_id}
+                    />
+                    {pagination && (
+                        <div className={styles.paginationContainer}>
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPage={pagination.total_page}
+                                onPageChange={handlePageChange}
+                            />
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

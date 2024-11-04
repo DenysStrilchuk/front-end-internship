@@ -1,6 +1,7 @@
 import React from "react";
-import {useParams} from "react-router-dom";
-import {Container, Typography} from "@mui/material";
+import { useParams } from "react-router-dom";
+
+import styles from "./UserDetailsView.module.css";
 
 interface ProfileViewProps<T> {
     data: T[];
@@ -8,19 +9,19 @@ interface ProfileViewProps<T> {
     renderDetails: (item: T) => React.ReactNode;
 }
 
-const UserDetailsView = <T, >({data, idKey, renderDetails}: ProfileViewProps<T>) => {
-    const {id} = useParams<{ id: string }>();
+const UserDetailsView = <T,>({ data, idKey, renderDetails }: ProfileViewProps<T>) => {
+    const { id } = useParams<{ id: string }>();
     const item = data.find((item) => item[idKey] === Number(id));
 
     if (!item) {
-        return <Typography variant="h6" color="error">Item not found</Typography>;
+        return <h6 className={styles.errorText}>Item not found</h6>;
     }
 
     return (
-        <Container>
+        <div className={styles.container}>
             {renderDetails(item)}
-        </Container>
+        </div>
     );
 };
 
-export {UserDetailsView};
+export { UserDetailsView }
