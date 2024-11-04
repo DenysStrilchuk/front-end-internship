@@ -64,25 +64,25 @@ const UserUpdateForm: React.FC<UserUpdateFormProps> = ({
                     name="user_firstname"
                     value={formData.user_firstname}
                     onChange={handleChange}
-                    placeholder={t("profile.userFirstname") || "Enter your first name"}
+                    placeholder={t("profile.userFirstname")}
                 />
                 <Input
                     name="user_lastname"
                     value={formData.user_lastname}
                     onChange={handleChange}
-                    placeholder={t("profile.userLastname") || "Enter your last name"}
+                    placeholder={t("profile.userLastname")}
                 />
                 <Input
                     name="user_city"
                     value={formData.user_city}
                     onChange={handleChange}
-                    placeholder={t("profile.city") || "Enter your city"}
+                    placeholder={t("profile.city")}
                 />
                 <Input
                     name="user_phone"
                     value={formData.user_phone}
                     onChange={handleChange}
-                    placeholder={t("profile.phone") || "Enter your phone number"}
+                    placeholder={t("profile.phone")}
                 />
                 <Button type="submit" variant="contained" color="primary">
                     {t("profile.saveChanges")}
