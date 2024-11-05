@@ -9,6 +9,7 @@ import {UserListView} from '../common/UserListView';
 import {Pagination} from '../common/Pagination';
 import styles from './UsersList.module.css';
 import {IUser} from "../../models/IUser";
+import {Routes} from "../../utils/routes";
 
 const UsersList = () => {
     const {t} = useTranslation();
@@ -66,7 +67,7 @@ const UsersList = () => {
                     <UserListView
                         title={t('users.userList')}
                         items={users}
-                        getItemLink={(user) => `/users/${user.user_id}`}
+                        getItemLink={(user) => `${Routes.USERS}/${user.user_id}`}
                         renderItem={renderItem}
                         getItemId={(user) => user.user_id}
                     />

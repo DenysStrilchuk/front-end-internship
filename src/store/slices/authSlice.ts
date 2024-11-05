@@ -48,8 +48,6 @@ const authSlice = createSlice({
             state.tokenType = action.payload.token_type;
             state.isAuthenticated = true;
             state.expirationDate = Date.now() + TOKEN_LIFETIME;
-
-            tokenService.saveToken(action.payload);
         },
         clearToken: (state) => {
             state.token = null;
@@ -57,8 +55,6 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.expirationDate = null;
             state.user = null;
-
-            tokenService.removeToken();
         },
     },
     extraReducers: (builder) => {
@@ -73,7 +69,7 @@ const authSlice = createSlice({
             })
             .addCase(getMe.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload as string;
+                state.error = action.payload ? "auth.getMeError" : "auth.unknownError";
             });
     },
 });
