@@ -2,21 +2,27 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 
 import {ItemList} from "../ItemList";
-import {IUser} from "../../../models/IUser";
-import styles from "./UserListView.module.css";
+import {ICompany} from "../../../models/ICompany";
+import styles from "./CompaniesListView.module.css";
 
-interface ListViewProps {
+interface CompaniesListViewProps {
     title: string;
-    items: IUser[];
-    getItemLink: (item: IUser) => string;
-    renderItem: (item: IUser) => React.ReactNode;
-    getItemId: (item: IUser) => number;
+    items: ICompany[];
+    getItemLink: (item: ICompany) => string;
+    renderItem: (item: ICompany) => React.ReactNode;
+    getItemId: (item: ICompany) => number;
 }
 
-const UserListView: React.FC<ListViewProps> = ({title, items, getItemLink, renderItem, getItemId}) => {
+const CompaniesListView: React.FC<CompaniesListViewProps> = ({
+     title,
+     items,
+     getItemLink,
+     renderItem,
+     getItemId,
+    }) => {
     const navigate = useNavigate();
 
-    const handleItemClick = (item: IUser) => {
+    const handleItemClick = (item: ICompany) => {
         navigate(getItemLink(item));
     };
 
@@ -35,5 +41,4 @@ const UserListView: React.FC<ListViewProps> = ({title, items, getItemLink, rende
         </div>
     );
 };
-
-export {UserListView};
+export {CompaniesListView};

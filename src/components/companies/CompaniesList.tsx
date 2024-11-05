@@ -2,15 +2,15 @@ import {useTranslation} from "react-i18next";
 
 import {mockCompanies} from "../../data/mockCompanies";
 import {ICompany} from "../../models/ICompany";
-import {UserListView} from "../common/UserListView";
 import {Routes} from "../../utils/routes";
+import {CompaniesListView} from "../common/CompaniesListView";
 
 
 const CompaniesList = () => {
     const {t} = useTranslation();
 
     return (
-        <UserListView
+        <CompaniesListView
             title={t('companies.list')}
             items={mockCompanies}
             getItemLink={(company: ICompany) => `${Routes.COMPANIES}/${company.id}`}
