@@ -21,13 +21,13 @@ const UserListView = <T, >({title, items, getItemLink, renderItem, getItemId}: L
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>{title}</h1>
             <ItemList
                 items={items}
+                title={title}
                 renderItem={(item) => (
-                    <li onClick={() => handleItemClick(item)} className={styles.itemLink}>
+                    <div onClick={() => handleItemClick(item)} className={styles.itemLink}>
                         {renderItem(item)}
-                    </li>
+                    </div>
                 )}
                 getItemId={getItemId}
             />

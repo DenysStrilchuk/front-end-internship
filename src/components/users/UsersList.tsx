@@ -63,7 +63,7 @@ const UsersList = () => {
                 </p>
             )}
             {!loading && !error && users.length > 0 && (
-                <>
+                <span>
                     <UserListView
                         title={t('users.userList')}
                         items={users}
@@ -80,7 +80,7 @@ const UsersList = () => {
                             />
                         </div>
                     )}
-                </>
+                </span>
             )}
         </div>
     );
