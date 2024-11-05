@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {ItemList} from "../ItemList";
@@ -16,13 +16,13 @@ interface ListViewProps {
 const UserListView: React.FC<ListViewProps> = ({title, items, getItemLink, renderItem, getItemId}) => {
     const navigate = useNavigate();
 
-    const handleItemClick = (item: IUser) => {
+    const handleItemClick = useCallback((item: IUser) => {
         navigate(getItemLink(item));
-    };
+    }, [navigate, getItemLink]);
 
     return (
         <div className={styles.container}>
-            <ItemList
+            <ItemList<IUser>
                 items={items}
                 title={title}
                 renderItem={(item) => (
