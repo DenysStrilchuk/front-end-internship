@@ -11,7 +11,7 @@ interface ItemListProps<T> {
 
 const ItemList = <T, >({items, renderItem, title, getItemId}: ItemListProps<T>) => {
     return (
-        <div>
+        <div className={styles.itemListContainer}>
             {title && <h2 className={styles.title}>{title}</h2>}
             <ul className={styles.list}>
                 {items.map((item) => (

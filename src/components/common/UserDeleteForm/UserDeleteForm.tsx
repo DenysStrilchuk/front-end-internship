@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from 'react-i18next';
-import {useAppDispatch, useAppSelector} from "../../../hooks";
 import Button from '@mui/material/Button';
 
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {handleLogout} from "../../../utils/logout-helper";
 import {deleteUser} from "../../../store/slices";
 

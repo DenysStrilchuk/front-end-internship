@@ -69,10 +69,3 @@
     border-radius: 4px;
     margin-bottom: 20px;
 }
-
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}

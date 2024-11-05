@@ -1,17 +1,17 @@
-import React, {useEffect} from "react";
-import {CircularProgress} from "@mui/material";
-import {useTranslation} from "react-i18next";
-import {useParams} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
-import {useAppDispatch, useAppSelector} from "../../../hooks";
-import {fetchUserById} from "../../../store/slices";
-import {UserDetailsView} from "../../common/UserDetailsView";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { fetchUserById } from "../../../store/slices";
+import { UserDetailsView } from "../../common/UserDetailsView";
 import styles from "./UserDetails.module.css";
+import {Loader} from "../../common/LoaderContainer";
 
 const UserDetails = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
     const user = useAppSelector((state) => state.users.userDetail);
     const loading = useAppSelector((state) => state.users.loading);
     const error = useAppSelector((state) => state.users.error);
@@ -24,11 +24,7 @@ const UserDetails = () => {
 
     return (
         <div>
-            {loading && (
-                <div className={styles.loadingContainer}>
-                    <CircularProgress/>
-                </div>
-            )}
+            {loading && <Loader />}
             {!loading && error && (
                 <p className={styles.errorText}>
                     {t("user.error")}
@@ -66,4 +62,4 @@ const UserDetails = () => {
     );
 };
 
-export {UserDetails};
+export { UserDetails };

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {CircularProgress, Avatar} from '@mui/material';
+import {Avatar} from '@mui/material';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -8,8 +8,9 @@ import {fetchAllUsers} from '../../store/slices';
 import {UserListView} from '../common/UserListView';
 import {Pagination} from '../common/Pagination';
 import styles from './UsersList.module.css';
-import {IUser} from "../../models/IUser";
-import {Routes} from "../../utils/routes";
+import {IUser} from '../../models/IUser';
+import {Routes} from '../../utils/routes';
+import {Loader} from "../common/LoaderContainer";
 
 const UsersList = () => {
     const {t} = useTranslation();
@@ -47,11 +48,7 @@ const UsersList = () => {
 
     return (
         <div className={styles.container}>
-            {loading && (
-                <div className={styles.loadingContainer}>
-                    <CircularProgress color="primary"/>
-                </div>
-            )}
+            {loading && <Loader/>}
             {!loading && error && (
                 <p className={styles.errorText}>
                     {t("users.error", {error})}

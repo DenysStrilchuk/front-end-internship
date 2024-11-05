@@ -1,6 +1,15 @@
+/* ItemList.module.css */
 .title {
     text-align: center;
     margin-bottom: 16px;
+}
+
+.itemListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    min-height: 60vh; /* Adjust based on your layout needs */
 }
 
 .list {

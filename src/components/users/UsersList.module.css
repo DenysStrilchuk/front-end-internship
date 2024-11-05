@@ -11,10 +11,10 @@
     text-align: center;
 }
 
-.loadingContainer,
 .paginationContainer {
-    composes: centered;
-    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .alertContainer,

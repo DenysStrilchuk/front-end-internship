@@ -14,7 +14,7 @@
   },
   "users": {
     "userList": "Users List",
-    "list": "Users List",
+    "list": "Users",
     "error": "An error occurred while fetching users data.",
     "noUsersFound": "User not found."
   },

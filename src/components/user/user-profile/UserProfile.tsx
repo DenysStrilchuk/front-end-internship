@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Avatar, Button, CircularProgress} from '@mui/material';
+import {Avatar, Button} from '@mui/material';
 import {useTranslation} from "react-i18next";
 
 import {useAppDispatch, useAppSelector} from "../../../hooks";
@@ -9,6 +9,7 @@ import {UserDeleteForm} from "../../common/UserDeleteForm";
 import {UpdateAvatar} from "../../common/UpdateAvatar";
 import {UniversalModal} from "../../common/UniversalModal";
 import styles from './UserProfile.module.css';
+import {Loader} from "../../common/LoaderContainer";
 
 const UserProfile = () => {
     const {t} = useTranslation();
@@ -27,7 +28,7 @@ const UserProfile = () => {
     }, [dispatch, isAuthenticated, user]);
 
     if (!user) {
-        return <div className={styles.loading}><CircularProgress/></div>;
+        return <Loader/>;
     }
 
     return (
