@@ -27,6 +27,11 @@ const UserProfile = () => {
         }
     }, [dispatch, isAuthenticated, user]);
 
+    const handleUpdateSuccess = () => {
+        dispatch(getMe());
+        setShowUpdateForm(false);
+    };
+
     if (!user) {
         return <Loader/>;
     }
@@ -100,7 +105,7 @@ const UserProfile = () => {
                         userLastname={user.result.user_lastname || ""}
                         userCity={user.result.user_city || ""}
                         userPhone={user.result.user_phone || ""}
-                        onClose={() => setShowUpdateForm(false)}
+                        onClose={handleUpdateSuccess}
                         onError={setError}
                     />
                 }

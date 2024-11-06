@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 
-import {userApi} from "../../../api/user-api";
 import {useAppDispatch} from "../../../hooks";
-import {getMe} from "../../../store/slices";
+import {updateUser} from "../../../store/slices";
 import {Button, Input} from "@mui/material";
 import {IUpdateUser} from "../../../models/IUser";
 
@@ -46,8 +45,7 @@ const UserUpdateForm: React.FC<UserUpdateFormProps> = ({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await userApi.updateUser(userId, formData);
-            dispatch(getMe());
+            await dispatch(updateUser({userId, data: formData})).unwrap();
             onClose();
         } catch (error) {
             if (error instanceof Error) {
