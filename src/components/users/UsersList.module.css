@@ -4,7 +4,11 @@
     padding: 16px;
 }
 
-.centered {
+.centered,
+.paginationContainer,
+.alertContainer,
+.emptyText,
+.errorText {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,15 +16,12 @@
 }
 
 .paginationContainer {
-    display: flex;
-    justify-content: center;
     margin-top: 20px;
 }
 
 .alertContainer,
 .emptyText,
 .errorText {
-    text-align: center;
     margin: 20px auto;
 }
 
@@ -29,14 +30,13 @@
     color: white;
     padding: 16px;
     border-radius: 4px;
-    text-align: center;
 }
 
 .userItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
 .avatar {
@@ -46,16 +46,13 @@
 }
 
 .userName {
-    font-size: 1rem;
     font-weight: 500;
 }
 
 .emptyText {
-    font-size: 1.1rem;
     color: #666;
 }
 
 .errorText {
     color: #f44336;
-    font-size: 1rem;
 }
