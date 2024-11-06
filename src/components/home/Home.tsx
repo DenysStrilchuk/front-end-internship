@@ -1,19 +1,21 @@
-import {Typography, Container} from "@mui/material";
+import React from "react";
 import {useTranslation} from "react-i18next";
+
+import styles from "./Home.module.css";
 
 const Home = () => {
     const {t} = useTranslation();
 
     return (
-        <Container>
-            <Typography variant="h4" gutterBottom>
+        <div className={styles.container}>
+            <h4 className={styles.title}>
                 {t('welcome')}
-            </Typography>
-            <Typography variant="body1">
+            </h4>
+            <p className={styles.description}>
                 {t('home_description')}
-            </Typography>
-        </Container>
+            </p>
+        </div>
     );
 };
 
-export {Home};
+export {Home}
