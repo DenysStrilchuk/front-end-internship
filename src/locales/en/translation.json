@@ -4,56 +4,163 @@
   "ukrainian": "Ukrainian",
   "welcome": "Welcome",
   "home": "Home",
-  "about": "About",
-  "users": "Users",
-  "companies": "Companies",
-  "about_title": "About Our Application",
-  "about_description": "This is a mock page that provides information about our project.",
-  "user_profile": "User Profile",
-  "name": "Name",
-  "users_list": "Users List",
+  "universalModal": {
+    "close": "Close"
+  },
+  "about": {
+    "header": "About",
+    "title": "About Our Application",
+    "description": "This is a mock page that provides information about our project."
+  },
+  "users": {
+    "userList": "Users List",
+    "list": "Users",
+    "error": "An error occurred while fetching users data.",
+    "noUsersFound": "User not found."
+  },
+  "companies": {
+    "title": "Companies",
+    "list": "Companies List",
+    "details": "Details about {{name}}..."
+  },
+  "user": {
+    "details": "User details",
+    "name": "Name",
+    "lastName": "Last name",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone",
+    "error": "An error occurred while fetching user data.",
+    "notFound": "User not found."
+  },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
-  "companies_list": "Companies List",
-  "company_details": "Details about {{name}}...",
-  "login.title": "Login",
-  "login.errorMessage": "Login error. Please check your credentials.",
-  "login.emailLabel": "Email",
-  "login.passwordLabel": "Password",
-  "login.submitButton": "Log In",
-  "login.orLoginWith": "or login with",
-  "register": "Register",
-  "login": "Login",
-  "register.title": "Registration",
-  "register.errorMessage": "Registration error. Please try again.",
-  "register.emailLabel": "Email",
-  "register.firstNameLabel": "First Name",
-  "register.lastNameLabel": "Last Name",
-  "register.passwordLabel": "Password",
-  "register.confirmPasswordLabel": "Confirm Password",
-  "register.submitButton": "Register",
-  "register.passwordMismatch": "Passwords do not match.",
-  "register.orRegisterWith": "or register with",
-  "common.submitButton": "Submit",
-  "common.or": "or",
+  "login": {
+    "title": "Login",
+    "errorMessage": "Login error. Please check your credentials.",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "submitButton": "Log In",
+    "orLoginWith": "or login with"
+  },
+  "register": {
+    "title": "Registration",
+    "errorMessage": "Registration error. Please try again.",
+    "emailLabel": "Email",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "submitButton": "Register",
+    "passwordMismatch": "Passwords do not match.",
+    "orRegisterWith": "or register with"
+  },
+  "common": {
+    "submitButton": "Submit",
+    "or": "or"
+  },
   "logout": "Logout",
-  "auth.errors.email.empty": "The \"Email\" field cannot be empty",
-  "auth.errors.email.invalid": "Please enter a valid email address",
-  "auth.errors.email.required": "The \"Email\" field is required",
-  "auth.errors.password.empty": "The \"Password\" field cannot be empty",
-  "auth.errors.password.min": "Password must be at least 8 characters long",
-  "auth.errors.password.max": "Password must not exceed 30 characters",
-  "auth.errors.password.pattern": "Password can only contain letters, numbers, and special characters",
-  "auth.errors.password.required": "The \"Password\" field is required",
-  "auth.errors.confirmPassword.match": "Passwords do not match",
-  "auth.errors.confirmPassword.required": "The \"Confirm Password\" field is required",
-  "auth.errors.firstName.empty": "The \"First Name\" field cannot be empty",
-  "auth.errors.firstName.min": "First name must be at least 2 characters long",
-  "auth.errors.firstName.max": "First name must not exceed 50 characters",
-  "auth.errors.firstName.pattern": "First name must start with an uppercase letter and contain only letters",
-  "auth.errors.firstName.required": "The \"First Name\" field is required",
-  "auth.errors.lastName.empty": "The \"Last Name\" field cannot be empty",
-  "auth.errors.lastName.min": "Last name must be at least 2 characters long",
-  "auth.errors.lastName.max": "Last name must not exceed 50 characters",
-  "auth.errors.lastName.pattern": "Last name must start with an uppercase letter and contain only letters",
-  "auth.errors.lastName.required": "The \"Last Name\" field is required"
+  "auth": {
+    "errors": {
+      "email": {
+        "empty": "The \"Email\" field cannot be empty",
+        "invalid": "Please enter a valid email address",
+        "required": "The \"Email\" field is required"
+      },
+      "password": {
+        "empty": "The \"Password\" field cannot be empty",
+        "min": "Password must be at least 8 characters long",
+        "max": "Password must not exceed 30 characters",
+        "pattern": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+        "required": "The \"Password\" field is required"
+      },
+      "confirmPassword": {
+        "match": "Passwords do not match",
+        "required": "The \"Confirm Password\" field is required"
+      },
+      "firstName": {
+        "empty": "The \"First Name\" field cannot be empty",
+        "min": "First name must be at least 2 characters long",
+        "max": "First name must not exceed 50 characters",
+        "pattern": "First name must start with an uppercase letter and contain only letters",
+        "required": "The \"First Name\" field is required"
+      },
+      "lastName": {
+        "empty": "The \"Last Name\" field cannot be empty",
+        "min": "Last name must be at least 2 characters long",
+        "max": "Last name must not exceed 50 characters",
+        "pattern": "Last name must start with an uppercase letter and contain only letters",
+        "required": "The \"Last Name\" field is required"
+      },
+      "register": {
+        "emailExists": "A user with this email address already exists.",
+        "default": "An unknown error occurred. Please try again later."
+      },
+      "login": {
+        "invalidAuth": "Invalid login or password.",
+        "default": "An unknown error occurred. Please try again later."
+      }
+    }
+  },
+  "profile": {
+    "title": "My profile",
+    "userAvatar": "User Avatar",
+    "myInformation": "My Information:",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone",
+    "noData": "N/A",
+    "updateProfile": "Update Profile",
+    "deleteProfile": "Delete Profile",
+    "uploadAvatar": "Upload Avatar",
+    "errorFetching": "Error fetching user profile."
+  },
+  "updateUser": {
+    "userFirstname": "First Name",
+    "userLastname": "Last Name",
+    "city": "City",
+    "phone": "Phone",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "errorUpdating": "Failed to update user."
+  },
+  "deleteUser": {
+    "confirmationMessage": "Are you sure you want to delete your profile? This action cannot be undone.",
+    "confirmDelete": "Confirm Delete",
+    "yesDelete": "Yes, Delete",
+    "cancel": "Cancel",
+    "error": {
+      "deleteFailed": "Failed to delete user.",
+      "unknownError": "An unknown error occurred."
+    }
+  },
+  "avatar": {
+    "uploadAvatar": "Upload Avatar",
+    "cancel": "Cancel",
+    "error": {
+      "avatarUrlMissing": "Avatar URL is missing.",
+      "noFileSelected": "No file selected.",
+      "default": "Failed to update avatar."
+    }
+  },
+  "validation": {
+    "firstName": {
+      "required": "First name is required",
+      "min": "First name must be at least 2 characters long",
+      "max": "First name must be less than 50 characters long",
+      "pattern": "First name must start with a capital letter"
+    },
+    "lastName": {
+      "required": "Last name is required",
+      "min": "Last name must be at least 2 characters long",
+      "max": "Last name must be less than 50 characters long",
+      "pattern": "Last name must start with a capital letter"
+    },
+    "city": {
+      "max": "City name must be less than 100 characters long"
+    },
+    "phone": {
+      "invalid": "Invalid phone number"
+    }
+  }
 }
+

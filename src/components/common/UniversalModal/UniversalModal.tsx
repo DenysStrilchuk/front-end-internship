@@ -1,5 +1,8 @@
 import React from "react";
-import {Modal, Box, Typography, Button} from "@mui/material";
+import {Modal, Button} from "@mui/material";
+import {useTranslation} from "react-i18next";
+
+import styles from "./UniversalModal.module.css";
 
 interface UniversalModalProps {
     open: boolean;
@@ -7,21 +10,12 @@ interface UniversalModalProps {
     title?: string;
     content?: React.ReactNode;
     actions?: React.ReactNode;
+    children?: React.ReactNode;
 }
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderRadius: 4,
-    boxShadow: 24,
-    p: 4,
-};
+const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, content, actions, children}) => {
+    const {t} = useTranslation();
 
-const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, content, actions}) => {
     return (
         <Modal
             open={open}
@@ -29,27 +23,30 @@ const UniversalModal: React.FC<UniversalModalProps> = ({open, onClose, title, co
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
-            <Box sx={style}>
+            <div className={styles.modalContainer}>
                 {title && (
-                    <Typography id="modal-title" variant="h6" component="h2" gutterBottom>
-                        {title}
-                    </Typography>
+                    <h2 id="modal-title" className={styles.modalTitle}>
+                        {t(title)}
+                    </h2>
                 )}
+                <div>
+                    {children}
+                </div>
                 {content && (
-                    <Typography id="modal-description" variant="body1" gutterBottom>
+                    <div id="modal-description" className={styles.modalContent}>
                         {content}
-                    </Typography>
+                    </div>
                 )}
-                <Box mt={2}>
+                <div className={styles.modalActions}>
                     {actions || (
                         <Button variant="contained" color="primary" onClick={onClose}>
-                            Close
+                            {t('universalModal.close')}
                         </Button>
                     )}
-                </Box>
-            </Box>
+                </div>
+            </div>
         </Modal>
     );
 };
 
-export {UniversalModal}
+export {UniversalModal};

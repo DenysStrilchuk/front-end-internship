@@ -5,4 +5,5 @@ export enum Routes {
     COMPANIES = '/companies',
     LOGIN = '/login',
     REGISTER = '/register',
+    PROFILE = '/auth/me'
 }

@@ -6,9 +6,8 @@ import {useTranslation} from 'react-i18next';
 import {authApi} from "../../../api/auth-api";
 import {authActions} from "../../../store/slices";
 import {ITokenResponse} from "../../../types/api-types/authTypes";
-import {Routes} from "../../../utils";
+import {Routes} from "../../../utils/routes";
 import {AuthForm} from "../../common/AuthForm";
-import {IApiError} from "../../../types/api-types/errorTypes";
 
 const LoginForm = () => {
     const {t} = useTranslation();
@@ -35,8 +34,13 @@ const LoginForm = () => {
 
             navigate(Routes.HOME);
         } catch (err) {
-            const errorMessage = (err as IApiError).response?.data?.message || t('login.errorMessage');
-            setError(errorMessage);
+            const errorMessage = (err as Error).message;
+            const translatedErrorMessage =
+                errorMessage === 'Invalid login or password.'
+                    ? t('auth.errors.login.invalidAuth')
+                    : t('auth.errors.login.default');
+
+            setError(translatedErrorMessage);
         }
     };
 

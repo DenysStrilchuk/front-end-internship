@@ -4,30 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch } from "../../../hooks";
-import { authActions } from "../../../store/slices";
-import { Routes } from "../../../utils";
+import { handleLogout } from "../../../utils/logout-helper";
+import styles from './LogoutButton.module.css';
 
 const LogoutButton = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        dispatch(authActions.clearToken());
-        navigate(Routes.LOGIN);
-    };
-
     return (
         <Button
+            className={styles.logoutButton}
             color="inherit"
-            onClick={handleLogout}
-            sx={{
-                marginLeft: 2,
-                borderRadius: 2,
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                },
-            }}
+            onClick={() => handleLogout(dispatch, navigate)}
         >
             {t('logout')}
         </Button>

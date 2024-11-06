@@ -1,29 +1,28 @@
-import {Typography} from "@mui/material";
+import React from "react";
 import {useTranslation} from "react-i18next";
 
 import {mockCompanies} from "../../data/mockCompanies";
 import {ICompany} from "../../models/ICompany";
-import {ProfileView} from "../common/ProfileView /ProfileView";
-
+import {UserDetailsView} from "../common/UserDetailsView";
+import styles from "./CompanyProfile.module.css";
 
 const CompanyProfile = () => {
     const {t} = useTranslation();
 
     return (
-        <ProfileView
+        <UserDetailsView
             data={mockCompanies}
             idKey="id"
             renderDetails={(company: ICompany) => (
-                <>
-                    <Typography variant="h4">{company.name}</Typography>
-                    <Typography variant="body1">
-                        {t('company_details', {name: company.name})}
-                    </Typography>
-                </>
+                <span>
+                    <h4 className={styles.title}>{company.name}</h4>
+                    <p className={styles.description}>
+                        {t('companies.details', {name: company.name})}
+                    </p>
+                </span>
             )}
         />
     );
 };
-
 
 export {CompanyProfile};

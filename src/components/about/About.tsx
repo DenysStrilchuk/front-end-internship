@@ -1,21 +1,22 @@
-import {Container, Typography} from "@mui/material";
+import React from "react";
 import {useTranslation} from "react-i18next";
 
 import {TestComponent} from "../test";
+import styles from "./About.module.css";
 
 const About = () => {
     const {t} = useTranslation();
 
     return (
-        <Container>
-            <Typography variant="h4" component="h1" gutterBottom>
-                {t('about_title')}
-            </Typography>
-            <Typography variant="body1">
-                {t('about_description')}
-            </Typography>
+        <div className={styles.container}>
+            <h1 className={styles.title}>
+                {t('about.title')}
+            </h1>
+            <p className={styles.description}>
+                {t('about.description')}
+            </p>
             <TestComponent/>
-        </Container>
+        </div>
     );
 };
 
