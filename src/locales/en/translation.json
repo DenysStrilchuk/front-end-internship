@@ -111,11 +111,16 @@
     "noData": "N/A",
     "updateProfile": "Update Profile",
     "deleteProfile": "Delete Profile",
-    "uploadAvatar": "Upload Avatar",
+    "uploadAvatar": "Upload Avatar"
+  },
+  "updateUser": {
     "userFirstname": "First Name",
     "userLastname": "Last Name",
+    "city": "City",
+    "phone": "Phone",
     "saveChanges": "Save Changes",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "errorUpdating": "Failed to update user."
   },
   "deleteUser": {
     "confirmationMessage": "Are you sure you want to delete your profile? This action cannot be undone.",
@@ -134,6 +139,26 @@
       "avatarUrlMissing": "Avatar URL is missing.",
       "noFileSelected": "No file selected.",
       "default": "Failed to update avatar."
+    }
+  },
+  "validation": {
+    "firstName": {
+      "required": "First name is required",
+      "min": "First name must be at least 2 characters long",
+      "max": "First name must be less than 50 characters long",
+      "pattern": "First name must start with a capital letter"
+    },
+    "lastName": {
+      "required": "Last name is required",
+      "min": "Last name must be at least 2 characters long",
+      "max": "Last name must be less than 50 characters long",
+      "pattern": "Last name must start with a capital letter"
+    },
+    "city": {
+      "max": "City name must be less than 100 characters long"
+    },
+    "phone": {
+      "invalid": "Invalid phone number"
     }
   }
 }

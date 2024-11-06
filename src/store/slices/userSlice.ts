@@ -55,7 +55,7 @@ const updateUser = createAsyncThunk(
             return await userApi.updateUser(userId, data);
         } catch (error: unknown) {
             const apiError = error as IApiError;
-            return rejectWithValue(apiError.response?.data?.message || 'Failed to update user');
+            return rejectWithValue(apiError.response?.data?.message || 'updateUser.errorUpdating');
         }
     }
 );
