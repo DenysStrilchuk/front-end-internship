@@ -69,3 +69,10 @@
     border-radius: 4px;
     margin-bottom: 20px;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}

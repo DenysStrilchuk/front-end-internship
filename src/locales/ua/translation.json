@@ -111,7 +111,8 @@
     "noData": "Немає даних",
     "updateProfile": "Оновити профіль",
     "deleteProfile": "Видалити профіль",
-    "uploadAvatar": "Завантажити аватар"
+    "uploadAvatar": "Завантажити аватар",
+    "errorFetching": "Помилка отримання профілю користувача."
   },
   "updateUser": {
     "userFirstname": "Ім'я",

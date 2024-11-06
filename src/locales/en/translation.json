@@ -111,7 +111,8 @@
     "noData": "N/A",
     "updateProfile": "Update Profile",
     "deleteProfile": "Delete Profile",
-    "uploadAvatar": "Upload Avatar"
+    "uploadAvatar": "Upload Avatar",
+    "errorFetching": "Error fetching user profile."
   },
   "updateUser": {
     "userFirstname": "First Name",

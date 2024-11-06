@@ -23,14 +23,18 @@ const UserProfile = () => {
 
     useEffect(() => {
         if (isAuthenticated && !user) {
-            dispatch(getMe());
+            dispatch(getMe()).unwrap().catch((err) => setError(err));
         }
     }, [dispatch, isAuthenticated, user]);
 
     const handleUpdateSuccess = () => {
-        dispatch(getMe());
+        dispatch(getMe())
         setShowUpdateForm(false);
     };
+
+    if (!user && error) {
+        return <div className={styles.error}>{t(error)}</div>;
+    }
 
     if (!user) {
         return <Loader/>;

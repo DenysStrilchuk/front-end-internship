@@ -34,7 +34,7 @@ const getMe = createAsyncThunk<IGetMeResponse, void, { rejectValue: string }>(
         try {
             return await authApi.getMe();
         } catch {
-            return rejectWithValue("Error fetching user profile");
+            return rejectWithValue("profile.errorFetching");
         }
     }
 );
