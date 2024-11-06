@@ -109,6 +109,7 @@
     "city": "City",
     "phone": "Phone",
     "noData": "N/A",
+    "cancel": "Cancel",
     "updateProfile": "Update Profile",
     "deleteProfile": "Delete Profile",
     "uploadAvatar": "Upload Avatar",
