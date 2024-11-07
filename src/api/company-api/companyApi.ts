@@ -8,8 +8,8 @@ const companyApi = {
         const {data: {result}} = await axiosInstance.get(urls.companies.getAllCompanies, {params: {page, page_size: pageSize}});
         return result;
     },
-    getCompanyById: async (userId: number): Promise<ICompany> => {
-        const {data: {result}} = await axiosInstance.get(urls.companies.getCompanyById(userId));
+    getCompanyById: async (companyId: number): Promise<ICompany> => {
+        const {data: {result}} = await axiosInstance.get(urls.companies.getCompanyById(companyId));
         return result;
     }
 }

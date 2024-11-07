@@ -10,7 +10,15 @@ export interface ICompany {
     company_city?: string;
     company_phone?: string;
     company_links?: string[];
+    company_owner?: {
+        user_id: number;
+        user_email: string;
+        user_firstname: string;
+        user_lastname: string;
+        user_avatar: string;
+    };
 }
+
 
 export interface ICompaniesListResponse {
     companies: ICompany[];

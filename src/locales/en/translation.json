@@ -49,7 +49,10 @@
     "notProvided": "N/A",
     "noLinksAvailable": "N/A",
     "error": "An error occurred while fetching company data.",
-    "notFound": "Company not found."
+    "notFound": "Company not found.",
+    "ownerInfo": "Owner information",
+    "ownerName": "Owner name",
+    "ownerEmail": "Owner email"
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {
