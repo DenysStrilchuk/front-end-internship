@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { fetchUserById } from "../../../store/slices";
-import { UserDetailsView } from "../../common/UserDetailsView";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {fetchUserById} from "../../../store/slices";
+import {DetailsView} from "../../common/DetailsView";
 import styles from "./UserDetails.module.css";
 import {Loader} from "../../common/LoaderContainer";
 
 const UserDetails = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const dispatch = useAppDispatch();
-    const { id } = useParams<{ id: string }>();
-    const user = useAppSelector((state) => state.users.userDetail);
-    const loading = useAppSelector((state) => state.users.loading);
-    const error = useAppSelector((state) => state.users.error);
+    const {id} = useParams<{ id: string }>();
+    const { userDetail: user, loading, error } = useAppSelector((state) => state.users);
+
 
     useEffect(() => {
         if (id) {
@@ -24,7 +23,7 @@ const UserDetails = () => {
 
     return (
         <div>
-            {loading && <Loader />}
+            {loading && <Loader/>}
             {!loading && error && (
                 <p className={styles.errorText}>
                     {t("user.error")}
@@ -36,7 +35,7 @@ const UserDetails = () => {
                 </p>
             )}
             {!loading && user && (
-                <UserDetailsView
+                <DetailsView
                     data={[user]}
                     idKey="user_id"
                     renderDetails={(user) => (
@@ -62,4 +61,4 @@ const UserDetails = () => {
     );
 };
 
-export { UserDetails };
+export {UserDetails};

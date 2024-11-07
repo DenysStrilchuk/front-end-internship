@@ -16,12 +16,7 @@
     "userList": "Users List",
     "list": "Users",
     "error": "An error occurred while fetching users data.",
-    "noUsersFound": "User not found."
-  },
-  "companies": {
-    "title": "Companies",
-    "list": "Companies List",
-    "details": "Details about {{name}}..."
+    "noUsersFound": "Users not found."
   },
   "user": {
     "details": "User details",
@@ -32,6 +27,29 @@
     "phone": "Phone",
     "error": "An error occurred while fetching user data.",
     "notFound": "User not found."
+  },
+  "companies": {
+    "title": "Companies",
+    "list": "Companies List",
+    "error": "An error occurred while fetching companies data.",
+    "noCompaniesFound": "Companies not found"
+  },
+  "company": {
+    "id": "Company ID",
+    "name": "Company Name",
+    "title": "Company Title",
+    "avatar": "Company Avatar",
+    "isVisible": "Visibility",
+    "description": "Company Description",
+    "city": "Company City",
+    "phone": "Company Phone",
+    "links": "Company Links",
+    "noDescriptionAvailable": "Company description unavailable",
+    "unknown": "N/A",
+    "notProvided": "N/A",
+    "noLinksAvailable": "N/A",
+    "error": "An error occurred while fetching company data.",
+    "notFound": "Company not found."
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {

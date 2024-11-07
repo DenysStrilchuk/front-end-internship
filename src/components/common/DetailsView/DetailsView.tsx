@@ -1,7 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
-import styles from "./UserDetailsView.module.css";
+import styles from "./DetailsView.module.css";
 
 interface ProfileViewProps<T> {
     data: T[];
@@ -9,8 +9,8 @@ interface ProfileViewProps<T> {
     renderDetails: (item: T) => React.ReactNode;
 }
 
-const UserDetailsView = <T,>({ data, idKey, renderDetails }: ProfileViewProps<T>) => {
-    const { id } = useParams<{ id: string }>();
+const DetailsView = <T, >({data, idKey, renderDetails}: ProfileViewProps<T>) => {
+    const {id} = useParams<{ id: string }>();
     const item = data.find((item) => item[idKey] === Number(id));
 
     if (!item) {
@@ -24,4 +24,4 @@ const UserDetailsView = <T,>({ data, idKey, renderDetails }: ProfileViewProps<T>
     );
 };
 
-export { UserDetailsView }
+export {DetailsView}

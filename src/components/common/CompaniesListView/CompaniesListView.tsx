@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {ItemList} from "../ItemList";
@@ -22,9 +22,9 @@ const CompaniesListView: React.FC<CompaniesListViewProps> = ({
     }) => {
     const navigate = useNavigate();
 
-    const handleItemClick = (item: ICompany) => {
+    const handleItemClick = useCallback((item: ICompany) => {
         navigate(getItemLink(item));
-    };
+    }, [getItemLink, navigate]);
 
     return (
         <div className={styles.container}>

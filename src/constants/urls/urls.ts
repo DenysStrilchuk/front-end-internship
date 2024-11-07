@@ -8,6 +8,8 @@ const users = '/users/';
 const user = '/user/';
 const updateInfo = '/update_info/';
 const updateAvatar = '/update_avatar/';
+const companies = '/companies/';
+const company = '/company/';
 
 const urls = {
     status: {
@@ -25,6 +27,10 @@ const urls = {
         updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
         deleteUser: (id: number) => `${user}${id}/`,
     },
+    companies: {
+        getAllCompanies : `${companies}`,
+        getCompanyById: (id: number)=> `${company}${id}/`,
+    }
 };
 
 export {
