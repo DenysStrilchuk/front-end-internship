@@ -11,6 +11,7 @@ import {LoginPage} from "../pages/LoginPage";
 import {UserDetailsPage} from "../pages/UserDetailsPage";
 import {UserProfilePage} from "../pages/UserProfilePage";
 import {CompanyDetailsPage} from "../pages/CompanyDetailsPage";
+import {UserCompanyPage} from "../pages/UserCompanyPage";
 
 export const routes = createBrowserRouter([
     {
@@ -44,6 +45,13 @@ export const routes = createBrowserRouter([
                     {path: ':id', element: <CompanyDetailsPage/>},
                 ],
             },
+            {
+                path: 'company',
+                element: <PrivateRoute/>,
+                children: [
+                    {path: ':id', element: <UserCompanyPage/>}
+                ]
+            }
         ],
     },
 ]);

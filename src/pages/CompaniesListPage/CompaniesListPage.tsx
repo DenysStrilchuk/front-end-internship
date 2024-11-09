@@ -1,4 +1,4 @@
-import {CompaniesList} from "../../components/companies";
+import {CompaniesList} from "../../components/companies/CompaniesList";
 
 export const CompaniesListPage = () => {
     return (

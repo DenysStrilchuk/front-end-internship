@@ -11,6 +11,14 @@ const companyApi = {
     getCompanyById: async (companyId: number): Promise<ICompany> => {
         const {data: {result}} = await axiosInstance.get(urls.companies.getCompanyById(companyId));
         return result;
+    },
+    getCompaniesByUserId: async (userId: number): Promise<ICompaniesListResponse> => {
+        const { data: { result } } = await axiosInstance.get(urls.companies.getUserCompanies(userId));
+        return result;
+    },
+    createCompany: async (newCompany: { company_name: string; is_visible: boolean;}): Promise<{ company_id: number }> => {
+        const {data: {result}} = await axiosInstance.post(urls.companies.createCompany, newCompany);
+        return result;
     }
 }
 

@@ -10,6 +10,9 @@ import {UpdateAvatar} from "../../common/UpdateAvatar";
 import {UniversalModal} from "../../common/UniversalModal";
 import styles from './UserProfile.module.css';
 import {Loader} from "../../common/LoaderContainer";
+import {CreateCompanyForm} from "../../common/CreateCompanyForm";
+import {UserCompaniesList} from "../../companies/UserCompaniesList";
+import {fetchUserCompanies} from "../../../store/slices/companySlice";
 
 const UserProfile = () => {
     const {t} = useTranslation();
@@ -20,6 +23,7 @@ const UserProfile = () => {
     const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
     const [showDeleteForm, setShowDeleteForm] = useState<boolean>(false);
     const [showAvatarForm, setShowAvatarForm] = useState<boolean>(false);
+    const [showCreateCompanyForm, setShowCreateCompanyForm] = useState<boolean>(false);
 
     useEffect(() => {
         if (isAuthenticated && !user) {
@@ -31,6 +35,14 @@ const UserProfile = () => {
         dispatch(getMe())
         setShowUpdateForm(false);
     };
+
+    const handleCreateCompanySuccess = () => {
+        if (user?.result.user_id) {
+            dispatch(fetchUserCompanies(user.result.user_id));
+        }
+        setShowCreateCompanyForm(false);
+    };
+
 
     if (!user && error) {
         return <div className={styles.error}>{t(error)}</div>;
@@ -73,6 +85,13 @@ const UserProfile = () => {
                         >
                             {t('profile.uploadAvatar')}
                         </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => setShowCreateCompanyForm(true)}
+                        >
+                            {t('profile.createCompany')}
+                        </Button>
                     </div>
                 </div>
 
@@ -91,10 +110,7 @@ const UserProfile = () => {
                         </div>
                     )}
                     <div className={styles.divider}></div>
-                    <div>
-                        <h3>{t('profile.activities')}</h3>
-                        <p>{t('profile.activityDescription')}</p>
-                    </div>
+                    <UserCompaniesList userId={user?.result.user_id}/>
                 </div>
             </div>
 
@@ -140,6 +156,22 @@ const UserProfile = () => {
                         userId={user.result.user_id}
                         onClose={() => setShowAvatarForm(false)}
                     />
+                }
+            />
+            <UniversalModal
+                open={showCreateCompanyForm}
+                onClose={() => setShowCreateCompanyForm(false)}
+                title={t('profile.createCompany')}
+                content={
+                    <CreateCompanyForm
+                        onClose={() => setShowCreateCompanyForm(false)}
+                        onCreateSuccess={handleCreateCompanySuccess}
+                    />
+                }
+                actions={
+                    <Button onClick={() => setShowCreateCompanyForm(false)} variant="contained">
+                        {t('universalModal.close')}
+                    </Button>
                 }
             />
         </div>

@@ -3,13 +3,13 @@ import {useTranslation} from "react-i18next";
 import {Avatar} from "@mui/material";
 import {useLocation, useNavigate} from "react-router-dom";
 
-import {ICompany} from "../../models/ICompany";
-import {Routes} from "../../utils/routes";
-import {CompaniesListView} from "../common/CompaniesListView";
-import {fetchAllCompanies} from "../../store/slices/companySlice";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {Loader} from "../common/LoaderContainer";
-import {Pagination} from "../common/Pagination";
+import {ICompany} from "../../../models/ICompany";
+import {Routes} from "../../../utils/routes";
+import {CompaniesListView} from "../../common/CompaniesListView";
+import {fetchAllCompanies} from "../../../store/slices/companySlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {Loader} from "../../common/LoaderContainer";
+import {Pagination} from "../../common/Pagination";
 import styles from './CompaniesList.module.css';
 
 const CompaniesList = () => {

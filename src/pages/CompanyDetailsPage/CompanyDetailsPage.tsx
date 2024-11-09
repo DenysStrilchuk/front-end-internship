@@ -1,4 +1,4 @@
-import {CompanyDetails} from "../../components/companie/CompanyDetails";
+import {CompanyDetails} from "../../components/company/CompanyDetails";
 
 export const CompanyDetailsPage = () => {
     return (
