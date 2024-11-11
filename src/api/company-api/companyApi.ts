@@ -19,6 +19,10 @@ const companyApi = {
     createCompany: async (newCompany: { company_name: string; is_visible: boolean;}): Promise<{ company_id: number }> => {
         const {data: {result}} = await axiosInstance.post(urls.companies.createCompany, newCompany);
         return result;
+    },
+    updateCompany: async (companyId: number, updateData: Partial<ICompany>): Promise<ICompany> => {
+        const { data: { result } } = await axiosInstance.put(urls.companies.updateCompanyInfo(companyId), updateData);
+        return result;
     }
 }
 

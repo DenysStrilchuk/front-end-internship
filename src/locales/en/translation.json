@@ -60,15 +60,23 @@
     "name": "Company Name",
     "title": "Company Title",
     "avatar": "Company Avatar",
+    "companyLogo": "Company Logo",
     "isVisible": "Visibility",
     "description": "Company Description",
     "city": "Company City",
     "phone": "Company Phone",
     "links": "Company Links",
+    "information": "Company information:",
     "noDescriptionAvailable": "Company description unavailable",
+    "noCompanyDetails": "No company details",
     "unknown": "N/A",
     "notProvided": "N/A",
     "noLinksAvailable": "N/A",
+    "buttonUpdate": "UPDATE COMPANY",
+    "buttonAddLink": "ADD LINK",
+    "existingLinks": "Existing links:",
+    "remove": "Remove",
+    "updateCompanyProfile": "Update company profile",
     "error": "An error occurred while fetching company data.",
     "notFound": "Company not found.",
     "ownerInfo": "Owner information",
@@ -204,6 +212,27 @@
     },
     "phone": {
       "invalid": "Invalid phone number"
+    },
+    "companyName": {
+      "required": "Company name is required",
+      "min": "Company name must be at least 2 characters long",
+      "max": "Company name cannot exceed 100 characters",
+      "pattern": "Company name can only contain Latin letters and numbers"
+    },
+    "companyDescription": {
+      "max": "Company description cannot exceed 500 characters",
+      "pattern": "Company description cannot contain only numbers"
+    },
+    "companyCity": {
+      "max": "City name cannot exceed 100 characters",
+      "pattern": "City name can only contain Latin letters and spaces"
+    },
+    "companyPhone": {
+      "invalid": "Phone number is invalid. Use a format with 7 to 15 digits, with an optional '+' prefix"
+    },
+    "companyLinks": {
+      "invalid": "Company link must be in URI format",
+      "invalidUrl": "Invalid link. Please enter a valid URL."
     }
   }
 }

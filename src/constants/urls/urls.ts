@@ -32,7 +32,8 @@ const urls = {
         getAllCompanies : `${companies}`,
         getCompanyById: (id: number)=> `${company}${id}/`,
         getUserCompanies: (userId: number) => `${user}${userId}${companiesList}`,
-        createCompany: `${company}`
+        createCompany: `${company}`,
+        updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`
     }
 };
 

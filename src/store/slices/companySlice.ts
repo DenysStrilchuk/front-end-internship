@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import { IPagination } from "../../models/IUser";
-import { IApiError } from "../../types/api-types/errorTypes";
-import { companyApi } from "../../api/company-api";
-import { ICompaniesListResponse, ICompany } from "../../models/ICompany";
+import {IPagination} from "../../models/IUser";
+import {IApiError} from "../../types/api-types/errorTypes";
+import {companyApi} from "../../api/company-api";
+import {ICompaniesListResponse, ICompany} from "../../models/ICompany";
 
 interface CompanyState {
     companies: ICompany[];
@@ -27,7 +27,7 @@ const initialState: CompanyState = {
 
 const fetchAllCompanies = createAsyncThunk(
     'companies/fetchAllCompanies',
-    async ({ page, pageSize }: { page: number; pageSize: number }, { rejectWithValue }) => {
+    async ({page, pageSize}: { page: number; pageSize: number }, {rejectWithValue}) => {
         try {
             return await companyApi.getAllCompanies(page, pageSize);
         } catch (error: unknown) {
@@ -39,19 +39,19 @@ const fetchAllCompanies = createAsyncThunk(
 
 const fetchCompanyById = createAsyncThunk(
     'companies/fetchCompanyById',
-    async (companyId: number, { rejectWithValue }) => {
+    async (companyId: number, {rejectWithValue}) => {
         try {
             return await companyApi.getCompanyById(companyId);
         } catch (error: unknown) {
             const apiError = error as IApiError;
-            return rejectWithValue(apiError.response?.data?.message || 'Failed to fetch company');
+            return rejectWithValue(apiError.response?.data?.message || 'failedToFetch');
         }
     }
 );
 
 const fetchUserCompanies = createAsyncThunk(
     'companies/fetchUserCompanies',
-    async (userId: number, { rejectWithValue }) => {
+    async (userId: number, {rejectWithValue}) => {
         try {
             return await companyApi.getCompaniesByUserId(userId);
         } catch (error: unknown) {
@@ -64,13 +64,25 @@ const fetchUserCompanies = createAsyncThunk(
 
 const createCompany = createAsyncThunk(
     'companies/createCompany',
-    async (newCompany: { company_name: string; is_visible: boolean;}, { rejectWithValue }) => {
+    async (newCompany: { company_name: string; is_visible: boolean; }, {rejectWithValue}) => {
         try {
             return await companyApi.createCompany(newCompany);
         } catch (error: unknown) {
             const apiError = error as IApiError;
             const errorKey = apiError.response?.data?.message || 'failedToFetch';
             return rejectWithValue(errorKey);
+        }
+    }
+);
+
+const updateCompany = createAsyncThunk(
+    'companies/updateCompany',
+    async ({companyId, updateData}: { companyId: number; updateData: Partial<ICompany> }, {rejectWithValue}) => {
+        try {
+            return await companyApi.updateCompany(companyId, updateData);
+        } catch (error: unknown) {
+            const apiError = error as IApiError;
+            return rejectWithValue(apiError.response?.data?.message || 'Failed to update company');
         }
     }
 );
@@ -128,11 +140,27 @@ const companySlice = createSlice({
             .addCase(createCompany.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
+            })
+            .addCase(updateCompany.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateCompany.fulfilled, (state, action: PayloadAction<ICompany>) => {
+                state.loading = false;
+                state.error = null;
+                state.companyDetail = action.payload;
+
+                const index = state.companies.findIndex((company) => company.company_id === action.payload.company_id);
+                if (index !== -1) state.companies[index] = action.payload;
+            })
+            .addCase(updateCompany.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
             });
     }
 });
 
-const { reducer: companyReducer, actions: companyActions } = companySlice;
+const {reducer: companyReducer, actions: companyActions} = companySlice;
 
 export {
     companyReducer,
@@ -141,4 +169,5 @@ export {
     fetchCompanyById,
     fetchUserCompanies,
     createCompany,
+    updateCompany,
 };

@@ -45,7 +45,7 @@ const UserProfile = () => {
 
 
     if (!user && error) {
-        return <div className={styles.error}>{t(error)}</div>;
+        return <div className={styles.alert}>{t(error)}</div>;
     }
 
     if (!user) {
