@@ -27,6 +27,20 @@ const companyApi = {
     updateCompanyVisibility: async (companyId: number, isVisible: boolean): Promise<ICompany> => {
         const {data: {result}} = await axiosInstance.put(urls.companies.updateVisible(companyId), {is_visible: isVisible});
         return result;
+    },
+    updateCompanyAvatar: async (companyId: number, file: File): Promise<ICompany> => {
+        const formData = new FormData();
+        formData.append('file', file);
+        const {data: {result}} = await axiosInstance.put(
+            urls.companies.updateAvatar(companyId),
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        );
+        return result;
     }
 }
 

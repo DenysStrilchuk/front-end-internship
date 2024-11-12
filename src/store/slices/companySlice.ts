@@ -99,6 +99,18 @@ const updateCompanyVisibility = createAsyncThunk(
     }
 );
 
+const updateCompanyAvatar = createAsyncThunk(
+    'companies/updateCompanyAvatar',
+    async ({ companyId, file }: { companyId: number; file: File }, { rejectWithValue }) => {
+        try {
+            return await companyApi.updateCompanyAvatar(companyId, file);
+        } catch (error: unknown) {
+            const apiError = error as IApiError;
+            return rejectWithValue(apiError.response?.data?.message || 'Failed to update company avatar');
+        }
+    }
+);
+
 const companySlice = createSlice({
     name: 'companies',
     initialState,
@@ -146,7 +158,7 @@ const companySlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(createCompany.fulfilled, (state, action: PayloadAction<{ company_id: number }>) => {
+            .addCase(createCompany.fulfilled, (state) => {
                 state.loading = false;
             })
             .addCase(createCompany.rejected, (state, action) => {
@@ -185,6 +197,25 @@ const companySlice = createSlice({
             .addCase(updateCompanyVisibility.rejected, (state, action) => {
                 state.loading = false;
                 state.errorMessage = action.payload as string;
+            })
+            .addCase(updateCompanyAvatar.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateCompanyAvatar.fulfilled, (state, action: PayloadAction<ICompany>) => {
+                state.loading = false;
+                state.error = null;
+
+                const index = state.companies.findIndex((company) => company.company_id === action.payload.company_id);
+                if (index !== -1) state.companies[index] = action.payload;
+
+                if (state.companyDetail && state.companyDetail.company_id === action.payload.company_id) {
+                    state.companyDetail = action.payload;
+                }
+            })
+            .addCase(updateCompanyAvatar.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
             });
     }
 });
@@ -200,4 +231,5 @@ export {
     createCompany,
     updateCompany,
     updateCompanyVisibility,
+    updateCompanyAvatar,
 };

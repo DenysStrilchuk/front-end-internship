@@ -24,7 +24,7 @@ const CompanyVisibilityToggle: React.FC<CompanyVisibilityToggleProps> = ({compan
         if (error) {
             setErrorMessage(t('companyVisibilityToggle.errors.failedToUpdateVisibility'));
         } else {
-            setErrorMessage(t('companyVisibilityToggle.errors.errorOccurred'));
+            setErrorMessage(null);
         }
     }, [error, t]);
 

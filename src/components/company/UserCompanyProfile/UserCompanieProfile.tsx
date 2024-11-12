@@ -10,6 +10,7 @@ import {UpdateCompanyComponent} from "../../common/CompanyUpdateForm";
 import {UniversalModal} from "../../common/UniversalModal";
 import {CompanyVisibilityToggle} from "../../common/CompanyVisibilityToggle";
 import styles from './UserCompanieProfile.module.css';
+import {UpdateCompanyAvatar} from "../../common/UpdateCompanyAvatar";
 
 const UserCompanyProfile = () => {
     const {t} = useTranslation();
@@ -17,6 +18,7 @@ const UserCompanyProfile = () => {
     const dispatch = useAppDispatch();
     const {companyDetail, loading, error} = useAppSelector((state) => state.companies);
     const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
+    const [showAvatarUpdateForm, setShowAvatarUpdateForm] = useState<boolean>(false);
 
     useEffect(() => {
         if (id) {
@@ -26,6 +28,7 @@ const UserCompanyProfile = () => {
 
     const handleClose = () => {
         setShowUpdateForm(false);
+        setShowAvatarUpdateForm(false);
         if (companyDetail) {
             dispatch(fetchCompanyById(companyDetail.company_id));
         }
@@ -63,6 +66,13 @@ const UserCompanyProfile = () => {
                                         onClick={() => setShowUpdateForm(true)}
                                     >
                                         {t('company.buttonUpdate')}
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={() => setShowAvatarUpdateForm(true)}
+                                    >
+                                        {t('company.buttonUpdateAvatar')}
                                     </Button>
                                     <CompanyVisibilityToggle
                                         companyId={companyDetail.company_id}
@@ -121,6 +131,18 @@ const UserCompanyProfile = () => {
                                             onClose={handleClose}
                                         />
                                     }
+                                />
+                            )}
+                            {showAvatarUpdateForm && (
+                                <UniversalModal
+                                    open={showAvatarUpdateForm}
+                                    onClose={handleClose}
+                                    title={t('company.updateCompanyAvatar')}
+                                    content={
+                                        <UpdateCompanyAvatar
+                                            companyId={companyDetail.company_id}
+                                            onClose={handleClose}
+                                        />}
                                 />
                             )}
                         </div>
