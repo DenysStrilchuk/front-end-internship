@@ -13,7 +13,7 @@ const companyApi = {
         return result;
     },
     getCompaniesByUserId: async (userId: number): Promise<ICompaniesListResponse> => {
-        const { data: { result } } = await axiosInstance.get(urls.companies.getUserCompanies(userId));
+        const {data: {result}} = await axiosInstance.get(urls.companies.getUserCompanies(userId));
         return result;
     },
     createCompany: async (newCompany: { company_name: string; is_visible: boolean;}): Promise<{ company_id: number }> => {
@@ -21,7 +21,11 @@ const companyApi = {
         return result;
     },
     updateCompany: async (companyId: number, updateData: Partial<ICompany>): Promise<ICompany> => {
-        const { data: { result } } = await axiosInstance.put(urls.companies.updateCompanyInfo(companyId), updateData);
+        const {data: {result}} = await axiosInstance.put(urls.companies.updateCompanyInfo(companyId), updateData);
+        return result;
+    },
+    updateCompanyVisibility: async (companyId: number, isVisible: boolean): Promise<ICompany> => {
+        const {data: {result}} = await axiosInstance.put(urls.companies.updateVisible(companyId), {is_visible: isVisible});
         return result;
     }
 }

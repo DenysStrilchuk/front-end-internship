@@ -86,6 +86,18 @@ const updateCompany = createAsyncThunk(
         }
     }
 );
+const updateCompanyVisibility = createAsyncThunk(
+    'company/updateVisibility',
+    async ({companyId, isVisible}: { companyId: number, isVisible: boolean }, {rejectWithValue}) => {
+        try {
+            return await companyApi.updateCompanyVisibility(companyId, isVisible);
+        } catch (error: unknown) {
+            const apiError = error as IApiError;
+            const errorMessage = apiError.response?.data?.message || 'failedToUpdateVisibility';
+            return rejectWithValue(errorMessage);
+        }
+    }
+);
 
 const companySlice = createSlice({
     name: 'companies',
@@ -156,6 +168,23 @@ const companySlice = createSlice({
             .addCase(updateCompany.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
+            })
+            .addCase(updateCompanyVisibility.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateCompanyVisibility.fulfilled, (state, action: PayloadAction<ICompany>) => {
+                state.loading = false;
+                state.companies = state.companies.map((company) =>
+                    company.company_id === action.payload.company_id ? action.payload : company
+                );
+                if (state.companyDetail && state.companyDetail.company_id === action.payload.company_id) {
+                    state.companyDetail.is_visible = action.payload.is_visible;
+                }
+            })
+            .addCase(updateCompanyVisibility.rejected, (state, action) => {
+                state.loading = false;
+                state.errorMessage = action.payload as string;
             });
     }
 });
@@ -170,4 +199,5 @@ export {
     fetchUserCompanies,
     createCompany,
     updateCompany,
+    updateCompanyVisibility,
 };

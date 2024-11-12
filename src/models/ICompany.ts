@@ -21,7 +21,6 @@ export interface ICompany {
     };
 }
 
-
 export interface ICompaniesListResponse {
     companies: ICompany[];
     pagination: IPagination;

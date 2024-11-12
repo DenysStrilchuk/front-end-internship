@@ -11,6 +11,7 @@ const updateAvatar = '/update_avatar/';
 const companies = '/companies/';
 const company = '/company/';
 const companiesList = '/companies_list/';
+const updateVisible = '/update_visible/';
 
 const urls = {
     status: {
@@ -33,7 +34,8 @@ const urls = {
         getCompanyById: (id: number)=> `${company}${id}/`,
         getUserCompanies: (userId: number) => `${user}${userId}${companiesList}`,
         createCompany: `${company}`,
-        updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`
+        updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
+        updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`
     }
 };
 

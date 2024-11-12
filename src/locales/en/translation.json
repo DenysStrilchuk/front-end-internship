@@ -234,6 +234,15 @@
       "invalid": "Company link must be in URI format",
       "invalidUrl": "Invalid link. Please enter a valid URL."
     }
+  },
+  "companyVisibilityToggle": {
+    "companyHidden": "Make company hidden",
+    "companyVisible": "Make company visible",
+    "visible": "Visible company",
+    "errors": {
+      "failedToUpdateVisibility": "Failed to update company visibility",
+      "errorOccurred": "The error occurred. Please try again."
+    }
   }
 }
 

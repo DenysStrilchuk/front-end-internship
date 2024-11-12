@@ -234,6 +234,15 @@
       "invalid": "Посилання на компанію повинно бути у форматі URI,",
       "invalidUrl": "Невірне посилання. Будь ласка, введіть коректну URL-адресу."
     }
+  },
+  "companyVisibilityToggle": {
+    "companyHidden": "Приховати компанію",
+    "companyVisible": "Показати компанію",
+    "visible": "Видимість компанії",
+    "errors": {
+      "failedToUpdateVisibility": "Не вдалося оновити видимість компанії.",
+      "errorOccurred": "Сталася помилка. Спробуйте ще раз."
+    }
   }
 }
 

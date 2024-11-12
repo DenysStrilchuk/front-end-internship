@@ -8,6 +8,7 @@ import {fetchCompanyById} from '../../../store/slices/companySlice';
 import {Loader} from '../../common/LoaderContainer';
 import {UpdateCompanyComponent} from "../../common/CompanyUpdateForm";
 import {UniversalModal} from "../../common/UniversalModal";
+import {CompanyVisibilityToggle} from "../../common/CompanyVisibilityToggle";
 import styles from './UserCompanieProfile.module.css';
 
 const UserCompanyProfile = () => {
@@ -25,6 +26,12 @@ const UserCompanyProfile = () => {
 
     const handleClose = () => {
         setShowUpdateForm(false);
+        if (companyDetail) {
+            dispatch(fetchCompanyById(companyDetail.company_id));
+        }
+    };
+
+    const handleVisibilityToggle = () => {
         if (companyDetail) {
             dispatch(fetchCompanyById(companyDetail.company_id));
         }
@@ -57,6 +64,11 @@ const UserCompanyProfile = () => {
                                     >
                                         {t('company.buttonUpdate')}
                                     </Button>
+                                    <CompanyVisibilityToggle
+                                        companyId={companyDetail.company_id}
+                                        isVisible={companyDetail.is_visible ?? false}
+                                        onToggle={handleVisibilityToggle}
+                                    />
                                 </div>
                             </div>
                             <div className={styles.mainContent}>
