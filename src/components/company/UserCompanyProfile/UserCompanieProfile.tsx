@@ -11,6 +11,7 @@ import {UniversalModal} from "../../common/UniversalModal";
 import {CompanyVisibilityToggle} from "../../common/CompanyVisibilityToggle";
 import styles from './UserCompanieProfile.module.css';
 import {UpdateCompanyAvatar} from "../../common/UpdateCompanyAvatar";
+import {CompanyDeleteForm} from "../../common/CompanyDeleteForm";
 
 const UserCompanyProfile = () => {
     const {t} = useTranslation();
@@ -19,6 +20,9 @@ const UserCompanyProfile = () => {
     const {companyDetail, loading, error} = useAppSelector((state) => state.companies);
     const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
     const [showAvatarUpdateForm, setShowAvatarUpdateForm] = useState<boolean>(false);
+    const [showDeleteForm, setShowDeleteForm] = useState<boolean>(false);
+    const [deleteError, setDeleteError] = useState<string | null>(null);
+
 
     useEffect(() => {
         if (id) {
@@ -73,6 +77,13 @@ const UserCompanyProfile = () => {
                                         onClick={() => setShowAvatarUpdateForm(true)}
                                     >
                                         {t('company.buttonUpdateAvatar')}
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="error"
+                                        onClick={() => setShowDeleteForm(true)}
+                                    >
+                                        {t('company.buttonDelete')}
                                     </Button>
                                     <CompanyVisibilityToggle
                                         companyId={companyDetail.company_id}
@@ -145,6 +156,21 @@ const UserCompanyProfile = () => {
                                         />}
                                 />
                             )}
+                            {showDeleteForm && (
+                                <UniversalModal
+                                    open={showDeleteForm}
+                                    onClose={() => setShowDeleteForm(false)}
+                                    title={t('company.deleteCompanyTitle')}
+                                    content={
+                                        <CompanyDeleteForm
+                                            companyId={companyDetail.company_id}
+                                            onError={(message) => setDeleteError(message)}
+                                            onClose={() => setShowDeleteForm(false)}
+                                        />
+                                    }
+                                />
+                            )}
+                            {deleteError && <div className={styles.alert}>{deleteError}</div>}
                         </div>
                     ) : (
                         <div>{t('company.noCompanyDetails')}</div>

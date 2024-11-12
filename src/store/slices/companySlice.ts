@@ -101,7 +101,7 @@ const updateCompanyVisibility = createAsyncThunk(
 
 const updateCompanyAvatar = createAsyncThunk(
     'companies/updateCompanyAvatar',
-    async ({ companyId, file }: { companyId: number; file: File }, { rejectWithValue }) => {
+    async ({companyId, file}: { companyId: number; file: File }, {rejectWithValue}) => {
         try {
             return await companyApi.updateCompanyAvatar(companyId, file);
         } catch (error: unknown) {
@@ -111,10 +111,27 @@ const updateCompanyAvatar = createAsyncThunk(
     }
 );
 
+const deleteCompany = createAsyncThunk(
+    'companies/deleteCompany',
+    async (companyId: number, {rejectWithValue}) => {
+        try {
+            await companyApi.deleteCompany(companyId);
+            return companyId;
+        } catch (error: unknown) {
+            const apiError = error as IApiError;
+            return rejectWithValue(apiError.response?.data?.message || 'Failed to delete company');
+        }
+    }
+);
+
 const companySlice = createSlice({
     name: 'companies',
     initialState,
-    reducers: {},
+    reducers: {
+        clearError: (state) => {
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchAllCompanies.pending, (state) => {
@@ -216,6 +233,19 @@ const companySlice = createSlice({
             .addCase(updateCompanyAvatar.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
+            })
+            .addCase(deleteCompany.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(deleteCompany.fulfilled, (state, action) => {
+                const companyId = action.payload;
+                state.companies = state.companies.filter((company) => company.company_id !== companyId);
+                state.errorMessage = null;
+            })
+            .addCase(deleteCompany.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
             });
     }
 });
@@ -232,4 +262,5 @@ export {
     updateCompany,
     updateCompanyVisibility,
     updateCompanyAvatar,
+    deleteCompany,
 };

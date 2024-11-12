@@ -37,6 +37,7 @@ const urls = {
         updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
         updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`,
         updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
+        deleteCompany: (companyId: number) => `${company}${companyId}/`
     }
 };
 

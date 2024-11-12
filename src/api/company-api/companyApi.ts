@@ -41,6 +41,9 @@ const companyApi = {
             }
         );
         return result;
+    },
+    deleteCompany: async (companyId: number): Promise<void> => {
+        await axiosInstance.delete(urls.companies.deleteCompany(companyId));
     }
 }
 

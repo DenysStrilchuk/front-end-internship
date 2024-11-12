@@ -75,6 +75,7 @@
     "buttonUpdate": "UPDATE COMPANY",
     "buttonUpdateAvatar": "UPDATE AVATAR",
     "buttonAddLink": "ADD LINK",
+    "buttonDelete": "DELETE COMPANY",
     "existingLinks": "Existing links:",
     "remove": "Remove",
     "updateCompanyProfile": "Update company profile",
@@ -83,7 +84,8 @@
     "notFound": "Company not found.",
     "ownerInfo": "Owner information",
     "ownerName": "Owner name",
-    "ownerEmail": "Owner email"
+    "ownerEmail": "Owner email",
+    "deleteCompanyTitle": "Delete company."
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {
@@ -245,6 +247,15 @@
       "failedToUpdateVisibility": "Failed to update company visibility",
       "errorOccurred": "The error occurred. Please try again."
     }
+  },
+  "deleteCompany": {
+    "error": {
+      "deleteFailed": "Delete failed."
+    },
+    "confirmationMessage": "Do you really want to delete the company?",
+    "confirmDelete": "Confirm delete",
+    "yesDelete": "Yes, delete.",
+    "cancel": "Cancel"
   }
 }
 

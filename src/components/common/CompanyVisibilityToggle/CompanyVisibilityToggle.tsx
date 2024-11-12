@@ -3,7 +3,7 @@ import {Switch, FormControlLabel, Tooltip, CircularProgress} from '@mui/material
 import {useTranslation} from 'react-i18next';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {updateCompanyVisibility} from '../../../store/slices/companySlice';
+import {companyActions, updateCompanyVisibility} from '../../../store/slices/companySlice';
 import styles from './CompanyVisibilityToggle.module.css';
 
 interface CompanyVisibilityToggleProps {
@@ -23,10 +23,9 @@ const CompanyVisibilityToggle: React.FC<CompanyVisibilityToggleProps> = ({compan
     useEffect(() => {
         if (error) {
             setErrorMessage(t('companyVisibilityToggle.errors.failedToUpdateVisibility'));
-        } else {
-            setErrorMessage(null);
+            dispatch(companyActions.clearError());
         }
-    }, [error, t]);
+    }, [error, t, dispatch]);
 
     const handleToggleVisibility = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newVisibility = event.target.checked;
