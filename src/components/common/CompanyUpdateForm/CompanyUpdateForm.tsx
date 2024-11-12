@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TextField, Button} from "@mui/material";
 import {useTranslation} from 'react-i18next';
-import {ValidationErrorItem} from "joi";
+import {ValidationError, ValidationErrorItem} from "joi";
 
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {updateCompany} from "../../../store/slices/companySlice";
@@ -79,14 +79,20 @@ const UpdateCompanyComponent: React.FC<CompanyUpdateFormProps> = ({
             await companyUpdateValidationSchema.validateAsync(formData, {abortEarly: false});
             await dispatch(updateCompany({companyId, updateData: formData}));
             onClose();
-        } catch (validationError: any) {
+        } catch (validationError: unknown) {
             const errors: { [key: string]: string } = {};
-            validationError.details.forEach((detail: ValidationErrorItem) => {
-                errors[detail.path[0]] = t(detail.message);
-            });
-            setValidationErrors(errors);
-            if (onError) {
-                onError(t('validationError'));
+            if (validationError instanceof ValidationError) {
+                validationError.details.forEach((detail: ValidationErrorItem) => {
+                    errors[detail.path[0]] = t(detail.message);
+                });
+                setValidationErrors(errors);
+                if (onError) {
+                    onError(t('validationError'));
+                }
+            } else {
+                setValidationErrors({
+                    general: t('unknownError')
+                });
             }
         }
     };

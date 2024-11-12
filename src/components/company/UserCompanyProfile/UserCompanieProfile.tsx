@@ -57,7 +57,7 @@ const UserCompanyProfile = () => {
                         <div className={styles.profileContainer}>
                             <div className={styles.profileSideBar}>
                                 <Avatar
-                                    src={`${companyDetail.company_avatar}?timestamp=${Date.now()}` || ''}
+                                    src={companyDetail.company_avatar ? `${companyDetail.company_avatar}?timestamp=${Date.now()}` : ''}
                                     alt={companyDetail.company_name || t('company.companyLogo')}
                                     className={styles.avatar}
                                     sx={{width: 150, height: 150, border: '4px solid #1976d2'}}

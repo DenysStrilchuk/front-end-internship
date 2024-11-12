@@ -29,7 +29,6 @@ const UpdateCompanyAvatar: React.FC<UpdateCompanyAvatarProps> = ({companyId, onC
             setError(t('avatar.error.noFileSelected'));
             return;
         }
-
         try {
             const resultAction = await dispatch(updateCompanyAvatar({companyId, file}));
             if (updateCompanyAvatar.fulfilled.match(resultAction)) {
@@ -37,10 +36,11 @@ const UpdateCompanyAvatar: React.FC<UpdateCompanyAvatarProps> = ({companyId, onC
             } else {
                 setError(t('avatar.error.default'));
             }
-        } catch (err) {
+        } catch {
             setError(t('avatar.error.uploadFailed'));
         }
     };
+
 
     return (
         <div className={styles.container}>
