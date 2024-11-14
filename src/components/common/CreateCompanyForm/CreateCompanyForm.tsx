@@ -53,7 +53,7 @@ const CreateCompanyForm: React.FC<CreateCompanyFormProps> = ({onClose, onCreateS
             setIsVisible(true);
             onCreateSuccess();
             onClose();
-        } catch (err) {
+        } catch {
             setServerError(t('createCompany.unexpectedError'));
         }
     };
