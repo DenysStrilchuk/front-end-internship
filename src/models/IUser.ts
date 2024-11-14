@@ -8,6 +8,8 @@ export interface IUser {
     user_city?: string;
     user_phone?: string;
     user_links?: string[];
+    action_id?: number;
+    action?: string;
     is_superuser?: boolean;
 }
 

@@ -12,6 +12,9 @@ const companies = '/companies/';
 const company = '/company/';
 const companiesList = '/companies_list/';
 const updateVisible = '/update_visible/';
+const invitesList = '/invites_list/';
+const requestsList = '/requests_list/';
+const membersList = '/members_list/';
 
 const urls = {
     status: {
@@ -28,6 +31,8 @@ const urls = {
         updateUser: (id: number) => `${user}${id}${updateInfo}`,
         updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
         deleteUser: (id: number) => `${user}${id}/`,
+        getInvites: (userId: number) => `${user}${userId}${invitesList}`,
+        getRequests: (userId: number) => `${user}${userId}${requestsList}`,
     },
     companies: {
         getAllCompanies : `${companies}`,
@@ -37,7 +42,13 @@ const urls = {
         updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
         updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`,
         updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
-        deleteCompany: (companyId: number) => `${company}${companyId}/`
+        deleteCompany: (companyId: number) => `${company}${companyId}/`,
+        getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
+        getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
+        getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
+        inviteUser: (companyId: number) => `${company}${companyId}${invitesList}`,
+        cancelInvite: (companyId: number) => `${company}${companyId}${invitesList}`,
+        excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
     }
 };
 

@@ -2,6 +2,7 @@ import {axiosInstance} from "../axios-instance";
 
 import {urls} from "../../constants/urls";
 import {ICompaniesListResponse, ICompany} from "../../models/ICompany";
+import {IUserListResponse} from "../../models/IUser";
 
 const companyApi = {
     getAllCompanies: async (page = 1, pageSize = 10): Promise<ICompaniesListResponse> => {
@@ -44,6 +45,30 @@ const companyApi = {
     },
     deleteCompany: async (companyId: number): Promise<void> => {
         await axiosInstance.delete(urls.companies.deleteCompany(companyId));
+    },
+    inviteUser: async (companyId: number, userId: number): Promise<IUserListResponse> => {
+        const { data: { result } } = await axiosInstance.get(urls.companies.inviteUser(companyId), {
+            params: { user_id: userId },
+        });
+        return result;
+    },
+    cancelInvite: async (companyId: number, userId: number): Promise<void> => {
+        await axiosInstance.delete(`${urls.companies.cancelInvite(companyId)}${userId}/`);
+    },
+    excludeUser: async (companyId: number, userId: number): Promise<void> => {
+        await axiosInstance.delete(`${urls.companies.excludeUser(companyId)}${userId}/`);
+    },
+    getInvitesList: async (companyId: number): Promise<IUserListResponse> => {
+        const {data: {result}} = await axiosInstance.get(urls.companies.getInvitesList(companyId));
+        return result;
+    },
+    getRequestsList: async (companyId: number): Promise<IUserListResponse> => {
+        const {data: {result}} = await axiosInstance.get(urls.companies.getRequestsList(companyId));
+        return result;
+    },
+    getMembersList: async (companyId: number): Promise<IUserListResponse> => {
+        const {data: {result}} = await axiosInstance.get(urls.companies.getMembersList(companyId));
+        return result;
     }
 }
 
