@@ -22,13 +22,18 @@ const UserCompanyProfile = () => {
     const [showAvatarUpdateForm, setShowAvatarUpdateForm] = useState<boolean>(false);
     const [showDeleteForm, setShowDeleteForm] = useState<boolean>(false);
     const [deleteError, setDeleteError] = useState<string | null>(null);
+    const [idError, setIdError] = useState<string | null>(null);
 
 
     useEffect(() => {
-        if (id) {
-            dispatch(fetchCompanyById(Number(id)));
+        const companyId = Number(id);
+        if (!isNaN(companyId)) {
+            dispatch(fetchCompanyById(companyId));
+            setIdError(null);
+        } else {
+            setIdError(t('company.invalidIdError'));
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, t]);
 
     const handleClose = () => {
         setShowUpdateForm(false);
@@ -53,6 +58,7 @@ const UserCompanyProfile = () => {
             ) : (
                 <span>
                     {error && <div className={styles.alert}>{t('company.error')}</div>}
+                    {idError && <div className={styles.alert}>{idError}</div>}
                     {companyDetail ? (
                         <div className={styles.profileContainer}>
                             <div className={styles.profileSideBar}>

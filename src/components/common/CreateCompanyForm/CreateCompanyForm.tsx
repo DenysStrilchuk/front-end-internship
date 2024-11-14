@@ -15,14 +15,15 @@ interface CreateCompanyFormProps {
 const CreateCompanyForm: React.FC<CreateCompanyFormProps> = ({onClose, onCreateSuccess}) => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
-    const {loading, error} = useAppSelector((state) => state.companies);
+    const {loading} = useAppSelector((state) => state.companies);
 
     const [companyName, setCompanyName] = useState<string>('');
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const [validationErrors, setValidationErrors] = useState<{ company_name?: string }>({});
+    const [serverError, setServerError] = useState<string | null>(null);
 
     const handleValidation = () => {
-        const { error } = schema.validate({ company_name: companyName, is_visible: isVisible });
+        const {error} = schema.validate({ company_name: companyName, is_visible: isVisible });
         if (error) {
             const errors: { company_name?: string } = {};
             error.details.forEach(detail => {
@@ -39,18 +40,21 @@ const CreateCompanyForm: React.FC<CreateCompanyFormProps> = ({onClose, onCreateS
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setServerError(null);
+
         if (!handleValidation()) return;
 
-        await dispatch(createCompany({
-            company_name: companyName,
-            is_visible: isVisible,
-        }));
-
-        if (!error) {
+        try {
+            await dispatch(createCompany({
+                company_name: companyName,
+                is_visible: isVisible,
+            })).unwrap();
             setCompanyName('');
             setIsVisible(true);
             onCreateSuccess();
             onClose();
+        } catch (err) {
+            setServerError(t('createCompany.unexpectedError'));
         }
     };
 
@@ -91,10 +95,10 @@ const CreateCompanyForm: React.FC<CreateCompanyFormProps> = ({onClose, onCreateS
                     {t('createCompany.createButton')}
                 </Button>
             </form>
-            {error && (
-                <p className={styles.errorText}>
-                    {t('createCompany.error')}: {error}
-                </p>
+            {serverError && (
+              <p className={styles.errorText}>
+                  {t('createCompany.error')}: {serverError}
+              </p>
             )}
         </div>
     );

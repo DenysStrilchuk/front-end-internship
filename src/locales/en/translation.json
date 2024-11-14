@@ -33,6 +33,7 @@
     "visibility": "Visibility",
     "createButton": "Create Company",
     "error": "Error",
+    "unexpectedError": "We were unable to get a response from the server. This might be a temporary issue. Please try your request again later.",
     "validation": {
       "emptyName": "The field cannot be empty",
       "minLength": "The company name must be at least 3 characters long",
@@ -85,7 +86,8 @@
     "ownerInfo": "Owner information",
     "ownerName": "Owner name",
     "ownerEmail": "Owner email",
-    "deleteCompanyTitle": "Delete company."
+    "deleteCompanyTitle": "Delete company.",
+    "invalidIdError": "Unfortunately, we couldn't find a company with that identifier. Please check the link for accuracy or try again."
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {
