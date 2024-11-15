@@ -47,20 +47,19 @@ const companyApi = {
         await axiosInstance.delete(urls.companies.deleteCompany(companyId));
     },
     inviteUser: async (companyId: number, userId: number): Promise<IUserListResponse> => {
-        const { data: { result } } = await axiosInstance.get(urls.companies.inviteUser(companyId), {
-            params: { user_id: userId },
-        });
+        const { data: { result } } = await axiosInstance.get(urls.companies.actionCreateFromCompany(companyId, userId));
         return result;
-    },
-    cancelInvite: async (companyId: number, userId: number): Promise<void> => {
-        await axiosInstance.delete(`${urls.companies.cancelInvite(companyId)}${userId}/`);
-    },
-    excludeUser: async (companyId: number, userId: number): Promise<void> => {
-        await axiosInstance.delete(`${urls.companies.excludeUser(companyId)}${userId}/`);
     },
     getInvitesList: async (companyId: number): Promise<IUserListResponse> => {
         const {data: {result}} = await axiosInstance.get(urls.companies.getInvitesList(companyId));
         return result;
+    },
+    cancelInvite: async (companyId: number, userId: number): Promise<IUserListResponse> => {
+        const { data: { result } } = await axiosInstance.get(urls.companies.cancelInvite(companyId, userId));
+        return result;
+    },
+    excludeUser: async (companyId: number, userId: number): Promise<void> => {
+        await axiosInstance.delete(`${urls.companies.excludeUser(companyId)}${userId}/`);
     },
     getRequestsList: async (companyId: number): Promise<IUserListResponse> => {
         const {data: {result}} = await axiosInstance.get(urls.companies.getRequestsList(companyId));

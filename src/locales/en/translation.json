@@ -260,6 +260,7 @@
     "cancel": "Cancel"
   },
   "inviteUserToCompany": {
+    "success":"Successfully added",
     "select": "Select",
     "selected": "Selected",
     "addSelectedUsers": "Invite selected users to company",
@@ -267,6 +268,14 @@
       "failedToInviteFetch": "Failed to send the invitation. Please try again later.",
       "unknown": "An unknown error occurred. Please try again later.",
       "fetchUsers": "Failed to get users data. Please try again later."
+    }
+  },
+  "getInvitesUsersToCompany": {
+    "title": "Invited Users",
+    "errors": {
+      "error": "Error:",
+      "failedToFetchInvitedUsers": "Failed to get users data. Please try again later.",
+      "unknown": "An unknown error occurred. Please try again later."
     }
   }
 }

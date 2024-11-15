@@ -13,6 +13,7 @@ import {UpdateCompanyAvatar} from "../../common/UpdateCompanyAvatar";
 import {CompanyDeleteForm} from "../../common/CompanyDeleteForm";
 import {InviteUserToCompany} from "../../common/InviteUserToCompany";
 import styles from './UserCompanieProfile.module.css';
+import {GetInvitesUsersToCompany} from "../../common/GetInvitesUsersToCompany";
 
 const UserCompanyProfile = () => {
   const {t} = useTranslation();
@@ -168,6 +169,11 @@ const UserCompanyProfile = () => {
           )}
         </span>
       )}
+      <div className={styles.invitesSection}>
+        {companyDetail && (
+          <GetInvitesUsersToCompany companyId={companyDetail.company_id} />
+        )}
+      </div>
     </div>
   );
 };

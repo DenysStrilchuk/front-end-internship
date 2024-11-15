@@ -15,6 +15,10 @@ const updateVisible = '/update_visible/';
 const invitesList = '/invites_list/';
 const requestsList = '/requests_list/';
 const membersList = '/members_list/';
+const action = '/action/';
+const createFromCompany = 'create_from_company/';
+
+
 
 const urls = {
     status: {
@@ -47,8 +51,9 @@ const urls = {
         getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
         getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
         inviteUser: (companyId: number) => `${company}${companyId}${invitesList}`,
-        cancelInvite: (companyId: number) => `${company}${companyId}${invitesList}`,
+        cancelInvite: (companyId: number, userId: number) => `${company}${companyId}${invitesList}${userId}/`,
         excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
+        actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
     }
 };
 

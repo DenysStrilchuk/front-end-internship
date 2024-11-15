@@ -10,6 +10,8 @@ interface CompanyState {
   companyDetail: ICompany | null;
   loading: boolean;
   error: string | null;
+  invitesError: string | null;
+  invitedError: string | null;
   errorMessage: string | null;
   pagination: IPagination | null;
   avatar: string | null;
@@ -21,6 +23,8 @@ const initialState: CompanyState = {
   companyDetail: null,
   loading: false,
   error: null,
+  invitesError: null,
+  invitedError: null,
   errorMessage: null,
   pagination: null,
   avatar: null,
@@ -134,6 +138,19 @@ const inviteUser = createAsyncThunk(
     } catch (error: unknown) {
       const apiError = error as IApiError;
       const errorKey = apiError.response?.data?.message || 'failedToInviteFetch';
+      return rejectWithValue(errorKey);
+    }
+  }
+);
+
+const fetchInvitesList = createAsyncThunk(
+  'companies/fetchInvitesList',
+  async (companyId: number, { rejectWithValue }) => {
+    try {
+      return await companyApi.getInvitesList(companyId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      const errorKey = apiError.response?.data?.message || 'failedToFetchInvitedUsers';
       return rejectWithValue(errorKey);
     }
   }
@@ -264,7 +281,7 @@ const companySlice = createSlice({
       })
       .addCase(inviteUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.invitedError = null;
       })
       .addCase(inviteUser.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
         state.loading = false;
@@ -272,7 +289,20 @@ const companySlice = createSlice({
       })
       .addCase(inviteUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
+        state.invitedError = action.payload as string;
+      })
+      .addCase(fetchInvitesList.pending, (state) => {
+        state.loading = true;
+        state.invitesError = null;
+      })
+      .addCase(fetchInvitesList.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
+        state.loading = false;
+        state.invitedUsers = action.payload;
+        state.invitesError = null;
+      })
+      .addCase(fetchInvitesList.rejected, (state, action) => {
+        state.loading = false;
+        state.invitesError = action.payload as string | null;
       });
   }
 });
@@ -291,4 +321,5 @@ export {
   updateCompanyAvatar,
   deleteCompany,
   inviteUser,
+  fetchInvitesList,
 };
