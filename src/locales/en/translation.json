@@ -272,11 +272,19 @@
   },
   "getInvitesUsersToCompany": {
     "title": "Invited Users",
+    "success": {
+      "cancelInvite": "User deleted successfully from list."
+    },
     "errors": {
       "error": "Error:",
       "failedToFetchInvitedUsers": "Failed to get users data. Please try again later.",
-      "unknown": "An unknown error occurred. Please try again later."
-    }
+      "unknown": "An unknown error occurred. Please try again later.",
+      "failedToCancelInvite": "Failed to cancel invite."
+    },
+    "actions": {
+      "cancelInvite": "Cancel Invite"
+    },
+    "noUsers": "No users"
   }
 }
 

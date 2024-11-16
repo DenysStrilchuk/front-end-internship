@@ -54,8 +54,8 @@ const companyApi = {
         const {data: {result}} = await axiosInstance.get(urls.companies.getInvitesList(companyId));
         return result;
     },
-    cancelInvite: async (companyId: number, userId: number): Promise<IUserListResponse> => {
-        const { data: { result } } = await axiosInstance.get(urls.companies.cancelInvite(companyId, userId));
+    cancelInvite: async (actionId: number): Promise<IUserListResponse> => {
+        const {data: {result}} = await axiosInstance.get(urls.companies.declineInvite(actionId));
         return result;
     },
     excludeUser: async (companyId: number, userId: number): Promise<void> => {

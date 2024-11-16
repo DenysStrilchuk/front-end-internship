@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
+import {Button} from '@mui/material';
+import {toast} from 'react-toastify';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {fetchInvitesList} from '../../../store/slices/companySlice';
+import {fetchInvitesList, cancelInvite} from '../../../store/slices/companySlice';
 import {Loader} from '../LoaderContainer';
 import styles from './GetInvitesUsersToCompany.module.css';
 
@@ -26,9 +28,20 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
   useEffect(() => {
     if (invitesError) {
       setErrorMessage(
-        t('getInvitesUsersToCompany.errors.failedToFetchInvitedUsers') || t('getInvitesUsersToCompany.errors.unknown'));
+        t('getInvitesUsersToCompany.errors.failedToFetchInvitedUsers') || t('getInvitesUsersToCompany.errors.unknown')
+      );
     }
   }, [invitesError, t]);
+
+  const handleCancelInvite = async (actionId: number) => {
+    try {
+      await dispatch(cancelInvite(actionId)).unwrap();
+      toast.success(t('getInvitesUsersToCompany.success.cancelInvite'));
+      dispatch(fetchInvitesList(companyId));
+    } catch {
+      toast.error(t('getInvitesUsersToCompany.errors.failedToCancelInvite'));
+    }
+  };
 
   const toggleList = () => setIsOpen((prev) => !prev);
 
@@ -49,12 +62,22 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
             <ul className={styles.list}>
               {invitedUsers.users.map((user) => (
                 <li key={user.user_id} className={styles.listItem}>
-                  {user.user_firstname} {user.user_lastname}
+                  <span>
+                    {user.user_firstname} {user.user_lastname}
+                  </span>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    onClick={() => handleCancelInvite(user.action_id!)}
+                  >
+                    {t('getInvitesUsersToCompany.actions.cancelInvite')}
+                  </Button>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className={styles.noUsers}>No invited users</p>
+            <p className={styles.noUsers}>{t('getInvitesUsersToCompany.noUsers')}</p>
           )}
         </div>
       )}

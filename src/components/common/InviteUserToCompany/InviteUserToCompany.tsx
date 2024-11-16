@@ -14,9 +14,10 @@ import {Loader} from "../LoaderContainer";
 interface InviteUserToCompanyProps {
   companyId: number;
   onClose: () => void;
+  onInviteSuccess: () => void;
 }
 
-const InviteUserToCompany: React.FC<InviteUserToCompanyProps> = ({companyId, onClose}) => {
+const InviteUserToCompany: React.FC<InviteUserToCompanyProps> = ({companyId, onClose, onInviteSuccess}) => {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -41,6 +42,7 @@ const InviteUserToCompany: React.FC<InviteUserToCompanyProps> = ({companyId, onC
       await Promise.all(Array.from(selectedUsers).map(userId => dispatch(inviteUser({companyId, userId})).unwrap()));
       toast.success(t('inviteUserToCompany.success'));
       setSelectedUsers(new Set());
+      onInviteSuccess();
       onClose();
     } catch (err) {
       const message = t(`inviteUserToCompany.error.${err}`) || t('inviteUserToCompany.error.unknown');

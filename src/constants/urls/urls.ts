@@ -17,47 +17,45 @@ const requestsList = '/requests_list/';
 const membersList = '/members_list/';
 const action = '/action/';
 const createFromCompany = 'create_from_company/';
-
-
+const declineAction = '/decline_action/';
 
 const urls = {
-    status: {
-        base: `${status}`
-    },
-    auth: {
-        register: `${register}`,
-        login: `${login}`,
-        getMe: `${getMe}`
-    },
-    users: {
-        getAllUsers: `${users}`,
-        getById: (id: number) => `${user}${id}/`,
-        updateUser: (id: number) => `${user}${id}${updateInfo}`,
-        updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
-        deleteUser: (id: number) => `${user}${id}/`,
-        getInvites: (userId: number) => `${user}${userId}${invitesList}`,
-        getRequests: (userId: number) => `${user}${userId}${requestsList}`,
-    },
-    companies: {
-        getAllCompanies : `${companies}`,
-        getCompanyById: (id: number)=> `${company}${id}/`,
-        getUserCompanies: (userId: number) => `${user}${userId}${companiesList}`,
-        createCompany: `${company}`,
-        updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
-        updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`,
-        updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
-        deleteCompany: (companyId: number) => `${company}${companyId}/`,
-        getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
-        getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
-        getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
-        inviteUser: (companyId: number) => `${company}${companyId}${invitesList}`,
-        cancelInvite: (companyId: number, userId: number) => `${company}${companyId}${invitesList}${userId}/`,
-        excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
-        actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
-    }
+  status: {
+    base: `${status}`
+  },
+  auth: {
+    register: `${register}`,
+    login: `${login}`,
+    getMe: `${getMe}`
+  },
+  users: {
+    getAllUsers: `${users}`,
+    getById: (id: number) => `${user}${id}/`,
+    updateUser: (id: number) => `${user}${id}${updateInfo}`,
+    updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
+    deleteUser: (id: number) => `${user}${id}/`,
+    getInvites: (userId: number) => `${user}${userId}${invitesList}`,
+    getRequests: (userId: number) => `${user}${userId}${requestsList}`,
+  },
+  companies: {
+    getAllCompanies: `${companies}`,
+    getCompanyById: (id: number) => `${company}${id}/`,
+    getUserCompanies: (userId: number) => `${user}${userId}${companiesList}`,
+    createCompany: `${company}`,
+    updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
+    updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`,
+    updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
+    deleteCompany: (companyId: number) => `${company}${companyId}/`,
+    getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
+    getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
+    getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
+    excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
+    actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
+    declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
+  }
 };
 
 export {
-    baseUrl,
-    urls
+  baseUrl,
+  urls
 };

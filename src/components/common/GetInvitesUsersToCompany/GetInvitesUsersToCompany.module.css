@@ -25,12 +25,30 @@
 }
 
 .listItem {
+    display: flex; /* Для вирівнювання елементів */
+    justify-content: space-between; /* Розподіл між текстом і кнопкою */
+    align-items: center; /* Вирівнювання по вертикалі */
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
 
 .listItem:last-child {
     border-bottom: none;
+}
+
+.cancelButton {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+.cancelButton:hover {
+    background-color: #d9363e;
 }
 
 .error {

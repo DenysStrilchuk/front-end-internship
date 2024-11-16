@@ -4,7 +4,7 @@ import {Avatar, Button} from '@mui/material';
 import {useTranslation} from "react-i18next";
 
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {fetchCompanyById} from '../../../store/slices/companySlice';
+import {fetchCompanyById, fetchInvitesList} from '../../../store/slices/companySlice';
 import {Loader} from '../../common/LoaderContainer';
 import {UpdateCompanyComponent} from "../../common/CompanyUpdateForm";
 import {UniversalModal} from "../../common/UniversalModal";
@@ -44,6 +44,12 @@ const UserCompanyProfile = () => {
   const handleVisibilityToggle = () => {
     if (companyDetail) {
       dispatch(fetchCompanyById(companyDetail.company_id));
+    }
+  };
+
+  const handleInviteSuccess = () => {
+    if (companyDetail) {
+      dispatch(fetchInvitesList(companyDetail.company_id));
     }
   };
 
@@ -157,6 +163,7 @@ const UserCompanyProfile = () => {
                   title={t('company.inviteUserToCompany')}
                   content={
                   <InviteUserToCompany
+                    onInviteSuccess={handleInviteSuccess}
                     onClose={handleClose}
                     companyId={companyDetail.company_id}
                   />}

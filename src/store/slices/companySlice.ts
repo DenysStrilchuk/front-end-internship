@@ -156,6 +156,19 @@ const fetchInvitesList = createAsyncThunk(
   }
 );
 
+const cancelInvite = createAsyncThunk(
+  'companies/cancelInvite',
+  async (actionId: number, {rejectWithValue}) => {
+    try {
+      return await companyApi.cancelInvite(actionId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      const errorKey = apiError.response?.data?.message || 'failedToCancelInvite';
+      return rejectWithValue(errorKey);
+    }
+  }
+);
+
 const companySlice = createSlice({
   name: 'companies',
   initialState,
@@ -303,6 +316,19 @@ const companySlice = createSlice({
       .addCase(fetchInvitesList.rejected, (state, action) => {
         state.loading = false;
         state.invitesError = action.payload as string | null;
+      })
+      .addCase(cancelInvite.pending, (state) => {
+        state.loading = true;
+        state.invitedError = null;
+      })
+      .addCase(cancelInvite.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
+        state.loading = false;
+        state.invitedUsers = action.payload;
+        state.invitedError = null;
+      })
+      .addCase(cancelInvite.rejected, (state, action) => {
+        state.loading = false;
+        state.invitedError = action.payload as string;
       });
   }
 });
@@ -322,4 +348,5 @@ export {
   deleteCompany,
   inviteUser,
   fetchInvitesList,
+  cancelInvite,
 };
