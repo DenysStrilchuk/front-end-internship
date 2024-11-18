@@ -1,0 +1,43 @@
+.container {
+    position: relative;
+    min-height: 100px;
+}
+
+.loaderContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.hiddenText {
+    color: gray;
+    font-style: italic;
+    margin-left: 10px;
+}

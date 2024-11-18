@@ -1,7 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 
-import {TestComponent} from "../test";
 import styles from "./About.module.css";
 
 const About = () => {
@@ -15,7 +14,6 @@ const About = () => {
             <p className={styles.description}>
                 {t('about.description')}
             </p>
-            <TestComponent/>
         </div>
     );
 };

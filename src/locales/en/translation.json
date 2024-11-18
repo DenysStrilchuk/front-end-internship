@@ -16,12 +16,7 @@
     "userList": "Users List",
     "list": "Users",
     "error": "An error occurred while fetching users data.",
-    "noUsersFound": "User not found."
-  },
-  "companies": {
-    "title": "Companies",
-    "list": "Companies List",
-    "details": "Details about {{name}}..."
+    "noUsersFound": "Users not found."
   },
   "user": {
     "details": "User details",
@@ -32,6 +27,67 @@
     "phone": "Phone",
     "error": "An error occurred while fetching user data.",
     "notFound": "User not found."
+  },
+  "createCompany": {
+    "companyName": "Company Name",
+    "visibility": "Visibility",
+    "createButton": "Create Company",
+    "error": "Error",
+    "unexpectedError": "We were unable to get a response from the server. This might be a temporary issue. Please try your request again later.",
+    "validation": {
+      "emptyName": "The field cannot be empty",
+      "minLength": "The company name must be at least 3 characters long",
+      "maxLength": "The company name must not exceed 30 characters",
+      "required": "This field is required",
+      "invalidName": "The name cannot contain only digits and must start with a capital letter. Only Latin letters are allowed."
+    }
+  },
+  "userCompanies": {
+    "title": "My companies:",
+    "noCompanies": "You don't have any companies yet.",
+    "hidden": "Hidden",
+    "error": {
+      "failedToFetch": "Failed to fetch companies"
+    }
+  },
+  "companies": {
+    "title": "Companies",
+    "list": "Companies List",
+    "error": "An error occurred while fetching companies data.",
+    "noCompaniesFound": "Companies not found"
+  },
+  "company": {
+    "id": "Company ID",
+    "name": "Company Name",
+    "title": "Company Title",
+    "avatar": "Company Avatar",
+    "companyLogo": "Company Logo",
+    "isVisible": "Visibility",
+    "description": "Company Description",
+    "city": "Company City",
+    "phone": "Company Phone",
+    "links": "Company Links",
+    "information": "Company information:",
+    "noDescriptionAvailable": "Company description unavailable",
+    "noCompanyDetails": "No company details",
+    "unknown": "N/A",
+    "notProvided": "N/A",
+    "noLinksAvailable": "N/A",
+    "buttonUpdate": "UPDATE COMPANY",
+    "buttonUpdateAvatar": "UPDATE AVATAR",
+    "buttonAddLink": "ADD LINK",
+    "buttonDelete": "DELETE COMPANY",
+    "existingLinks": "Existing links:",
+    "remove": "Remove",
+    "updateCompanyProfile": "Update company profile",
+    "updateCompanyAvatar": "Update company avatar",
+    "error": "An error occurred while fetching company data.",
+    "notFound": "Company not found.",
+    "ownerInfo": "Owner information",
+    "ownerName": "Owner name",
+    "ownerEmail": "Owner email",
+    "deleteCompanyTitle": "Delete company.",
+    "invalidIdError": "Unfortunately, we couldn't find a company with that identifier. Please check the link for accuracy or try again."
   },
   "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
   "login": {
@@ -109,9 +165,11 @@
     "city": "City",
     "phone": "Phone",
     "noData": "N/A",
+    "cancel": "Cancel",
     "updateProfile": "Update Profile",
     "deleteProfile": "Delete Profile",
     "uploadAvatar": "Upload Avatar",
+    "createCompany": "Create Company",
     "errorFetching": "Error fetching user profile."
   },
   "updateUser": {
@@ -160,7 +218,46 @@
     },
     "phone": {
       "invalid": "Invalid phone number"
+    },
+    "companyName": {
+      "required": "Company name is required",
+      "min": "Company name must be at least 2 characters long",
+      "max": "Company name cannot exceed 100 characters",
+      "pattern": "Company name can only contain Latin letters and numbers"
+    },
+    "companyDescription": {
+      "max": "Company description cannot exceed 500 characters",
+      "pattern": "Company description cannot contain only numbers"
+    },
+    "companyCity": {
+      "max": "City name cannot exceed 100 characters",
+      "pattern": "City name can only contain Latin letters and spaces"
+    },
+    "companyPhone": {
+      "invalid": "Phone number is invalid. Use a format with 7 to 15 digits, with an optional '+' prefix"
+    },
+    "companyLinks": {
+      "invalid": "Company link must be in URI format",
+      "invalidUrl": "Invalid link. Please enter a valid URL."
     }
+  },
+  "companyVisibilityToggle": {
+    "companyHidden": "Make company hidden",
+    "companyVisible": "Make company visible",
+    "visible": "Visible company",
+    "errors": {
+      "failedToUpdateVisibility": "Failed to update company visibility",
+      "errorOccurred": "The error occurred. Please try again."
+    }
+  },
+  "deleteCompany": {
+    "error": {
+      "deleteFailed": "Delete failed."
+    },
+    "confirmationMessage": "Do you really want to delete the company?",
+    "confirmDelete": "Confirm delete",
+    "yesDelete": "Yes, delete.",
+    "cancel": "Cancel"
   }
 }
 

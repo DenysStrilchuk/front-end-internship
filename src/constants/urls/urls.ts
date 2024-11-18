@@ -8,6 +8,10 @@ const users = '/users/';
 const user = '/user/';
 const updateInfo = '/update_info/';
 const updateAvatar = '/update_avatar/';
+const companies = '/companies/';
+const company = '/company/';
+const companiesList = '/companies_list/';
+const updateVisible = '/update_visible/';
 
 const urls = {
     status: {
@@ -25,6 +29,16 @@ const urls = {
         updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
         deleteUser: (id: number) => `${user}${id}/`,
     },
+    companies: {
+        getAllCompanies : `${companies}`,
+        getCompanyById: (id: number)=> `${company}${id}/`,
+        getUserCompanies: (userId: number) => `${user}${userId}${companiesList}`,
+        createCompany: `${company}`,
+        updateCompanyInfo: (companyId: number) => `${company}${companyId}${updateInfo}`,
+        updateVisible: (companyId: number) => `${company}${companyId}${updateVisible}`,
+        updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
+        deleteCompany: (companyId: number) => `${company}${companyId}/`
+    }
 };
 
 export {
