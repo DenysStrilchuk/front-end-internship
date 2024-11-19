@@ -2,6 +2,7 @@ import {axiosInstance} from "../axios-instance";
 
 import {IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {urls} from "../../constants/urls";
+import {IInviteCompaniesResponse} from "../../models/ICompany";
 
 const userApi = {
   getAllUsers: async (page = 1, pageSize = 10): Promise<IUserListResponse> => {
@@ -29,6 +30,10 @@ const userApi = {
   },
   deleteUser: async (userId: number): Promise<void> => {
     await axiosInstance.delete(urls.users.deleteUser(userId));
+  },
+  getInvitesList: async (userId: number): Promise<IInviteCompaniesResponse> => {
+    const {data} = await axiosInstance.get(urls.users.getInvitesToCompanies(userId));
+    return data;
   }
 };
 

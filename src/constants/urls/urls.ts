@@ -34,7 +34,7 @@ const urls = {
     updateUser: (id: number) => `${user}${id}${updateInfo}`,
     updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
     deleteUser: (id: number) => `${user}${id}/`,
-    getInvites: (userId: number) => `${user}${userId}${invitesList}`,
+    getInvitesToCompanies: (userId: number) => `${user}${userId}${invitesList}`,
     getRequests: (userId: number) => `${user}${userId}${requestsList}`,
   },
   companies: {

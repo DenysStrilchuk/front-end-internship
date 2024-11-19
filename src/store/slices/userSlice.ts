@@ -3,6 +3,7 @@ import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import {IPagination, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {userApi} from "../../api/user-api";
 import {IApiError} from "../../types/api-types/errorTypes";
+import {IInviteCompany} from "../../models/ICompany";
 
 interface UserState {
   users: IUser[];
@@ -12,6 +13,7 @@ interface UserState {
   errorMessage: string | null,
   pagination: IPagination | null;
   avatar: string | null;
+  invites: IInviteCompany[];
 }
 
 const initialState: UserState = {
@@ -22,6 +24,7 @@ const initialState: UserState = {
   errorMessage: null,
   pagination: null,
   avatar: null,
+  invites: [],
 };
 
 const fetchAllUsers = createAsyncThunk(
@@ -69,6 +72,19 @@ const deleteUser = createAsyncThunk(
     } catch (error: unknown) {
       const apiError = error as IApiError;
       return rejectWithValue(apiError.response?.data?.message || 'Failed to delete user');
+    }
+  }
+);
+
+const fetchInvitesListToCompany = createAsyncThunk<IInviteCompany[], number, { rejectValue: string }>(
+  'users/fetchInvitesList',
+  async (userId: number, {rejectWithValue}) => {
+    try {
+      const response = await userApi.getInvitesList(userId);
+      return response.result.companies;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.fetchInvitesFailed');
     }
   }
 );
@@ -122,6 +138,18 @@ const userSlice = createSlice({
       .addCase(deleteUser.rejected, (state, action) => {
         state.error = action.payload as string;
         state.errorMessage = action.payload as string;
+      })
+      .addCase(fetchInvitesListToCompany.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchInvitesListToCompany.fulfilled, (state, action: PayloadAction<IInviteCompany[]>) => {
+        state.loading = false;
+        state.invites = action.payload;
+      })
+      .addCase(fetchInvitesListToCompany.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   }
 });
@@ -134,5 +162,6 @@ export {
   fetchAllUsers,
   fetchUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  fetchInvitesListToCompany,
 };

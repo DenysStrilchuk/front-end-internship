@@ -25,3 +25,21 @@ export interface ICompaniesListResponse {
   companies: ICompany[];
   pagination: IPagination;
 }
+
+export interface IInviteCompany {
+  company_id: number;
+  company_name: string;
+  company_title: string | null;
+  company_avatar?: string;
+  is_visible: boolean;
+  action_id: number;
+  action: string;
+}
+
+export interface IInviteCompaniesResponse {
+  status_code: number;
+  detail: string;
+  result: {
+    companies: IInviteCompany[];
+  };
+}

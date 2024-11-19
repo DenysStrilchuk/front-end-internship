@@ -285,6 +285,14 @@
       "cancelInvite": "Відхилити запрошення"
     },
     "noUsers": "Немає користувачів"
+  },
+  "invitesToCompanyList": {
+    "error": "Помилка: ",
+    "errors": {
+      "fetchInvitesFailed": "Не вдалось отримати список запрошень"
+    },
+    "noInvites": "Немає запрошеень",
+    "companyInvites": "Список запрошень до компаній"
   }
 }
 

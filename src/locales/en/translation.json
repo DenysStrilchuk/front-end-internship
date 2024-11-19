@@ -285,6 +285,14 @@
       "cancelInvite": "Cancel Invite"
     },
     "noUsers": "No users"
+  },
+  "invitesToCompanyList": {
+    "error": "Error: ",
+    "errors": {
+      "fetchInvitesFailed": "Failed to fetch the list of invites"
+    },
+    "noInvites": "No invites available",
+    "companyInvites": "Company invites list"
   }
 }
 

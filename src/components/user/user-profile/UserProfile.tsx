@@ -13,6 +13,7 @@ import {Loader} from "../../common/LoaderContainer";
 import {CreateCompanyForm} from "../../common/CreateCompanyForm";
 import {UserCompaniesList} from "../../companies/UserCompaniesList";
 import {fetchUserCompanies} from "../../../store/slices/companySlice";
+import {InvitesToCompanyList} from "../invites-to-company";
 
 const UserProfile = () => {
   const {t} = useTranslation();
@@ -174,6 +175,7 @@ const UserProfile = () => {
           </Button>
         }
       />
+      <InvitesToCompanyList userId={user.result.user_id}/>
     </div>
   );
 };
