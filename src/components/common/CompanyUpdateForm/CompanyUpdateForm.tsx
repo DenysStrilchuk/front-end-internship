@@ -176,11 +176,11 @@ const UpdateCompanyComponent: React.FC<CompanyUpdateFormProps> = ({
           >
             {t('company.buttonAddLink')}
           </Button>
-          {Array.isArray(formData.company_links) && formData.company_links.length > 0 && (
+          {companyLinks.length > 0 && (
             <div>
               <h4>{t('company.existingLinks')}</h4>
               <ul>
-                {formData.company_links.map((link, index) => (
+                {companyLinks.map((link, index) => (
                   <li key={index}>
                     {link}
                     <Button
