@@ -25,12 +25,17 @@ const UserCompanyProfile = () => {
   const [showDeleteForm, setShowDeleteForm] = useState<boolean>(false);
   const [showInviteForm, setShowInviteForm] = useState<boolean>(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [idError, setIdError] = useState<string | null>(null);
+
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchCompanyById(Number(id)));
+    const companyId = Number(id);
+    if (!isNaN(companyId)) {
+      dispatch(fetchCompanyById(companyId));
+    } else {
+      setIdError(t('company.invalidIdError'));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, t]);
 
   const handleClose = () => {
     setShowUpdateForm(false);
