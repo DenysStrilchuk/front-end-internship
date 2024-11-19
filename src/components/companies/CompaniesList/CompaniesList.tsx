@@ -23,7 +23,7 @@ const CompaniesList = () => {
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
-  const {companies, pagination, loading, error} = useAppSelector((state) => state.companies);
+  const {allCompanies, pagination, loading, error} = useAppSelector((state) => state.companies);
 
   useEffect(() => {
     dispatch(fetchAllCompanies({page: currentPage, pageSize}));
@@ -55,16 +55,16 @@ const CompaniesList = () => {
           {t("companies.error", {error})}
         </p>
       )}
-      {!loading && !error && companies.length === 0 && (
+      {!loading && !error && allCompanies.length === 0 && (
         <p className={styles.emptyText}>
           {t("companies.noCompaniesFound")}
         </p>
       )}
-      {!loading && !error && companies.length > 0 && (
+      {!loading && !error && allCompanies.length > 0 && (
         <span>
                     <CompaniesListView
                       title={t('companies.list')}
-                      items={companies}
+                      items={allCompanies}
                       getItemLink={(company: ICompany) => `${Routes.COMPANIES}/${company.company_id}`}
                       renderItem={renderItem}
                       getItemId={(company) => company.company_id}

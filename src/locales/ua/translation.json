@@ -170,6 +170,7 @@
     "deleteProfile": "Видалити профіль",
     "uploadAvatar": "Завантажити аватар",
     "createCompany": "Створити компанію",
+    "inviteToCompany": "Долучитись до компанії",
     "errorFetching": "Помилка отримання профілю користувача."
   },
   "updateUser": {
@@ -292,7 +293,17 @@
       "fetchInvitesFailed": "Не вдалось отримати список запрошень"
     },
     "noInvites": "Немає запрошеень",
-    "companyInvites": "Список запрошень до компаній"
+    "companyInvites": "Список запрошень від компаній користувачів"
+  },
+  "inviteFromUserToCompany": {
+    "errors": {
+      "failedToCreateActionFromUser": "Помилка: Не вдалося долучитись до компанії!",
+      "unknown": "Помилка: Сталася невідома помилка. Будь ласка, спробуйте ще раз пізніше."
+    },
+    "success": "Успішно додано",
+    "selected": "Вибрано",
+    "select": "Вибрати",
+    "addSelectedCompanies": "Надіслати запит до компанії"
   }
 }
 

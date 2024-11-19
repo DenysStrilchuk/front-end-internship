@@ -17,6 +17,7 @@ const requestsList = '/requests_list/';
 const membersList = '/members_list/';
 const action = '/action/';
 const createFromCompany = 'create_from_company/';
+const createFromUser = 'create_from_user';
 const declineAction = '/decline_action/';
 
 const urls = {
@@ -35,6 +36,7 @@ const urls = {
     updateAvatar: (userId: number) => `${user}${userId}${updateAvatar}`,
     deleteUser: (id: number) => `${user}${id}/`,
     getInvitesToCompanies: (userId: number) => `${user}${userId}${invitesList}`,
+    actionCreateFromUser: (companyId: number) => `${action}${createFromUser}${company}${companyId}/`,
     getRequests: (userId: number) => `${user}${userId}${requestsList}`,
   },
   companies: {

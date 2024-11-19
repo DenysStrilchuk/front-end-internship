@@ -7,6 +7,7 @@ import {ICompaniesListResponse, ICompany} from "../../models/ICompany";
 
 interface CompanyState {
   companies: ICompany[];
+  allCompanies: ICompany[];
   companyDetail: ICompany | null;
   loading: boolean;
   error: string | null;
@@ -20,6 +21,7 @@ interface CompanyState {
 
 const initialState: CompanyState = {
   companies: [],
+  allCompanies: [],
   companyDetail: null,
   loading: false,
   error: null,
@@ -59,11 +61,11 @@ const fetchUserCompanies = createAsyncThunk(
   'companies/fetchUserCompanies',
   async (userId: number, {rejectWithValue}) => {
     try {
-      return await companyApi.getCompaniesByUserId(userId);
+      return  await companyApi.getCompaniesByUserId(userId);
     } catch (error: unknown) {
       const apiError = error as IApiError;
-      const errorMessage = apiError.response?.data?.message || 'failedToFetch';
-      return rejectWithValue(errorMessage);
+      console.error('Error fetching user companies:', apiError.response?.data);
+      return rejectWithValue(apiError.response?.data?.message || 'failedToFetch');
     }
   }
 );
@@ -185,7 +187,7 @@ const companySlice = createSlice({
       })
       .addCase(fetchAllCompanies.fulfilled, (state, action: PayloadAction<ICompaniesListResponse>) => {
         state.loading = false;
-        state.companies = action.payload.companies;
+        state.allCompanies = action.payload.companies;
         state.pagination = action.payload.pagination;
       })
       .addCase(fetchAllCompanies.rejected, (state, action) => {

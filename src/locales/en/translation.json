@@ -170,6 +170,7 @@
     "deleteProfile": "Delete Profile",
     "uploadAvatar": "Upload Avatar",
     "createCompany": "Create Company",
+    "inviteToCompany": "Join Companies",
     "errorFetching": "Error fetching user profile."
   },
   "updateUser": {
@@ -292,7 +293,17 @@
       "fetchInvitesFailed": "Failed to fetch the list of invites"
     },
     "noInvites": "No invites available",
-    "companyInvites": "Company invites list"
+    "companyInvites": "Company invites list from users"
+  },
+  "inviteFromUserToCompany": {
+    "errors": {
+      "failedToCreateActionFromUser": "Error: Failed to join!",
+      "unknown": "Error: An unknown error occurred. Please try again later."
+    },
+    "success": "Success add",
+    "selected": "Selected",
+    "select": "Select",
+    "addSelectedCompanies": "Send request to the company"
   }
 }
 

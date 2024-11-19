@@ -43,3 +43,11 @@ export interface IInviteCompaniesResponse {
     companies: IInviteCompany[];
   };
 }
+
+export interface IActionIdResponse {
+  status_code: number;
+  detail: string;
+  result: {
+    action_id: IInviteCompany[];
+  };
+}

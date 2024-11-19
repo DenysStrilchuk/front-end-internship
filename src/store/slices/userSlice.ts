@@ -14,6 +14,7 @@ interface UserState {
   pagination: IPagination | null;
   avatar: string | null;
   invites: IInviteCompany[];
+  createdActionId: number | null;
 }
 
 const initialState: UserState = {
@@ -25,6 +26,7 @@ const initialState: UserState = {
   pagination: null,
   avatar: null,
   invites: [],
+  createdActionId: null,
 };
 
 const fetchAllUsers = createAsyncThunk(
@@ -85,6 +87,19 @@ const fetchInvitesListToCompany = createAsyncThunk<IInviteCompany[], number, { r
     } catch (error: unknown) {
       const apiError = error as IApiError;
       return rejectWithValue(apiError.response?.data?.message || 'errors.fetchInvitesFailed');
+    }
+  }
+);
+
+const inviteFromUser = createAsyncThunk<IInviteCompany[], number, { rejectValue: string }>(
+  'users/createActionFromUser',
+  async (companyId, {rejectWithValue}) => {
+    try {
+      const response = await userApi.inviteFromUserToCompany(companyId);
+      return response.result.action_id;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToCreateActionFromUser');
     }
   }
 );
@@ -150,6 +165,18 @@ const userSlice = createSlice({
       .addCase(fetchInvitesListToCompany.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(inviteFromUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(inviteFromUser.fulfilled, (state, action: PayloadAction<IInviteCompany[]>) => {
+        state.loading = false;
+        state.createdActionId = action.payload[0]?.action_id ?? null;
+      })
+      .addCase(inviteFromUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   }
 });
@@ -164,4 +191,5 @@ export {
   updateUser,
   deleteUser,
   fetchInvitesListToCompany,
+  inviteFromUser,
 };

@@ -14,6 +14,7 @@ import {CreateCompanyForm} from "../../common/CreateCompanyForm";
 import {UserCompaniesList} from "../../companies/UserCompaniesList";
 import {fetchUserCompanies} from "../../../store/slices/companySlice";
 import {InvitesToCompanyList} from "../invites-to-company";
+import {InviteFromUserToCompany} from "../invite-from-user";
 
 const UserProfile = () => {
   const {t} = useTranslation();
@@ -25,6 +26,7 @@ const UserProfile = () => {
   const [showDeleteForm, setShowDeleteForm] = useState<boolean>(false);
   const [showAvatarForm, setShowAvatarForm] = useState<boolean>(false);
   const [showCreateCompanyForm, setShowCreateCompanyForm] = useState<boolean>(false);
+  const [showInviteForm, setShowInviteForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (isAuthenticated && !user) {
@@ -44,6 +46,9 @@ const UserProfile = () => {
     setShowCreateCompanyForm(false);
   };
 
+  const handleInviteSuccess = () => {
+    setShowInviteForm(false);
+  };
 
   if (!user && error) {
     return <div className={styles.alert}>{t(error)}</div>;
@@ -93,9 +98,15 @@ const UserProfile = () => {
             >
               {t('profile.createCompany')}
             </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => setShowInviteForm(true)}
+            >
+              {t('profile.inviteToCompany')}
+            </Button>
           </div>
         </div>
-
         <div className={styles.mainContent}>
           <h2>{user.result.user_firstname} {user.result.user_lastname}</h2>
           <div className={styles.divider}></div>
@@ -114,7 +125,6 @@ const UserProfile = () => {
           <UserCompaniesList userId={user?.result.user_id}/>
         </div>
       </div>
-
       <UniversalModal
         open={showUpdateForm}
         onClose={() => setShowUpdateForm(false)}
@@ -173,6 +183,17 @@ const UserProfile = () => {
           <Button onClick={() => setShowCreateCompanyForm(false)} variant="contained">
             {t('universalModal.close')}
           </Button>
+        }
+      />
+      <UniversalModal
+        open={showInviteForm}
+        onClose={() => setShowInviteForm(false)}
+        title={t('profile.inviteToCompany')}
+        content={
+          <InviteFromUserToCompany
+            onClose={() => setShowInviteForm(false)}
+            onActionSuccess={handleInviteSuccess}
+          />
         }
       />
       <InvitesToCompanyList userId={user.result.user_id}/>

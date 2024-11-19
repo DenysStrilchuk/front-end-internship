@@ -2,7 +2,7 @@ import {axiosInstance} from "../axios-instance";
 
 import {IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {urls} from "../../constants/urls";
-import {IInviteCompaniesResponse} from "../../models/ICompany";
+import {IActionIdResponse, IInviteCompaniesResponse} from "../../models/ICompany";
 
 const userApi = {
   getAllUsers: async (page = 1, pageSize = 10): Promise<IUserListResponse> => {
@@ -33,6 +33,10 @@ const userApi = {
   },
   getInvitesList: async (userId: number): Promise<IInviteCompaniesResponse> => {
     const {data} = await axiosInstance.get(urls.users.getInvitesToCompanies(userId));
+    return data;
+  },
+  inviteFromUserToCompany: async (companyId: number): Promise<IActionIdResponse> => {
+    const {data} = await axiosInstance.get(urls.users.actionCreateFromUser(companyId));
     return data;
   }
 };
