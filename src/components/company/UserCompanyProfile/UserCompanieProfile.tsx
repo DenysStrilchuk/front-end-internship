@@ -126,15 +126,15 @@ const UserCompanyProfile = () => {
                   onClose={handleClose}
                   title={t('company.updateCompanyProfile')}
                   content={
-                  <UpdateCompanyComponent
-                    companyId={companyDetail.company_id}
-                    companyName={companyDetail.company_name || ''}
-                    companyDescription={companyDetail.company_description || ''}
-                    companyCity={companyDetail.company_city || ''}
-                    companyPhone={companyDetail.company_phone || ''}
-                    companyLinks={companyDetail.company_links || []}
-                    onClose={handleClose}
-                  />}
+                    <UpdateCompanyComponent
+                      companyId={companyDetail.company_id}
+                      companyName={companyDetail.company_name || ''}
+                      companyDescription={companyDetail.company_description || ''}
+                      companyCity={companyDetail.company_city || ''}
+                      companyPhone={companyDetail.company_phone || ''}
+                      companyLinks={companyDetail.company_links || []}
+                      onClose={handleClose}
+                    />}
                 />
               )}
               {showAvatarUpdateForm && (
@@ -143,7 +143,7 @@ const UserCompanyProfile = () => {
                   onClose={handleClose}
                   title={t('company.updateCompanyAvatar')}
                   content={<UpdateCompanyAvatar companyId={companyDetail.company_id}
-                  onClose={handleClose}/>}
+                                                onClose={handleClose}/>}
                 />
               )}
               {showDeleteForm && (
@@ -152,8 +152,8 @@ const UserCompanyProfile = () => {
                   onClose={() => setShowDeleteForm(false)}
                   title={t('company.deleteCompanyTitle')}
                   content={<CompanyDeleteForm companyId={companyDetail.company_id}
-                  onError={(message) => setDeleteError(message)}
-                  onClose={() => setShowDeleteForm(false)}/>}
+                                              onError={(message) => setDeleteError(message)}
+                                              onClose={() => setShowDeleteForm(false)}/>}
                 />
               )}
               {showInviteForm && (
@@ -162,11 +162,11 @@ const UserCompanyProfile = () => {
                   onClose={handleClose}
                   title={t('company.inviteUserToCompany')}
                   content={
-                  <InviteUserToCompany
-                    onInviteSuccess={handleInviteSuccess}
-                    onClose={handleClose}
-                    companyId={companyDetail.company_id}
-                  />}
+                    <InviteUserToCompany
+                      onInviteSuccess={handleInviteSuccess}
+                      onClose={handleClose}
+                      companyId={companyDetail.company_id}
+                    />}
                 />
               )}
               {deleteError && <div className={styles.alert}>{deleteError}</div>}
@@ -178,7 +178,7 @@ const UserCompanyProfile = () => {
       )}
       <div className={styles.invitesSection}>
         {companyDetail && (
-          <GetInvitesUsersToCompany companyId={companyDetail.company_id} />
+          <GetInvitesUsersToCompany companyId={companyDetail.company_id}/>
         )}
       </div>
     </div>

@@ -7,22 +7,22 @@ import {Routes} from "../utils/routes";
 import {tokenService} from "../api/token-service";
 
 const PrivateRoute = () => {
-    const isAuthenticated = useAppSelector(selectIsAuthenticated);
-    useTokenExpiration();
-    const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  useTokenExpiration();
+  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            dispatch(authActions.setToken(JSON.parse(token)));
-        }
-        if (!isAuthenticated) {
-            tokenService.removeToken();
-            dispatch(authActions.clearToken());
-        }
-    }, [dispatch, isAuthenticated]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(authActions.setToken(JSON.parse(token)));
+    }
+    if (!isAuthenticated) {
+      tokenService.removeToken();
+      dispatch(authActions.clearToken());
+    }
+  }, [dispatch, isAuthenticated]);
 
-    return isAuthenticated ? <Outlet/> : <Navigate to={Routes.LOGIN}/>;
+  return isAuthenticated ? <Outlet/> : <Navigate to={Routes.LOGIN}/>;
 };
 
 export {PrivateRoute};

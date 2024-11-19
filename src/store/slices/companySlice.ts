@@ -145,7 +145,7 @@ const inviteUser = createAsyncThunk(
 
 const fetchInvitesList = createAsyncThunk(
   'companies/fetchInvitesList',
-  async (companyId: number, { rejectWithValue }) => {
+  async (companyId: number, {rejectWithValue}) => {
     try {
       return await companyApi.getInvitesList(companyId);
     } catch (error: unknown) {

@@ -14,44 +14,44 @@ import {CompanyDetailsPage} from "../pages/CompanyDetailsPage";
 import {UserCompanyProfilePage} from "../pages/UserCompanyProfilePage";
 
 export const routes = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout/>,
+  {
+    path: '/',
+    element: <MainLayout/>,
+    children: [
+      {index: true, element: <HomePage/>},
+      {path: 'about', element: <AboutPage/>},
+      {path: 'login', element: <LoginPage/>},
+      {path: 'register', element: <RegistrationPage/>},
+      {
+        path: 'users',
+        element: <PrivateRoute/>,
         children: [
-            {index: true, element: <HomePage/>},
-            {path: 'about', element: <AboutPage/>},
-            {path: 'login', element: <LoginPage/>},
-            {path: 'register', element: <RegistrationPage/>},
-            {
-                path: 'users',
-                element: <PrivateRoute/>,
-                children: [
-                    {index: true, element: <UsersListPage/>},
-                    {path: ':id', element: <UserDetailsPage/>},
-                ],
-            },
-            {
-                path: 'auth',
-                element: <PrivateRoute/>,
-                children: [
-                    {path: 'me', element: <UserProfilePage/>},
-                ],
-            },
-            {
-                path: 'companies',
-                element: <PrivateRoute/>,
-                children: [
-                    {index: true, element: <CompaniesListPage/>},
-                    {path: ':id', element: <CompanyDetailsPage/>},
-                ],
-            },
-            {
-                path: 'company',
-                element: <PrivateRoute/>,
-                children: [
-                    {path: ':id', element: <UserCompanyProfilePage/>}
-                ]
-            }
+          {index: true, element: <UsersListPage/>},
+          {path: ':id', element: <UserDetailsPage/>},
         ],
-    },
+      },
+      {
+        path: 'auth',
+        element: <PrivateRoute/>,
+        children: [
+          {path: 'me', element: <UserProfilePage/>},
+        ],
+      },
+      {
+        path: 'companies',
+        element: <PrivateRoute/>,
+        children: [
+          {index: true, element: <CompaniesListPage/>},
+          {path: ':id', element: <CompanyDetailsPage/>},
+        ],
+      },
+      {
+        path: 'company',
+        element: <PrivateRoute/>,
+        children: [
+          {path: ':id', element: <UserCompanyProfilePage/>}
+        ]
+      }
+    ],
+  },
 ]);
