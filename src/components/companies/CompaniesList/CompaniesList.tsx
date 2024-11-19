@@ -18,12 +18,12 @@ const CompaniesList = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const {companies, pagination, loading, error} = useAppSelector((state) => state.companies);
   const searchParams = new URLSearchParams(location.search);
   const initialPage = parseInt(searchParams.get("page") || "1", 10);
-  const [currentPage, setCurrentPage] = useState<number>(initialPage);
   const pageSize = 10;
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
+  const {companies, pagination, loading, error} = useAppSelector((state) => state.companies);
 
   useEffect(() => {
     dispatch(fetchAllCompanies({page: currentPage, pageSize}));
