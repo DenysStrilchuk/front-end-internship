@@ -67,6 +67,7 @@ const UserCompanyProfile = () => {
       ) : (
         <span>
           {error && <div className={styles.alert}>{t('company.error')}</div>}
+          {idError && <div className={styles.alert}>{idError}</div>}
           {companyDetail ? (
             <div className={styles.profileContainer}>
               <div className={styles.profileSideBar}>
