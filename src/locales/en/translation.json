@@ -311,7 +311,9 @@
     "errors": {
       "failedToFetchRequestsList": "Error: Failed to retrieve the user list!",
       "unknownError": "Error: An unknown error occurred. Please try again later."
-    }
+    },
+    "accept": "Accept",
+    "cancelInvite": "Cancel"
   }
 }
 

@@ -160,15 +160,15 @@ const fetchInvitesList = createAsyncThunk(
   }
 );
 
-const cancelInvite = createAsyncThunk(
+const cancelInvite = createAsyncThunk<number, number>(
   'companies/cancelInvite',
-  async (actionId: number, {rejectWithValue}) => {
+  async (actionId, { rejectWithValue }) => {
     try {
-      return await companyApi.cancelInvite(actionId);
+      await companyApi.cancelInvite(actionId);
+      return actionId;
     } catch (error: unknown) {
       const apiError = error as IApiError;
-      const errorKey = apiError.response?.data?.message || 'failedToCancelInvite';
-      return rejectWithValue(errorKey);
+      return rejectWithValue(apiError.response?.data?.message || 'Failed to cancel invite');
     }
   }
 );
@@ -181,6 +181,31 @@ const fetchRequestsList = createAsyncThunk(
     } catch (error: unknown) {
       const apiError = error as IApiError;
       return rejectWithValue(apiError.response?.data?.message || "errors.failedToFetchRequestsList");
+    }
+  }
+);
+
+const acceptRequest = createAsyncThunk(
+  'companies/acceptRequest',
+  async (actionId: number, { rejectWithValue }) => {
+    try {
+      return await companyApi.acceptRequest(actionId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToAcceptRequest');
+    }
+  }
+);
+
+const cancelRequest = createAsyncThunk<number, number>(
+  'companies/cancelRequest',
+  async (actionId, { rejectWithValue }) => {
+    try {
+      await companyApi.cancelInvite(actionId);
+      return actionId;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToCancelInvite');
     }
   }
 );
@@ -333,18 +358,15 @@ const companySlice = createSlice({
         state.loading = false;
         state.invitesError = action.payload as string | null;
       })
-      .addCase(cancelInvite.pending, (state) => {
-        state.loading = true;
-        state.invitedError = null;
-      })
-      .addCase(cancelInvite.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
-        state.loading = false;
-        state.invitedUsers = action.payload;
-        state.invitedError = null;
+      .addCase(cancelInvite.fulfilled, (state, action: PayloadAction<number>) => {
+        if (state.invitedUsers?.users) {
+          state.invitedUsers.users = state.invitedUsers.users.filter(
+            (user) => user.action_id !== action.payload
+          );
+        }
       })
       .addCase(cancelInvite.rejected, (state, action) => {
-        state.loading = false;
-        state.invitedError = action.payload as string;
+        state.invitesError = action.payload as string;
       })
       .addCase(fetchRequestsList.pending, (state) => {
         state.loading = true;
@@ -357,7 +379,31 @@ const companySlice = createSlice({
       .addCase(fetchRequestsList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      });
+      })
+      .addCase(acceptRequest.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(acceptRequest.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
+        state.loading = false;
+        state.requestsList = action.payload;
+      })
+      .addCase(acceptRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(cancelRequest.fulfilled, (state, action: PayloadAction<number>) => {
+        state.loading = false;
+        if (state.requestsList && state.requestsList.users) {
+          state.requestsList.users = state.requestsList.users.filter(
+            (user) => user.action_id !== action.payload
+          );
+        }
+      })
+      .addCase(cancelRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.invitedError = action.payload as string;
+      })
   }
 });
 
@@ -378,4 +424,6 @@ export {
   fetchInvitesList,
   cancelInvite,
   fetchRequestsList,
+  acceptRequest,
+  cancelRequest,
 };

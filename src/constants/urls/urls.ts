@@ -19,6 +19,7 @@ const action = '/action/';
 const createFromCompany = 'create_from_company/';
 const createFromUser = 'create_from_user';
 const declineAction = '/decline_action/';
+const acceptRequest = '/accept_request/';
 
 const urls = {
   status: {
@@ -53,6 +54,7 @@ const urls = {
     actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
     declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
     getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
+    acceptRequest: (actionId: number) => `${action}${actionId}${acceptRequest}`,
     excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
   }
 };

@@ -69,6 +69,10 @@ const companyApi = {
     const {data: {result}} = await axiosInstance.get(urls.companies.getRequestsList(companyId));
     return result;
   },
+  acceptRequest: async (actionId: number): Promise<IUserListResponse> => {
+    const {data:{result}} = await axiosInstance.get(urls.companies.acceptRequest(actionId));
+    return result;
+  },
   getMembersList: async (companyId: number): Promise<IUserListResponse> => {
     const {data: {result}} = await axiosInstance.get(urls.companies.getMembersList(companyId));
     return result;

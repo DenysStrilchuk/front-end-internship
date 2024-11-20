@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
+import {Button} from '@mui/material';
 
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {Loader} from "../../common/LoaderContainer";
-import styles from './CompanyRequestsList.module.css';
-import {fetchRequestsList} from "../../../store/slices/companySlice";
+import {fetchRequestsList, acceptRequest, cancelRequest} from "../../../store/slices/companySlice";
 import {IUser} from "../../../models/IUser";
+import styles from './CompanyRequestsList.module.css';
 
 interface CompanyRequestsListProps {
   companyId: number;
@@ -14,7 +15,7 @@ interface CompanyRequestsListProps {
 const CompanyRequestsList: React.FC<CompanyRequestsListProps> = ({companyId}) => {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
-  const {requestsList, loading, error} = useAppSelector((state) => state.companies);
+  const {requestsList, loading, error, invitedError} = useAppSelector((state) => state.companies);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -25,6 +26,14 @@ const CompanyRequestsList: React.FC<CompanyRequestsListProps> = ({companyId}) =>
   }, [dispatch, companyId, isOpen]);
 
   const toggleList = () => setIsOpen((prev) => !prev);
+
+  const handleAcceptRequest = (actionId: number) => {
+    dispatch(acceptRequest(actionId));
+  };
+
+  const handleCancelRequest = (actionId: number) => {
+    dispatch(cancelRequest(actionId));
+  };
 
   return (
     <div className={styles.container}>
@@ -39,13 +48,36 @@ const CompanyRequestsList: React.FC<CompanyRequestsListProps> = ({companyId}) =>
               {t(`companyRequestsList.${error}`) || t('companyRequestsList.errors.unknownError')}
             </p>
           )}
-          {!loading && !error && (
+          {invitedError && (
+            <p className={styles.error}>
+              {t(`companyRequestsList.${invitedError}`) || t('companyRequestsList.errors.unknownError')}
+            </p>
+          )}
+          {!loading && !error && !invitedError && (
             <div>
               {requestsList && requestsList.users.length > 0 && (
                 <ul className={styles.list}>
                   {requestsList.users.map((request: IUser) => (
                     <li key={request.user_id} className={styles.listItem}>
-                      {request.user_firstname} {request.user_lastname}
+                      <span>{request.user_firstname} {request.user_lastname}</span>
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={() => request.action_id !== undefined && handleAcceptRequest(request.action_id)}
+                          sx={{marginLeft: 2}}
+                        >
+                          {t('companyRequestsList.accept')}
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={() => request.action_id !== undefined && handleCancelRequest(request.action_id)}
+                          sx={{marginLeft: 2}}
+                        >
+                          {t('companyRequestsList.cancelInvite')}
+                        </Button>
+                      </div>
                     </li>
                   ))}
                 </ul>

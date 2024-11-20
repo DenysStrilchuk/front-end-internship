@@ -28,7 +28,9 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
   useEffect(() => {
     if (invitesError) {
       setErrorMessage(
-        t('getInvitesUsersToCompany.errors.failedToFetchInvitedUsers') || t('getInvitesUsersToCompany.errors.unknown')
+        t('getInvitesUsersToCompany.errors.failedToFetchInvitedUsers')
+        ||
+        t('getInvitesUsersToCompany.errors.unknown')
       );
     }
   }, [invitesError, t]);
@@ -37,7 +39,6 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
     try {
       await dispatch(cancelInvite(actionId)).unwrap();
       toast.success(t('getInvitesUsersToCompany.success.cancelInvite'));
-      dispatch(fetchInvitesList(companyId));
     } catch {
       toast.error(t('getInvitesUsersToCompany.errors.failedToCancelInvite'));
     }
@@ -52,13 +53,13 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
       </h3>
       {isOpen && (
         <div>
-          {loading ? (
-            <Loader/>
-          ) : invitesError ? (
+          {loading && <Loader/>}
+          {!loading && invitesError && (
             <div className={styles.error}>
               <strong>{t('getInvitesUsersToCompany.errors.error')}</strong> {errorMessage}
             </div>
-          ) : invitedUsers?.users && invitedUsers.users.length > 0 ? (
+          )}
+          {!loading && !invitesError && invitedUsers?.users && invitedUsers.users.length > 0 && (
             <ul className={styles.list}>
               {invitedUsers.users.map((user) => (
                 <li key={user.user_id} className={styles.listItem}>
@@ -76,13 +77,14 @@ const GetInvitesUsersToCompany: React.FC<GetInvitesUsersToCompanyProps> = ({comp
                 </li>
               ))}
             </ul>
-          ) : (
+          )}
+          {!loading && !invitesError && invitedUsers?.users?.length === 0 && (
             <p className={styles.noUsers}>{t('getInvitesUsersToCompany.noUsers')}</p>
           )}
         </div>
       )}
     </div>
   );
-};
+}
 
 export {GetInvitesUsersToCompany};

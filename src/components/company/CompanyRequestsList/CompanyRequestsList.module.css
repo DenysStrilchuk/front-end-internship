@@ -18,13 +18,10 @@
     text-decoration: underline;
 }
 
-.list {
-    margin-top: 16px;
-    padding: 0;
-    list-style: none;
-}
-
 .listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
@@ -40,3 +37,5 @@
 .noRequests {
     color: gray;
 }
+
+
