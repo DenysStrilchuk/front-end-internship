@@ -180,7 +180,7 @@ const fetchRequestsList = createAsyncThunk(
       return await companyApi.getRequestsList(companyId);
     } catch (error: unknown) {
       const apiError = error as IApiError;
-      return rejectWithValue(apiError.response?.data?.message || "Failed to fetch requests list");
+      return rejectWithValue(apiError.response?.data?.message || "errors.failedToFetchRequestsList");
     }
   }
 );

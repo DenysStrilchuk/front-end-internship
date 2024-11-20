@@ -307,7 +307,11 @@
   },
   "companyRequestsList": {
     "title": "List of User Requests to Join the Company",
-    "noRequests": "You don't have any requests to the company yet."
+    "noRequests": "You don't have any requests to the company yet.",
+    "errors": {
+      "failedToFetchRequestsList": "Error: Failed to retrieve the user list!",
+      "unknownError": "Error: An unknown error occurred. Please try again later."
+    }
   }
 }
 

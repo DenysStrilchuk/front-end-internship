@@ -36,7 +36,7 @@ const CompanyRequestsList: React.FC<CompanyRequestsListProps> = ({companyId}) =>
           {loading && <Loader/>}
           {error && (
             <p className={styles.error}>
-              {t('companyRequestsList.error')}: {error}
+              {t(`companyRequestsList.${error}`) || t('companyRequestsList.errors.unknownError')}
             </p>
           )}
           {!loading && !error && (
