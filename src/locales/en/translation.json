@@ -272,7 +272,7 @@
     }
   },
   "getInvitesUsersToCompany": {
-    "title": "Invited Users",
+    "title": "The list of users invited by my company",
     "success": {
       "cancelInvite": "User deleted successfully from list."
     },
@@ -304,6 +304,10 @@
     "selected": "Selected",
     "select": "Select",
     "addSelectedCompanies": "Send request to the company"
+  },
+  "companyRequestsList": {
+    "title": "List of User Requests to Join the Company",
+    "noRequests": "You don't have any requests to the company yet."
   }
 }
 

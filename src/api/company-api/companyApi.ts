@@ -65,9 +65,6 @@ const companyApi = {
     const {data: {result}} = await axiosInstance.get(urls.companies.declineInvite(actionId));
     return result;
   },
-  excludeUser: async (companyId: number, userId: number): Promise<void> => {
-    await axiosInstance.delete(`${urls.companies.excludeUser(companyId)}${userId}/`);
-  },
   getRequestsList: async (companyId: number): Promise<IUserListResponse> => {
     const {data: {result}} = await axiosInstance.get(urls.companies.getRequestsList(companyId));
     return result;

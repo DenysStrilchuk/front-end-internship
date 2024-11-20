@@ -49,11 +49,11 @@ const urls = {
     updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
     deleteCompany: (companyId: number) => `${company}${companyId}/`,
     getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
-    getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
     getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
-    excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
     actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
     declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
+    getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
+    excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
   }
 };
 

@@ -14,6 +14,7 @@ import {CompanyDeleteForm} from "../../common/CompanyDeleteForm";
 import {InviteUserToCompany} from "../../common/InviteUserToCompany";
 import styles from './UserCompanieProfile.module.css';
 import {GetInvitesUsersToCompany} from "../../common/GetInvitesUsersToCompany";
+import {CompanyRequestsList} from "../CompanyRequestsList";
 
 const UserCompanyProfile = () => {
   const {t} = useTranslation();
@@ -182,11 +183,12 @@ const UserCompanyProfile = () => {
           )}
         </span>
       )}
-      <div className={styles.invitesSection}>
-        {companyDetail && (
-          <GetInvitesUsersToCompany companyId={companyDetail.company_id}/>
-        )}
-      </div>
+      {companyDetail && (
+        <>
+          <GetInvitesUsersToCompany companyId={companyDetail.company_id} />
+          <CompanyRequestsList companyId={companyDetail.company_id} />
+        </>
+      )}
     </div>
   );
 };

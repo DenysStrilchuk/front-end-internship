@@ -17,6 +17,7 @@ interface CompanyState {
   pagination: IPagination | null;
   avatar: string | null;
   invitedUsers: IUserListResponse | null;
+  requestsList: IUserListResponse | null;
 }
 
 const initialState: CompanyState = {
@@ -31,6 +32,7 @@ const initialState: CompanyState = {
   pagination: null,
   avatar: null,
   invitedUsers: null,
+  requestsList: null,
 };
 
 const fetchAllCompanies = createAsyncThunk(
@@ -167,6 +169,18 @@ const cancelInvite = createAsyncThunk(
       const apiError = error as IApiError;
       const errorKey = apiError.response?.data?.message || 'failedToCancelInvite';
       return rejectWithValue(errorKey);
+    }
+  }
+);
+
+const fetchRequestsList = createAsyncThunk(
+  "companies/fetchRequestsList",
+  async (companyId: number, { rejectWithValue }) => {
+    try {
+      return await companyApi.getRequestsList(companyId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || "Failed to fetch requests list");
     }
   }
 );
@@ -331,6 +345,18 @@ const companySlice = createSlice({
       .addCase(cancelInvite.rejected, (state, action) => {
         state.loading = false;
         state.invitedError = action.payload as string;
+      })
+      .addCase(fetchRequestsList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchRequestsList.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
+        state.loading = false;
+        state.requestsList = action.payload;
+      })
+      .addCase(fetchRequestsList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   }
 });
@@ -351,4 +377,5 @@ export {
   inviteUser,
   fetchInvitesList,
   cancelInvite,
+  fetchRequestsList,
 };
