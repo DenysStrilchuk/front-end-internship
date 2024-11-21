@@ -290,8 +290,11 @@
   "invitesToCompanyList": {
     "error": "Помилка: ",
     "errors": {
-      "fetchInvitesFailed": "Не вдалось отримати список запрошень"
+      "fetchInvitesFailed": "Не вдалось отримати список запрошень",
+      "failedToAcceptInvite": "Помилка: Не вдалось підтвердити запрошення."
     },
+    "accept": "Прийняти запрошення",
+    "cancel": "Відхилити",
     "noInvites": "Немає запрошеень",
     "companyInvites": "Список запрошень від компаній користувачів"
   },

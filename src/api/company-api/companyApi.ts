@@ -67,7 +67,7 @@ const companyApi = {
     return result;
   },
   cancelInvite: async (actionId: number): Promise<IUserListResponse> => {
-    const {data: {result}} = await axiosInstance.get(urls.companies.declineInvite(actionId));
+    const {data: {result}} = await axiosInstance.get(urls.actions.declineInvite(actionId));
     return result;
   },
   getRequestsList: async (companyId: number): Promise<IUserListResponse> => {
@@ -75,7 +75,7 @@ const companyApi = {
     return result;
   },
   acceptRequest: async (actionId: number): Promise<IAcceptRequestResponse> => {
-    const { data } = await axiosInstance.get(urls.companies.acceptRequest(actionId));
+    const { data } = await axiosInstance.get(urls.actions.acceptRequest(actionId));
     return data;
   },
   getMembersList: async (companyId: number): Promise<IGetMembersListResponse> => {
@@ -83,7 +83,7 @@ const companyApi = {
   return data;
   },
   leaveCompany: async (actionId: number): Promise<IUserListResponse> => {
-    const {data: {result}} = await axiosInstance.get(urls.companies.leaveCompany(actionId));
+    const {data: {result}} = await axiosInstance.get(urls.actions.leaveCompany(actionId));
     return result;
   },
 }

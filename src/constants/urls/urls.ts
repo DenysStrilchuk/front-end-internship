@@ -20,6 +20,7 @@ const createFromCompany = 'create_from_company/';
 const createFromUser = 'create_from_user';
 const declineAction = '/decline_action/';
 const acceptRequest = '/accept_request/';
+const acceptInvite = '/accept_invite/';
 const leaveCompany = '/leave_company/';
 
 const urls = {
@@ -52,10 +53,13 @@ const urls = {
     deleteCompany: (companyId: number) => `${company}${companyId}/`,
     getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
     actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
-    declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
     getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
-    acceptRequest: (actionId: number) => `${action}${actionId}${acceptRequest}`,
     getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
+  },
+  actions: {
+    acceptInvite: (actionId: number) => `${action}${actionId}${acceptInvite}`,
+    acceptRequest: (actionId: number) => `${action}${actionId}${acceptRequest}`,
+    declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
     leaveCompany: (actionId: number) => `${action}${actionId}${leaveCompany}`
   }
 };

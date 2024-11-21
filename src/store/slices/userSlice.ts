@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 
-import {IPagination, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
+import {IAcceptInviteResponse, IPagination, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {userApi} from "../../api/user-api";
 import {IApiError} from "../../types/api-types/errorTypes";
 import {IInviteCompany} from "../../models/ICompany";
@@ -104,6 +104,35 @@ const inviteFromUser = createAsyncThunk<IInviteCompany[], number, { rejectValue:
   }
 );
 
+const acceptInvite = createAsyncThunk<
+  IAcceptInviteResponse,
+  number,
+  { rejectValue: string }
+>(
+  "users/acceptInvite",
+  async (actionId, { rejectWithValue }) => {
+    try {
+      return await userApi.acceptInvite(actionId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || "errors.failedToAcceptInvite");
+    }
+  }
+);
+
+const cancelInvite = createAsyncThunk<number, number>(
+  'companies/cancelInvite',
+  async (actionId, { rejectWithValue }) => {
+    try {
+      await userApi.declineInvite(actionId);
+      return actionId;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToCancelInvite');
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: 'users',
   initialState,
@@ -177,6 +206,29 @@ const userSlice = createSlice({
       .addCase(inviteFromUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(acceptInvite.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(acceptInvite.fulfilled, (state, action: PayloadAction<IAcceptInviteResponse>) => {
+        state.loading = false;
+        state.createdActionId = action.payload.result.action_id;
+
+        state.invites = state.invites.filter(
+          (invite) => invite.action_id !== action.payload.result.action_id
+        );
+      })
+      .addCase(acceptInvite.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(cancelInvite.fulfilled, (state, action: PayloadAction<number>) => {
+        state.invites = state.invites.filter((invite) => invite.action_id !== action.payload);
+        state.error = null;
+      })
+      .addCase(cancelInvite.rejected, (state, action) => {
+        state.error = action.payload as string;
       });
   }
 });
@@ -192,4 +244,6 @@ export {
   deleteUser,
   fetchInvitesListToCompany,
   inviteFromUser,
+  acceptInvite,
+  cancelInvite,
 };

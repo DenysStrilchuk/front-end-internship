@@ -1,8 +1,8 @@
 import {axiosInstance} from "../axios-instance";
 
-import {IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
+import {IAcceptInviteResponse, IUpdateUser, IUser, IUserListResponse} from "../../models/IUser";
 import {urls} from "../../constants/urls";
-import {IActionIdResponse, IInviteCompaniesResponse} from "../../models/ICompany";
+import {IActionIdResponse, ICompaniesListResponse, IInviteCompaniesResponse} from "../../models/ICompany";
 
 const userApi = {
   getAllUsers: async (page = 1, pageSize = 10): Promise<IUserListResponse> => {
@@ -38,6 +38,14 @@ const userApi = {
   inviteFromUserToCompany: async (companyId: number): Promise<IActionIdResponse> => {
     const {data} = await axiosInstance.get(urls.users.actionCreateFromUser(companyId));
     return data;
+  },
+  acceptInvite: async (actionId: number): Promise<IAcceptInviteResponse> => {
+    const { data } = await axiosInstance.get(urls.actions.acceptInvite(actionId));
+    return data;
+  },
+  declineInvite: async (actionId: number): Promise<ICompaniesListResponse> => {
+    const {data: {result}} = await axiosInstance.get(urls.actions.declineInvite(actionId));
+    return result;
   }
 };
 

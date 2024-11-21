@@ -38,3 +38,11 @@ export interface IUpdateUser {
   user_phone?: string;
   user_links?: string[];
 }
+
+export interface IAcceptInviteResponse {
+  status_code: number;
+  detail: string;
+  result: {
+    action_id: number;
+  };
+}

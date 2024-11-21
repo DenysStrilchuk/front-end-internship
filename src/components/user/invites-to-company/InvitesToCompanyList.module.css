@@ -25,12 +25,26 @@
 }
 
 .listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
 
 .listItem:last-child {
     border-bottom: none;
+}
+
+.companyName {
+    flex-grow: 1;
+    text-align: left;
+    color: #333;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
 }
 
 .error {

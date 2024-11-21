@@ -290,8 +290,11 @@
   "invitesToCompanyList": {
     "error": "Error: ",
     "errors": {
-      "fetchInvitesFailed": "Failed to fetch the list of invites"
+      "fetchInvitesFailed": "Failed to fetch the list of invites.",
+      "failedToAcceptInvite": "Error: Failed to accept invite."
     },
+    "accept": "Accept",
+    "cancel": "Cancel",
     "noInvites": "No invites available",
     "companyInvites": "Company invites list from users"
   },
