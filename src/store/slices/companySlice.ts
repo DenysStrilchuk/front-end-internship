@@ -3,7 +3,12 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IPagination, IUserListResponse} from "../../models/IUser";
 import {IApiError} from "../../types/api-types/errorTypes";
 import {companyApi} from "../../api/company-api";
-import {ICompaniesListResponse, ICompany} from "../../models/ICompany";
+import {
+  IAcceptRequestResponse,
+  ICompaniesListResponse,
+  ICompany,
+  IGetMembersListResponse
+} from "../../models/ICompany";
 
 interface CompanyState {
   companies: ICompany[];
@@ -18,6 +23,7 @@ interface CompanyState {
   avatar: string | null;
   invitedUsers: IUserListResponse | null;
   requestsList: IUserListResponse | null;
+  membersList: IGetMembersListResponse | null;
 }
 
 const initialState: CompanyState = {
@@ -33,6 +39,7 @@ const initialState: CompanyState = {
   avatar: null,
   invitedUsers: null,
   requestsList: null,
+  membersList: null,
 };
 
 const fetchAllCompanies = createAsyncThunk(
@@ -96,6 +103,7 @@ const updateCompany = createAsyncThunk(
     }
   }
 );
+
 const updateCompanyVisibility = createAsyncThunk(
   'company/updateVisibility',
   async ({companyId, isVisible}: { companyId: number, isVisible: boolean }, {rejectWithValue}) => {
@@ -185,14 +193,15 @@ const fetchRequestsList = createAsyncThunk(
   }
 );
 
-const acceptRequest = createAsyncThunk(
+const acceptRequest = createAsyncThunk<number, number>(
   'companies/acceptRequest',
-  async (actionId: number, { rejectWithValue }) => {
+  async (actionId, { rejectWithValue }) => {
     try {
-      return await companyApi.acceptRequest(actionId);
+      const response = await companyApi.acceptRequest(actionId) as IAcceptRequestResponse;
+      return response.result.action_id; // Extract action_id from the result property
     } catch (error: unknown) {
       const apiError = error as IApiError;
-      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToAcceptRequest');
+      return rejectWithValue(apiError.response?.data?.message || 'Failed to accept request');
     }
   }
 );
@@ -206,6 +215,31 @@ const cancelRequest = createAsyncThunk<number, number>(
     } catch (error: unknown) {
       const apiError = error as IApiError;
       return rejectWithValue(apiError.response?.data?.message || 'errors.failedToCancelInvite');
+    }
+  }
+);
+
+const fetchMembersList = createAsyncThunk<IGetMembersListResponse, number, { rejectValue: string }>(
+  'companies/fetchMembersList',
+  async (companyId, { rejectWithValue }) => {
+    try {
+      return await companyApi.getMembersList(companyId);
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToFetchMembersList');
+    }
+  }
+);
+
+const deleteMember = createAsyncThunk<number, number>(
+  'companies/deleteMember',
+  async (actionId, { rejectWithValue }) => {
+    try {
+      await companyApi.leaveCompany(actionId);
+      return actionId;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToDeleteMember');
     }
   }
 );
@@ -384,9 +418,14 @@ const companySlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(acceptRequest.fulfilled, (state, action: PayloadAction<IUserListResponse>) => {
+      .addCase(acceptRequest.fulfilled, (state, action: PayloadAction<number>) => {
         state.loading = false;
-        state.requestsList = action.payload;
+
+        if (state.requestsList) {
+          state.requestsList.users = state.requestsList.users.filter(
+            (request) => request.action_id !== action.payload
+          );
+        }
       })
       .addCase(acceptRequest.rejected, (state, action) => {
         state.loading = false;
@@ -403,6 +442,30 @@ const companySlice = createSlice({
       .addCase(cancelRequest.rejected, (state, action) => {
         state.loading = false;
         state.invitedError = action.payload as string;
+      })
+      .addCase(fetchMembersList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchMembersList.fulfilled, (state, action: PayloadAction<IGetMembersListResponse>) => {
+        state.loading = false;
+        state.membersList = action.payload;
+      })
+      .addCase(fetchMembersList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(deleteMember.fulfilled, (state, action: PayloadAction<number>) => {
+        state.loading = false;
+        if (state.membersList && state.membersList.result.users) {
+          state.membersList.result.users = state.membersList.result.users.filter(
+            (user) => user.action_id !== action.payload
+          );
+        }
+      })
+      .addCase(deleteMember.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       })
   }
 });
@@ -426,4 +489,6 @@ export {
   fetchRequestsList,
   acceptRequest,
   cancelRequest,
+  fetchMembersList,
+  deleteMember
 };

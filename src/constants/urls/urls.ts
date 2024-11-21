@@ -20,6 +20,7 @@ const createFromCompany = 'create_from_company/';
 const createFromUser = 'create_from_user';
 const declineAction = '/decline_action/';
 const acceptRequest = '/accept_request/';
+const leaveCompany = '/leave_company/';
 
 const urls = {
   status: {
@@ -50,12 +51,12 @@ const urls = {
     updateAvatar: (companyId: number) => `${company}${companyId}${updateAvatar}`,
     deleteCompany: (companyId: number) => `${company}${companyId}/`,
     getInvitesList: (companyId: number) => `${company}${companyId}${invitesList}`,
-    getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
     actionCreateFromCompany: (companyId: number, userId: number) => `${action}${createFromCompany}${companyId}${user}${userId}/`,
     declineInvite: (actionId: number) => `${action}${actionId}${declineAction}`,
     getRequestsList: (companyId: number) => `${company}${companyId}${requestsList}`,
     acceptRequest: (actionId: number) => `${action}${actionId}${acceptRequest}`,
-    excludeUser: (companyId: number) => `${company}${companyId}${membersList}`,
+    getMembersList: (companyId: number) => `${company}${companyId}${membersList}`,
+    leaveCompany: (actionId: number) => `${action}${actionId}${leaveCompany}`
   }
 };
 

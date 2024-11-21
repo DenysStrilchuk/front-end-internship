@@ -1,7 +1,12 @@
 import {axiosInstance} from "../axios-instance";
 
 import {urls} from "../../constants/urls";
-import {ICompaniesListResponse, ICompany} from "../../models/ICompany";
+import {
+  IAcceptRequestResponse,
+  ICompaniesListResponse,
+  ICompany,
+  IGetMembersListResponse
+} from "../../models/ICompany";
 import {IUserListResponse} from "../../models/IUser";
 
 const companyApi = {
@@ -69,14 +74,18 @@ const companyApi = {
     const {data: {result}} = await axiosInstance.get(urls.companies.getRequestsList(companyId));
     return result;
   },
-  acceptRequest: async (actionId: number): Promise<IUserListResponse> => {
-    const {data:{result}} = await axiosInstance.get(urls.companies.acceptRequest(actionId));
+  acceptRequest: async (actionId: number): Promise<IAcceptRequestResponse> => {
+    const { data } = await axiosInstance.get(urls.companies.acceptRequest(actionId));
+    return data;
+  },
+  getMembersList: async (companyId: number): Promise<IGetMembersListResponse> => {
+  const {data} = await axiosInstance.get(urls.companies.getMembersList(companyId));
+  return data;
+  },
+  leaveCompany: async (actionId: number): Promise<IUserListResponse> => {
+    const {data: {result}} = await axiosInstance.get(urls.companies.leaveCompany(actionId));
     return result;
   },
-  getMembersList: async (companyId: number): Promise<IUserListResponse> => {
-    const {data: {result}} = await axiosInstance.get(urls.companies.getMembersList(companyId));
-    return result;
-  }
 }
 
 export {companyApi}

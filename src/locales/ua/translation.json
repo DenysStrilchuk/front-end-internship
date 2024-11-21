@@ -314,6 +314,16 @@
     },
     "accept": "Прийняти",
     "cancelInvite": "Відхилити"
+  },
+  "companyMembersList": {
+    "title": "Список користувачів компанії",
+    "errors": {
+      "failedToFetchMembersList": "Помилка: Не вдалось отримати список користувачів компанії!",
+      "unknownError": "Error: An unknown error occurred. Please try again later.",
+      "failedToDeleteMember": "Помилка: Не вдалось видалити учасника."
+    },
+    "cancelInvite": "Видалити учасника",
+    "noMembers": "У Вас ще немає жодного учасника компанії"
   }
 }
 

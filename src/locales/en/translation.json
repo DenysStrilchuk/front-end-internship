@@ -314,6 +314,16 @@
     },
     "accept": "Accept",
     "cancelInvite": "Cancel"
+  },
+  "companyMembersList": {
+    "title": "Company members list",
+    "errors": {
+      "failedToFetchMembersList": "Error: Failed to retrieve the members list!",
+      "unknownError": "Error: An unknown error occurred. Please try again later.",
+      "failedToDeleteMember": "Error: Failed to delete member."
+    },
+    "cancelInvite": "Remove member",
+    "noMembers": "No members available"
   }
 }
 

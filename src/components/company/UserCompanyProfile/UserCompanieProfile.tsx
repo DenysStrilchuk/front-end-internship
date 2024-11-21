@@ -15,6 +15,7 @@ import {InviteUserToCompany} from "../../common/InviteUserToCompany";
 import styles from './UserCompanieProfile.module.css';
 import {GetInvitesUsersToCompany} from "../../common/GetInvitesUsersToCompany";
 import {CompanyRequestsList} from "../CompanyRequestsList";
+import {CompanyMembersList} from "../CompanyMembersList";
 
 const UserCompanyProfile = () => {
   const {t} = useTranslation();
@@ -185,8 +186,9 @@ const UserCompanyProfile = () => {
       )}
       {companyDetail && (
         <>
-          <GetInvitesUsersToCompany companyId={companyDetail.company_id} />
-          <CompanyRequestsList companyId={companyDetail.company_id} />
+          <GetInvitesUsersToCompany companyId={companyDetail.company_id}/>
+          <CompanyRequestsList companyId={companyDetail.company_id}/>
+          <CompanyMembersList companyId={companyDetail.company_id}/>
         </>
       )}
     </div>
