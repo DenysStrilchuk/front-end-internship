@@ -15,6 +15,7 @@ import {UserCompaniesList} from "../../companies/UserCompaniesList";
 import {fetchUserCompanies} from "../../../store/slices/companySlice";
 import {InvitesToCompanyList} from "../invites-to-company";
 import {InviteFromUserToCompany} from "../invite-from-user";
+import {RequestsFromUserList} from "../requests-from-user";
 
 const UserProfile = () => {
   const {t} = useTranslation();
@@ -197,6 +198,7 @@ const UserProfile = () => {
         }
       />
       <InvitesToCompanyList userId={user.result.user_id}/>
+      <RequestsFromUserList userId={user.result.user_id}/>
     </div>
   );
 };

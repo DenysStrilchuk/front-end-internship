@@ -327,6 +327,18 @@
     },
     "cancelInvite": "Remove member",
     "noMembers": "No members available"
+  },
+  "requestsFromUserList": {
+    "title": "My requests to join companies",
+    "success": {
+      "cancelRequest": "Success cancel request!"
+    },
+    "errors": {
+      "failedToFetchRequestsList": "Error: Failed to fetch requests list",
+      "failedToCancelRequest": "Error: Failed to cancel request!"
+    },
+    "cancel": "Cancel request",
+    "noRequests": "You don't have any requests to the company yet."
   }
 }
 

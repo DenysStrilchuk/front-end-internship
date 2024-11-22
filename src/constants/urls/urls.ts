@@ -40,7 +40,7 @@ const urls = {
     deleteUser: (id: number) => `${user}${id}/`,
     getInvitesToCompanies: (userId: number) => `${user}${userId}${invitesList}`,
     actionCreateFromUser: (companyId: number) => `${action}${createFromUser}${company}${companyId}/`,
-    getRequests: (userId: number) => `${user}${userId}${requestsList}`,
+    getRequestsList: (userId: number) => `${user}${userId}${requestsList}`,
   },
   companies: {
     getAllCompanies: `${companies}`,

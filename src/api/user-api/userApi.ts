@@ -46,7 +46,11 @@ const userApi = {
   declineInvite: async (actionId: number): Promise<ICompaniesListResponse> => {
     const {data: {result}} = await axiosInstance.get(urls.actions.declineInvite(actionId));
     return result;
-  }
+  },
+  getRequestsList: async (userId: number): Promise<IInviteCompaniesResponse> => {
+    const { data } = await axiosInstance.get(urls.users.getRequestsList(userId));
+    return data;
+  },
 };
 
 export {userApi};

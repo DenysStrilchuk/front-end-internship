@@ -110,7 +110,7 @@ const acceptInvite = createAsyncThunk<
   { rejectValue: string }
 >(
   "users/acceptInvite",
-  async (actionId, { rejectWithValue }) => {
+  async (actionId, {rejectWithValue}) => {
     try {
       return await userApi.acceptInvite(actionId);
     } catch (error: unknown) {
@@ -122,13 +122,26 @@ const acceptInvite = createAsyncThunk<
 
 const cancelInvite = createAsyncThunk<number, number>(
   'companies/cancelInvite',
-  async (actionId, { rejectWithValue }) => {
+  async (actionId, {rejectWithValue}) => {
     try {
       await userApi.declineInvite(actionId);
       return actionId;
     } catch (error: unknown) {
       const apiError = error as IApiError;
       return rejectWithValue(apiError.response?.data?.message || 'errors.failedToCancelInvite');
+    }
+  }
+);
+
+const fetchRequestsList = createAsyncThunk<IInviteCompany[], number, { rejectValue: string }>(
+  'users/fetchRequestsList',
+  async (userId, {rejectWithValue}) => {
+    try {
+      const response = await userApi.getRequestsList(userId);
+      return response.result.companies;
+    } catch (error: unknown) {
+      const apiError = error as IApiError;
+      return rejectWithValue(apiError.response?.data?.message || 'errors.failedToFetchRequestsList');
     }
   }
 );
@@ -229,6 +242,18 @@ const userSlice = createSlice({
       })
       .addCase(cancelInvite.rejected, (state, action) => {
         state.error = action.payload as string;
+      })
+      .addCase(fetchRequestsList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchRequestsList.fulfilled, (state, action: PayloadAction<IInviteCompany[]>) => {
+        state.loading = false;
+        state.invites = action.payload;
+      })
+      .addCase(fetchRequestsList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   }
 });
@@ -246,4 +271,5 @@ export {
   inviteFromUser,
   acceptInvite,
   cancelInvite,
+  fetchRequestsList,
 };
