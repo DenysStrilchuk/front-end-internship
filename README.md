@@ -36,8 +36,8 @@ at http://localhost:3000.
 
 - `public/`: Contains static files .
 - `src/`: The main folder with the application code.
-    - `components/`: Reusable components. For example, Home — the main page.
-    - `pages/`: Application pages. For example, HomePage.tsx.
+    - `components/`: Reusable components. For example, Welcome — the main page.
+    - `pages/`: Application pages. For example, WelcomePage.tsx.
     - `store/`: Folder for global state management.
     - `api/`: Files for API requests.
     - `utils/`: Helper functions and utilities.
@@ -47,3 +47,25 @@ at http://localhost:3000.
 - `README.md`: Instructions for running the app and project description.
 - `package.json`: Project dependencies and scripts. Конфігурація TypeScript.
 - `.gitignore`: Files to be ignored by Git.
+
+## Running the application in Docker
+
+1. Ensure that Docker and Docker Compose are installed.
+2. Build the Docker image:
+    ```bash
+    docker-compose build
+    ```
+3. Start the container:
+    ```bash
+    docker-compose up
+    ```
+4. Open your browser and navigate to `http://localhost:80`.
+
+5. To stop the running Docker container, use:
+     ```bash
+    docker-compose down
+    ```
+6. If you need to restart the container after making changes, use:
+     ```bash
+    docker-compose up --build
+    ```

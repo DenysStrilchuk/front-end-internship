@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 900px;
+    gap: 12px;
+    padding: 20px;
+}
+
+.userList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.userItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.addSelectedButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.addSelectedButton {
+    width: 100%;
+}

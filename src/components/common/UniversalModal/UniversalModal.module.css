@@ -1,0 +1,28 @@
+.modalContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    background-color: #fff;
+}
+
+.modalTitle {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.modalContent {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.modalActions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,0 +1,344 @@
+{
+  "language": "Language",
+  "english": "English",
+  "ukrainian": "Ukrainian",
+  "welcome": "Welcome",
+  "home": "Home",
+  "universalModal": {
+    "close": "Close"
+  },
+  "about": {
+    "header": "About",
+    "title": "About Our Application",
+    "description": "This is a mock page that provides information about our project."
+  },
+  "users": {
+    "userList": "Users List",
+    "list": "Users",
+    "error": "An error occurred while fetching users data.",
+    "noUsersFound": "Users not found."
+  },
+  "user": {
+    "details": "User details",
+    "name": "Name",
+    "lastName": "Last name",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone",
+    "error": "An error occurred while fetching user data.",
+    "notFound": "User not found."
+  },
+  "createCompany": {
+    "companyName": "Company Name",
+    "visibility": "Visibility",
+    "createButton": "Create Company",
+    "error": "Error",
+    "validation": {
+      "emptyName": "The field cannot be empty",
+      "minLength": "The company name must be at least 3 characters long",
+      "maxLength": "The company name must not exceed 30 characters",
+      "required": "This field is required",
+      "invalidName": "The name cannot contain only digits and must start with a capital letter. Only Latin letters are allowed."
+    }
+  },
+  "userCompanies": {
+    "title": "My companies:",
+    "noCompanies": "You don't have any companies yet.",
+    "hidden": "Hidden",
+    "error": {
+      "failedToFetch": "Failed to fetch companies"
+    }
+  },
+  "companies": {
+    "title": "Companies",
+    "list": "Companies List",
+    "error": "An error occurred while fetching companies data.",
+    "noCompaniesFound": "Companies not found"
+  },
+  "company": {
+    "id": "Company ID",
+    "name": "Company Name",
+    "title": "Company Title",
+    "avatar": "Company Avatar",
+    "companyLogo": "Company Logo",
+    "isVisible": "Visibility",
+    "description": "Company Description",
+    "city": "Company City",
+    "phone": "Company Phone",
+    "links": "Company Links",
+    "information": "Company information:",
+    "noDescriptionAvailable": "Company description unavailable",
+    "noCompanyDetails": "No company details",
+    "unknown": "N/A",
+    "notProvided": "N/A",
+    "noLinksAvailable": "N/A",
+    "buttonUpdate": "UPDATE COMPANY",
+    "buttonUpdateAvatar": "UPDATE AVATAR",
+    "buttonAddLink": "ADD LINK",
+    "buttonDelete": "DELETE COMPANY",
+    "buttonInviteUser": "INVITE USERS",
+    "existingLinks": "Existing links:",
+    "remove": "Remove",
+    "updateCompanyProfile": "Update company profile",
+    "updateCompanyAvatar": "Update company avatar",
+    "inviteUserToCompany": "Invite users to company",
+    "error": "An error occurred while fetching company data.",
+    "notFound": "Company not found.",
+    "ownerInfo": "Owner information",
+    "ownerName": "Owner name",
+    "ownerEmail": "Owner email",
+    "deleteCompanyTitle": "Delete company."
+  },
+  "home_description": "This application showcases various features and functionalities. You can navigate through the menu to explore different sections including About, Users, and Companies.",
+  "login": {
+    "title": "Login",
+    "errorMessage": "Login error. Please check your credentials.",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "submitButton": "Log In",
+    "orLoginWith": "or login with"
+  },
+  "register": {
+    "title": "Registration",
+    "errorMessage": "Registration error. Please try again.",
+    "emailLabel": "Email",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "submitButton": "Register",
+    "passwordMismatch": "Passwords do not match.",
+    "orRegisterWith": "or register with"
+  },
+  "common": {
+    "submitButton": "Submit",
+    "or": "or"
+  },
+  "logout": "Logout",
+  "auth": {
+    "errors": {
+      "email": {
+        "empty": "The \"Email\" field cannot be empty",
+        "invalid": "Please enter a valid email address",
+        "required": "The \"Email\" field is required"
+      },
+      "password": {
+        "empty": "The \"Password\" field cannot be empty",
+        "min": "Password must be at least 8 characters long",
+        "max": "Password must not exceed 30 characters",
+        "pattern": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+        "required": "The \"Password\" field is required"
+      },
+      "confirmPassword": {
+        "match": "Passwords do not match",
+        "required": "The \"Confirm Password\" field is required"
+      },
+      "firstName": {
+        "empty": "The \"First Name\" field cannot be empty",
+        "min": "First name must be at least 2 characters long",
+        "max": "First name must not exceed 50 characters",
+        "pattern": "First name must start with an uppercase letter and contain only letters",
+        "required": "The \"First Name\" field is required"
+      },
+      "lastName": {
+        "empty": "The \"Last Name\" field cannot be empty",
+        "min": "Last name must be at least 2 characters long",
+        "max": "Last name must not exceed 50 characters",
+        "pattern": "Last name must start with an uppercase letter and contain only letters",
+        "required": "The \"Last Name\" field is required"
+      },
+      "register": {
+        "emailExists": "A user with this email address already exists.",
+        "default": "An unknown error occurred. Please try again later."
+      },
+      "login": {
+        "invalidAuth": "Invalid login or password.",
+        "default": "An unknown error occurred. Please try again later."
+      }
+    }
+  },
+  "profile": {
+    "title": "My profile",
+    "userAvatar": "User Avatar",
+    "myInformation": "My Information:",
+    "email": "Email",
+    "city": "City",
+    "phone": "Phone",
+    "noData": "N/A",
+    "cancel": "Cancel",
+    "updateProfile": "Update Profile",
+    "deleteProfile": "Delete Profile",
+    "uploadAvatar": "Upload Avatar",
+    "createCompany": "Create Company",
+    "inviteToCompany": "Join Companies",
+    "errorFetching": "Error fetching user profile."
+  },
+  "updateUser": {
+    "userFirstname": "First Name",
+    "userLastname": "Last Name",
+    "city": "City",
+    "phone": "Phone",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "errorUpdating": "Failed to update user."
+  },
+  "deleteUser": {
+    "confirmationMessage": "Are you sure you want to delete your profile? This action cannot be undone.",
+    "confirmDelete": "Confirm Delete",
+    "yesDelete": "Yes, Delete",
+    "cancel": "Cancel",
+    "error": {
+      "deleteFailed": "Failed to delete user.",
+      "unknownError": "An unknown error occurred."
+    }
+  },
+  "avatar": {
+    "uploadAvatar": "Upload Avatar",
+    "cancel": "Cancel",
+    "error": {
+      "avatarUrlMissing": "Avatar URL is missing.",
+      "noFileSelected": "No file selected.",
+      "default": "Failed to update avatar."
+    }
+  },
+  "validation": {
+    "firstName": {
+      "required": "First name is required",
+      "min": "First name must be at least 2 characters long",
+      "max": "First name must be less than 50 characters long",
+      "pattern": "First name must start with a capital letter"
+    },
+    "lastName": {
+      "required": "Last name is required",
+      "min": "Last name must be at least 2 characters long",
+      "max": "Last name must be less than 50 characters long",
+      "pattern": "Last name must start with a capital letter"
+    },
+    "city": {
+      "max": "City name must be less than 100 characters long"
+    },
+    "phone": {
+      "invalid": "Invalid phone number"
+    },
+    "companyName": {
+      "required": "Company name is required",
+      "min": "Company name must be at least 2 characters long",
+      "max": "Company name cannot exceed 100 characters",
+      "pattern": "Company name can only contain Latin letters and numbers"
+    },
+    "companyDescription": {
+      "max": "Company description cannot exceed 500 characters",
+      "pattern": "Company description cannot contain only numbers"
+    },
+    "companyCity": {
+      "max": "City name cannot exceed 100 characters",
+      "pattern": "City name can only contain Latin letters and spaces"
+    },
+    "companyPhone": {
+      "invalid": "Phone number is invalid. Use a format with 7 to 15 digits, with an optional '+' prefix"
+    },
+    "companyLinks": {
+      "invalid": "Company link must be in URI format",
+      "invalidUrl": "Invalid link. Please enter a valid URL."
+    }
+  },
+  "companyVisibilityToggle": {
+    "companyHidden": "Make company hidden",
+    "companyVisible": "Make company visible",
+    "visible": "Visible company",
+    "errors": {
+      "failedToUpdateVisibility": "Failed to update company visibility",
+      "errorOccurred": "The error occurred. Please try again."
+    }
+  },
+  "deleteCompany": {
+    "error": {
+      "deleteFailed": "Delete failed."
+    },
+    "confirmationMessage": "Do you really want to delete the company?",
+    "confirmDelete": "Confirm delete",
+    "yesDelete": "Yes, delete.",
+    "cancel": "Cancel"
+  },
+  "inviteUserToCompany": {
+    "success":"Successfully added",
+    "select": "Select",
+    "selected": "Selected",
+    "addSelectedUsers": "Invite selected users to company",
+    "error": {
+      "failedToInviteFetch": "Failed to send the invitation. Please try again later.",
+      "unknown": "An unknown error occurred. Please try again later.",
+      "fetchUsers": "Failed to get users data. Please try again later."
+    }
+  },
+  "getInvitesUsersToCompany": {
+    "title": "The list of users invited by my company",
+    "success": {
+      "cancelInvite": "User deleted successfully from list."
+    },
+    "errors": {
+      "error": "Error:",
+      "failedToFetchInvitedUsers": "Failed to get users data. Please try again later.",
+      "unknown": "An unknown error occurred. Please try again later.",
+      "failedToCancelInvite": "Failed to cancel invite."
+    },
+    "actions": {
+      "cancelInvite": "Cancel Invite"
+    },
+    "noUsers": "No users"
+  },
+  "invitesToCompanyList": {
+    "error": "Error: ",
+    "errors": {
+      "fetchInvitesFailed": "Failed to fetch the list of invites.",
+      "failedToAcceptInvite": "Error: Failed to accept invite."
+    },
+    "accept": "Accept",
+    "cancel": "Cancel",
+    "noInvites": "No invites available",
+    "companyInvites": "Company invites list from users"
+  },
+  "inviteFromUserToCompany": {
+    "errors": {
+      "failedToCreateActionFromUser": "Error: Failed to join!",
+      "unknown": "Error: An unknown error occurred. Please try again later."
+    },
+    "success": "Success add",
+    "selected": "Selected",
+    "select": "Select",
+    "addSelectedCompanies": "Send request to the company"
+  },
+  "companyRequestsList": {
+    "title": "List of User Requests to Join the Company",
+    "noRequests": "You don't have any requests to the company yet.",
+    "errors": {
+      "failedToFetchRequestsList": "Error: Failed to retrieve the user list!",
+      "unknownError": "Error: An unknown error occurred. Please try again later."
+    },
+    "accept": "Accept",
+    "cancelInvite": "Cancel"
+  },
+  "companyMembersList": {
+    "title": "Company members list",
+    "errors": {
+      "failedToFetchMembersList": "Error: Failed to retrieve the members list!",
+      "unknownError": "Error: An unknown error occurred. Please try again later.",
+      "failedToDeleteMember": "Error: Failed to delete member."
+    },
+    "cancelInvite": "Remove member",
+    "noMembers": "No members available"
+  },
+  "requestsFromUserList": {
+    "title": "My requests to join companies",
+    "success": {
+      "cancelRequest": "Success cancel request!"
+    },
+    "errors": {
+      "failedToFetchRequestsList": "Error: Failed to fetch requests list",
+      "failedToCancelRequest": "Error: Failed to cancel request!"
+    },
+    "cancel": "Cancel request",
+    "noRequests": "You don't have any requests to the company yet."
+  }
+}
+

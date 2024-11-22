@@ -1,0 +1,12 @@
+node_modules
+coverage
+.idea
+.github
+.env
+.env.sample
+Dockerfile
+docker-compose.yml
+*.md
+src/**/*.spec.js
+src/**/*.test.js
+.git

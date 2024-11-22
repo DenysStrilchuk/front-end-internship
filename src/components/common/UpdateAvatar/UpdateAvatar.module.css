@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.submitButton,
+.cancelButton {
+    margin-top: 8px;
+}
+
+.errorText {
+    color: red;
+    font-size: 16px;
+}

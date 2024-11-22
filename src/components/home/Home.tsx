@@ -1,24 +1,21 @@
-import { Button, Container, Typography, useTheme } from "@mui/material";
-import styles from './Home.module.css';
+import React from "react";
+import {useTranslation} from "react-i18next";
+
+import styles from "./Home.module.css";
 
 const Home = () => {
-    const theme = useTheme();
+  const {t} = useTranslation();
 
-    return (
-        <div
-            className={styles.root}
-            style={{ backgroundColor: theme.palette.background.default }}
-        >
-            <Container>
-                <Typography variant="h2" className={styles.title}>
-                    Welcome to My Front End Internship Project
-                </Typography>
-                <Button variant="contained" color="primary" className={styles.button}>
-                    Get Started
-                </Button>
-            </Container>
-        </div>
-    );
+  return (
+    <div className={styles.container}>
+      <h4 className={styles.title}>
+        {t('welcome')}
+      </h4>
+      <p className={styles.description}>
+        {t('home_description')}
+      </p>
+    </div>
+  );
 };
 
-export { Home };
+export {Home}

@@ -1,0 +1,21 @@
+.header {
+    background-color: #3f51b5;
+    padding: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    flex-grow: 1;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    margin-right: 16px;
+}
